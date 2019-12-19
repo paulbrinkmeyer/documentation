@@ -1,0 +1,8 @@
+Java SE = Java Standard Edition
+JDK = Java Development Kit
+JRE = Java Runtime Environment
+
+# Install Java in on ubuntu container
+apt-get update
+apt-get install openjdk-11-jre
+apt-get install openjdk-11-jdk

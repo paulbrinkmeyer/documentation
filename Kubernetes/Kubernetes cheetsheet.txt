@@ -1,0 +1,109 @@
+Cluster
+- master: 
+- nodes: at least 3 of these in a cluster
+    * kubelet: process responsible for communication between the Kubernetes Master and the Node; it manages the Pods and the containers running on a machine
+    
+
+pod:         is group of one or more containers. A pod is the Smallest unit that Kubernetes can control
+deployment: 
+node:        virtual or physical machine running pods
+ReplicaSets: 
+service:     an exposed inteface into the cluster
+- ClusterIP
+- NodePort
+- LoadBalancer
+- ExternalName
+
+ConfigMap: ????
+
+    
+minikube commands
+-------------------------------------------------------------------------
+minikube version                    # lists the version of the tool
+minikube dashboard                  # opens a web interface to the environment
+minikube addon list                 # lists all the current addons
+minikube addons enable <NAME>       # enable the <NAME> addon
+minikube addons disable <NAME>      # disable the <NAME> addon
+minikube delete                     # delete the Minikube VM
+minikube ip                         # gives the IP of the cluster?
+minikube start                      # start the Minikube VM
+minikube stop                       # stop the Minikube VM
+
+
+kubectl commands
+-------------------------------------------------------------------------
+kubectl version                                                   # shows the version of the client and server
+kubectl cluster-info                                              # gives info about the master and the KubeDNS
+
+# common config commands
+kubectl config view | grep current-context                        # show current context
+kubectl config get-clusters                                       # list of cluster names that are configured
+kubectl config use-context <CONTEXT_NAME>                         # used to change with cluster kubectl is currently controlling
+e.g.
+kubectl config use-context minikube 
+
+
+# uncommon config commands
+kubectl config view                                               # view the details of each setup cluster
+kubectl config unset users.<name>                                 # To delete a user <name>
+kubectl config set-context <CONTEXT_NAME> --namespace=<NAMESPACE> # used to set a specific <NAMESPACE> for the given <CONTEXT_NAME> 
+
+# deployments
+kubectl create deployment <NAME> --image=<IMAGE>                  # deploy and start an image
+kubectl delete deployment <NAME>                                  # stop and delete a deployment
+
+# Image examples:
+gcr.io/hello-minikube-zero-install/hello-node
+gcr.io/google-samples/kubernetes-bootcamp:v1
+
+# services
+kubectl expose deployment <NAME> --type=NodePort --port=8080      # a way to expose a service outside of the cluster
+kubectl delete service <NAME>                                     # delete a service created by "expose"
+
+# ingresses
+kubectl get ingress                                               # lists the ingresses
+
+# excecute commands in a container
+kubectl exec -c <CONTAINER_NAME> <POD_NAME>                       # execute a command on a container in a pod, -c is optional if there is only one
+kubectl exec -it -c <CONTAINER_NAME> <POD_NAME>                   # execute commands directly to a container via CLI
+
+# other commands
+kubectl describe pods                                             # show detailed information about the pods
+kubectl describe services
+kubectl describe deployments                                      # gives info about the deployment e.g. Event history
+
+kubectl get namespace                                             # lists the namespaces
+kubectl get nodes                                                 # lists the nodes and their status
+kubectl get deployments                                           # lists the deployments
+kubectl get pods                                                  # lists the pods
+kubectl get pods -o wide                                          # lists the internal ip of each pod
+kubectl get events                                                # lists the history of events
+kubectl get services                                              # lists all the services that are exposed
+kubectl get srv                                                   # same as "get services"
+kubectl logs -c <CONTAINER_NAME> <POD_NAME>                       # print the logs from a container in <POD_NAME>, -c is optional if there is only one
+kubectl logs -f -c <CONTAINER_NAME> <POD_NAME>                    # used to follow the logs
+kubectl proxy                                                     # pre-built service to allow getting common data from the cluster
+kubectl run                                                       # creates a new deployment
+kubectl rollout status deployments/<DEPLOYMENT>                   # see the status of a "set image" command
+kubectl rollout undo deployments/<DEPLOYMENT>                     # undo the current "set image" command
+kubectl scale deployments/<DEPLOY_NAME> --replicas=<NUM>          # change the number of replicas to <NUM>
+### kubectl service <NAME>                                           # start a service
+kubectl set image deployments/<DEPLOYMENT> <CONTAINER>=<IMAGE>    # update <DEPLOYMENT>'s <CONTAINER> to <IMAGE>
+
+kubectl apply -f <FILENAME>                                       # apply a configuration specified in a <FILENAME>
+kubectl delete -f <FILENAME>                                      # remove an applied configuration
+
+# method to get a pod name
+-------------------------------------------------------------------------------------------------------------------------
+export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo Name of the Pod: $POD_NAME
+
+
+
+
+
+
+# Resource definitions
+all resources need at least the following:
+apiVerion:
+kind:

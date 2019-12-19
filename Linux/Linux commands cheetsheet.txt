@@ -1,0 +1,146 @@
+GENERAL BASH commands:
+
+.            same as "source" command. Executes the given file as shell commands (unlike "sh" it doesn't spawn its own process)
+awk          used to do a similar processing across every line of standard in (e.g. ll -al | awk '{print $9}')
+basename     removes the folder path to a file and path string and just returns the file name
+bg           starts back up a job in the background that has been stopped (e.g. by Ctr-Z). 
+cat          Output the contents of a file. Can be used to create a file with the text you enter (i.e. cat > file.txt)
+cd           Change directory (e.g. cd folderName)
+chgrp        Change the groups of files
+chmod        Change the privileges of a file
+cksum        Print CRC checksum and byte counts              (e.g. cksum <FILE_NAME>)
+cp           Copy a file
+curl         used to communicate over the network
+cut          used to remove parts of lines sent to std out   (e.g. alias | cut -c 7-)
+date         Outputs the current date. Useful for timestamps (e.g. date +"%F_%T) 
+df           Shows mounted drives and the space available in them
+diff         Compare two files against each other
+dir          Output the sub-dir of the working directory     (see vdir)
+dirs         lists the stack of directories that you can switch to (see pushd). -v will list them 1 line at a time with an index
+disown       Disowns the last process put in the background by the current process
+dmsg         Output driver info
+dos2unix     Convert a Win text file to a Unix text file     (e.g. dos2unix < fileName > OutputFileName) Not in CentOS by default
+du           Disk Usage                                      (e.g. du -sh *)
+echo         Output the argument string and/or variables     (e.g. echo "PATH = $PATH")
+exec         Replace the termial process with a new one      (e.g. exec python -i) 
+export       Used to set environment variables               (e.g. export VAR=1)
+fg           brings a job back to the foreground             (e.g. "fg %1" will bring job 1 to the foreground)
+file         Gives info about the files contents             (e.g. file <fileName>)
+find         Search for a file in a directory                (e.g. find <DIR_TO_SEARCH> -name '*<FILENAME_TO_SEARCH_FOR>*')
+fold         used to wrap lines                              (e.g. cat fileWithLostOfWords.txt | fold -w 80
+ftp          Start a ftp session                             (e.g. ftp <IP_ADDRESS>
+getopt       Method for parsing script parameters. Similar to Python's argparse. Bug: parameters can't have spaces in them even if quoted!
+getopts      Much like getopt and allows you to step through each option one at a time. Similar to a Python generator
+gpg          Encrypt files                                   (e.g. gpg -c <FILE> # to encrypt; gpg <FILE> # to decrypt)
+grep         Output the line that contains a specific string (e.g. grep -r SEARCH_STRING *)
+groups       List the groups the current user is a part of
+gzip         Used to compress files. "-d" will decompress files. "-k" will keep the original files. "-r" will do all files in a directory and all sub-directoies.
+head         Output the first 10 lines of standard in ("-n <numLines>" is commonly used to change the default of 10)
+history      print out the history of commands entered from the terminal
+ifconfig     Similar to Windows ipconfig (see "ip" command)
+ip           Useful ip info (e.g. "ip addr l" is similar to ifconfig, however some systems don't have ifconifg)
+info         Outputs help info similar to this file
+jobs         List of all background jobs
+kill         (e.g. kill -9 is the hammer method for killing a process) (e.g. "kill $(jobs -p)" will kill all jobs) 
+less         View a file. Can scroll up and down.
+ln           used to make hard/soft links to files           (e.g. ln <sourceFIle> <destinationFile>)
+ls           Output the contents of the working directory
+lsblk        Lists all mounted hard drives
+mkdir        Create a directory (-p will make parent directories too) 
+more         View a file. Can only scroll down.
+mount        Shows mounted devices. With flags can be used to setup a mount.
+mv           Move or rename a file (mv <FILE_TO_COPY> <FOLDER_LOCATION>)
+nautilus     Used in RedHat 6, CentOS & ubuntu 14.04 to open a folder browser window of the current folder
+nano         terminal text editor simpler than “vi” but with less features
+nc           can be used to cat a file over the network      (e.g. cat file.txt | nc -w 10 12.34.56.78 9100)
+nohup        Run a process that will continue even after calling process ends (e.g. nohup <command> &)
+nslookup     look up the ip address of a URL
+passwd       Change the password for the current logged in user
+pkill        
+ps           background processes ("ps aux" is common way to get all processes)
+pushd        will swap the current directoy with the directory one below on the directory stack. "pushd ." adds the curent directory to the stack (see dirs)
+pwd          Output the path of the working directory
+readlink     will return the full path (minus links) to the given directory (e.g. readlink -f $(pwd))
+rm           Delete a file
+rmdir        Delete an empty directory. use "rm -r <DIR_NAME>" to remove a full directory (USE WITH CAUTION!).
+rsync        sync two remote folders                         (e.g. rsync -azvu -e ssh . trex@sourceIP:/work/trex/sirius)
+scp          Secure copy (scp <sourceFile> <destination> or scp -r <sourceFolder> <destinationParentFolder>) (e.g. scp FileName.txt sips@lnxvcer3.vcd.hp.com:cfg/data_files/serial_numbers) 
+sh           starts a new shell process executing the given file (e.g. sh shellscript.sh)
+shift        removes the first parameter of a script where all the parameter's indices are reduced by one (e.g. $2 would move to $1). However, $0 does not change.
+shred        secure delete a file
+sleep X      processing waits for X seconds before continuing
+source       same as "." command
+ssh          Secure shell - login to a terminal remotely     (e.g. ssh username@lnxvcer3.vcd.hp.com)
+ssh-keygen   Can be used to create a key. Also can be used to remove hostname keys from the known list: ssh-keygen -R <HOSTNAME>
+su           login as root
+sudo         run a command with root privilages
+tail         output the last 10 lines of standard in. The -f flag is very useful for following log files still being appended to.
+tar          Used to store and open files in a archive (open a tar file: tar -xvf <XXX>.tar) 
+tee          read from standard input and write to standard output and a file (e.g.  ls | tee log.txt)
+touch        Change file timestamp. Also can make a file.
+top          A running list of the top processes
+tr           Translate, squeeze, and/or delete characters from standard input, writing to standard output.
+type         gives info about the command given (e.g. type -a <command>) will give you all locations of this command  
+uname        print system info (e.g. uname -a) 
+unset        Used to remove an environment variable          (e.g unset VAR)
+unique       removes duplicate consecutive lines
+usermod      change user settings. e.g. add a group to a user: usermod -a -G <GROUP> <USER>
+vdir         Verbos version of "dir"
+vi           open vi editor
+watch        runs a given command over and over agian every 2 seconds (e.g. watch ls -al)
+wc           counts the number of lines, words, and bytes of files
+which        tells you the path of where a given command is executed from (see "type -a" or "command -v" are likely better options)
+who          Output who is currently logged in
+xxd          view the contents of a file's bits along side the text representation of it
+zcat         same as cat but works on .gz files instead
+zip          Compress files into a zip file                  (e.g. that zips an entire folder: "zip filename.Zip *")
+
+
+
+Bash STRING commands
+
+String length:
+method 1: $ echo "${#VAR}"
+method 2: $ expr length "$VAR"
+method 3: $ echo $VAR | awk '{print length}'
+
+String get sub-string function examples:
+$ VAR="123456789"
+$ echo ${VAR:3}
+456789
+$ echo ${VAR:3:2}
+45
+$ echo ${VAR:(-4)}
+6789
+$ echo ${VAR:0:5}
+12345
+
+
+TRICKS:
+
+semi-secure delete of a folder (read shred man page):
+find <dir> -type f -exec shred {} \;
+
+Find and replace oldWord with newWorld for all .c files in the current directory
+- find . -name "*.c" -exec sed -i "s/oldWord/newWord/g" '{}' \;
+
+Append the contents of one file to the end of another
+- e.g.: cat <FILE_TO_ADD> >> <FILE_TO_APPEND_TO>
+
+Force a user to logout
+- e.g.: pkill -KILL -u "<USER_NAME>"
+
+List all files that have an instance of a string that are in the current directory and all the sub-directories
+- e.g.: grep -r -l <STRING> *
+
+----------------------------------------------------------------------------------
+
+FTP commmands after running: ftp <IP_ADDRESS>
+
+help         list all commands
+put <FILE>   copy <FILE> from local to remote directory
+get <FILE>   copy <FILE> from remote to local directory  
+ls           list remote directory
+!ls          list local directory
+
+

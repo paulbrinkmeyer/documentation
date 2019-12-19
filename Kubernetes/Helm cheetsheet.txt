@@ -1,0 +1,71 @@
+# tutorial:
+#-----------------------------------------------------------------------
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm search repo stable
+
+helm repo update
+helm install stable/mysql --generate-name Released smiling-penguin
+helm show chart stable/mysql
+helm show all stable/mysql
+
+helm repo list                         # shows the list of repos added
+helm repo remove <REPO>                # remove the added repo <REPO>
+
+
+# setting values 
+#-------------------------
+echo '{mariadbUser: user0, mariadbDatabase: user0db}' > config.yaml      # e.g. way to create a config file
+helm install -f config.yaml stable/mariadb                               # --values and -f are the same
+helm install --set <NAME>=<VALUE> <CHART>                                # set values without a YAML config file
+helm get values <RELEASE>                                                # see all the set values that took effect
+
+
+
+# random commands
+#--------------------------------------------------------------
+helm history <RELEASE>                      # 
+helm rollback
+helm upgrade
+
+helm search hub                             # search the helm hub repos
+helm search repo                            # search local repos
+
+helm lint                                   # used to check your code
+
+helm list                                   # list releases
+helm status <RELEASE>                       # 
+
+
+
+helm show values <CHART>                    # 
+
+# installing and removing charts
+#--------------------------------------------------------
+helm install <RELEASE_NAME> <DEV-CHART>.tgz # install the created chart from a .tgz
+helm install <RELEASE_NAME> <CHART_FOLDER>  # install a chart from a the root <CHART_FOLDER>
+helm install --debug --dry-run ...          # useful flags for testing an install before 
+helm uninstall <RELEASE>                    # uninstalls the given <RELEASE>
+
+
+# building a chart
+#--------------------------------------------------------
+helm create <DEV-CHART>                     # creats a chart file at ./<DEV-CHART>
+helm package <DEV-CHART>                    # creats a chart .tgz file of the chart 
+
+# Objects
+Release.Name
+
+# template functions
+default <VALUE>                             # way to set a default value if one is not given
+quote                                       # puts quotes around the string
+
+repeat <NUMBER>                             # repeats the given string the <NUMBER> of times
+title                                       # title case (upper case first letter of the word)
+upper                                       # string function to make all characters upper case
+
+
+
+# hosting charts
+# - tiller seems to be the name of the server that does this
+helm init
+TBD

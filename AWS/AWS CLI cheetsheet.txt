@@ -1,0 +1,77 @@
+aws commands:
+---------------------------------------------------------------------------------
+
+# profiles
+------------------
+aws configure                         # used to configure the CLI for first time use. 
+aws configure --profile <NAME>        # configure a profile with the given <NAME>. defined in ~/.aws/config & ~/.aws/credentials
+export AWS_PROFILE=<NAME>             # to set the current profile for all follow up commands                    
+cat ~/.aws/config                     # list all profiles
+
+
+aws s3 cp <SRC> <DES>                 # e.g <DES> s3://
+aws s3 sync <SRC> <DES>               #
+aws s3 ls                             # see the list of buckets
+
+
+
+ ____  _______  ____
+/         |    /
+\___      |    \___
+    \     |        \
+     )    |         )
+____/     |    ____/
+
+Security Token Service (STS)
+----------------------------------------------------------------------------------------------------------------------------
+aws sts get-caller-identity       # useful way to get your CLI credential info 
+
+
+
+ _____   ____  ____
+|       /     |    \
+|      /      |    |
+|----  |      |____/
+|      \      |   \
+|_____  \____ |    \
+
+method to upload a docker image into AWS ECR:
+----------------------------------------------------------------------------------------------------------------------------
+$(aws ecr get-login --region us-west-2 --no-include-email)                        # gives a 12 hr access window to AWS
+aws ecr create-repository --repository-name <IMAGE>                               # creates the repo in AWS
+docker image tag <IMAGE> https://<ACCOUNT>.dkr.ecr.<REGION>.amazonaws.com/<IMAGE> # tags the repo to point to the AWS repo
+docker image push <ACCOUNT>.dkr.ecr.<REGION>.amazonaws.com/<IMAGE>                # uploads the image to AWS
+.
+e.g.
+aws ecr create-repository --repository-name test 
+docker image tag test https://937163120763.dkr.ecr.us-west-2.amazonaws.com/test
+docker image push 937163120763.dkr.ecr.us-west-2.amazonaws.com/<IMAGE>  
+
+# list repositories
+aws ecr describe-repositories
+
+# list images
+aws ecr list-images --repository-name <NAME>
+
+# delete a repository  
+aws ecr delete-repository --repository-name <NAME> --region <REGION> --force
+
+# Tags
+----------------------------------------------------
+# Tag info link: https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr-using-tags.html
+
+# list tags
+aws ecr list-tags-for-resource --resource-arn <ARN-STRING>
+e.g.
+aws ecr list-tags-for-resource --resource-arn arn:aws:ecr:us-west-2:558046099615:repository/qa-test-manager
+aws ecr list-tags-for-resource --resource-arn arn:aws:ecr:us-west-2:558046099615:repository/supplyjournal
+
+# add tags on creation
+aws ecr create-repository --repository-name <REPO-NAME> --tags Key=<KEY>,Value=<VALUE>
+e.g.
+aws ecr create-repository --repository-name supplyjournal --tags Key=Owner,Value=eric.ross@hp.com
+
+# add a tag to an existing resource
+aws ecr tag-resource --resource-arn <ARN-NAME> --tags Key=<KEY>,Value=<VALUE>
+e.g.
+aws ecr tag-resource --resource-arn arn:aws:ecr:us-west-2:558046099615:repository/qa-test-manager --tags Key=Owner,Value=george.harder@hp.com
