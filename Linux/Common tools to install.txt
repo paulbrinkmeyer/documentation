@@ -1,0 +1,4 @@
+apt-get install net-tools             # has ifconfig
+apt-get install openssh-server        # SSH server
+apt-get install iputils-ping          # ping
+apt-get install curl                  # curl

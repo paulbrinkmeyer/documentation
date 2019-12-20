@@ -33,6 +33,7 @@ docker image rm <IMAGE>                  # remove <IMAGE>
 docker image history                     # summary of the commands to send to create the image
 docker image save -o <TAR_IMAGE> <IMAGE> # save <IMAGE> to a <TAR_IMAGE> file
 docker image tag <IMAGE> <TAG>           # tag an <IMAGE> with the given <TAG>
+docker commit <CONTAINER> <IMAGE>        # creates the <IMAGE> from a <CONTAINER>
 
 
 # container commmands
@@ -44,7 +45,6 @@ docker container rename <CURRNET_NAME_OR_ID> <NEW_NAME> # rename containter to <
 docker container cp <SRC> <DST>                         # copy files to and from a container. <SRC>/<DST> will have the format of <CONTAINER_NAME>:<PATH> when referring to a container
 docker top <CONTAINER>                                  # 
 docker ps -s                                            # list the size of a running container
-
 
 
 # run commands
