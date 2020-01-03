@@ -43,6 +43,7 @@ docker container ls                                     # list all containers th
 docker container rm <CONTAINER>                         # remove <CONTAINER>
 docker container rename <CURRNET_NAME_OR_ID> <NEW_NAME> # rename containter to <NEW_NAME>
 docker container cp <SRC> <DST>                         # copy files to and from a container. <SRC>/<DST> will have the format of <CONTAINER_NAME>:<PATH> when referring to a container
+docker container start -i CONTAINER_NAME                # start a container in intractive mode
 docker top <CONTAINER>                                  # 
 docker ps -s                                            # list the size of a running container
 
@@ -55,7 +56,7 @@ docker run --name <CONTAINER_NAME> <IMAGE_NAME>    # Method to name a container
 docker run --entrypoint <COMMAND> <IMAGE_NAME>     # Override the images ENTRYPOINT with <COMMAND> instead 
 docker run -d <IMAGE_NAME>                         # run the container detached (use "docker attach" to re-attach)
 docker run -v <SRC>:<DEST>:<OPT> <IMAGE_NAME>      # shortcut way to --mount, will guess at the type
-docker run --mount type:<TYPE>,src:<SRC>,dst:<DST> # explict way of doing "-v", default <TYPE> is volume
+docker run --mount type:<TYPE>,src:<SRC>,dst:<DST> # explicit way of doing "-v", default <TYPE> is volume
 docker run -p <HOST_PORT>:<CONTAINER_PORT>         # expose and map the <CONTAINER_PORT> to the <HOST_PORT>
 
 # volume commands
@@ -93,8 +94,8 @@ winpty
 
 
 
-docker container run -it IMAGE_NAME           # create and start a container
-docker container start -i CONTAINER_NAME      # start a container in intractive mode
+docker container run -it IMAGE_NAME           # same as: docker run -it <IMAGE_NAME>
+
 
 
 

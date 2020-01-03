@@ -2,7 +2,278 @@ Java SE = Java Standard Edition
 JDK = Java Development Kit
 JRE = Java Runtime Environment
 
-# Install Java in on ubuntu container
+// Install Java in an Ubuntu container
 apt-get update
 apt-get install openjdk-11-jre
 apt-get install openjdk-11-jdk
+
+// command line options
+java -version              # give version of java installed
+
+// print to standard out e.g.
+System.out.println("Hello");
+
+// comments
+// this is a single line comment
+/* this is a ...
+multi-line comment */
+
+// variables types
+type         # e.g.1     e.g.2
+--------------------------------
+String       # "Hello"   "99"
+int          # 5         -1
+float        # 5.99f     5.0f
+char         # 'z'       '1'
+boolean      # true      false
+
+// Narrowing casting e.g.
+double myDouble = 9.78;
+int myInt = (int) myDouble; // Manual casting: double to int
+
+// constant variable's use the keywork "final" e.g.
+final int variableName = 99;
+
+// string commands and functions
+----------------------------------------------------------------------------------------------------------------
+<STR1> + <STR2>       # string concatenation
+<STR>.lenght()        # gives the lenght of a string
+<STR>.toUpperCase()   # Upper cases <STR>
+<STR>.toLowerCase()   # Lower cases <STR>
+<STR>.indexOf(<KEY>)  # gets the index of <KEY> in <STR> : note 0 is the first position
+<STR1>.concat(<STR2>) # concatenation of <STR2> to the end of string <STR1> : seems the same as the + operation
+\'                    # escape character for '
+\"                    # escape character for "
+\\                    # escape character for \
+\n                    # escape character for New Line
+\r                    # escape character for Carriage Return
+\t                    # escape character for Tab
+\b                    # escape character for Backspace
+\f                    # escape character for Form Feed
+
+// Math
+-------------------------------
+Math.max(x,y)     # the largest value of x or y
+Math.min(x,y)     # the smallest value of x or y
+Math.sqrt(x)      # square root of x
+Math.abs(x)       # absolute value of x
+Math.random()     # returns a random number between 0 (inclusive), and 1 (exclusive)
+
+// comparison operators
+-----------------------------
+==       # equal to
+!=       # not equal
+>        # greater than
+<        # less than
+>=       # greater than or equal to
+<=       # less than or equal to
+
+  ____   ___            ___    _____ _______ _____   ___                   ____  _______         _______  _____           _____         _______  ____
+ /      /   \  |\    | |    \    |      |      |    /   \  |\    |        /         |       ^       |    |      |\    /| |      |\    |    |    /
+/      /     \ | \   | |     \   |      |      |   /     \ | \   |        \___      |      / \      |    |      | \  / | |      | \   |    |    \___
+|      |     | |  \  | |     |   |      |      |   |     | |  \  |            \     |     /___\     |    |----  |  \/  | |----  |  \  |    |        \
+\      \     / |   \ | |     /   |      |      |   \     / |   \ |             )    |    /     \    |    |      |      | |      |   \ |    |         )
+ \____  \___/  |    \| |____/  __|__    |    __|__  \___/  |    \|        ____/     |    |     |    |    |_____ |      | |_____ |    \|    |    ____/
+
+
+// if statement
+-----------------------------------------------------------------
+if (condition1) {
+  // block of code to be executed if condition1 is true
+} else if (condition2) {
+  // block of code to be executed if the condition1 is false and condition2 is true
+} else {
+  // block of code to be executed if the condition1 is false and condition2 is false
+}
+
+// if...else short hand
+-----------------------------------------------------------
+variable = (condition) ? expressionTrue :  expressionFalse
+
+// Switch
+-------------------------
+switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
+
+        ___     ___    ____   ____
+|      /   \   /   \  |    \ /
+|     /     \ /     \ |    | \___
+|     |     | |     | |____/     \
+|     \     / \     / |           )
+|____  \___/   \___/  |      ____/
+
+
+// While loop
+---------------------------------
+while (condition) {
+  // code block to be executed
+}
+
+// Do/While loop
+---------------------------------
+do {
+  // code block to be executed
+}
+while (condition);
+
+// For loop
+-----------------------------------------------
+for (statement 1; statement 2; statement 3) {
+  // code block to be executed
+}
+// e.g.
+for (int i = 0; i < 5; i++) {
+  System.out.println(i);
+}
+
+// For-each loop
+----------------------------------------------
+for (type variableName : arrayName) {
+  // code block to be executed
+}
+// e.g.
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+for (String i : cars) {
+  System.out.println(i);
+}
+
+// Loop: Break and Continue
+------------------------------------
+// e.g. to skip 2 and stop after 5: i.e. output: 0\n 1\n 3\n 4\n 5\n
+for (int i = 0; i < 10; i++) {
+  if (i == 2) {
+    continue;
+  }
+  if (i == 6) {
+    break;
+  }
+  System.out.println(i);
+}
+// note this works in while loops too
+
+         ____   ____                 ____
+   ^    |    \ |    \    ^    \   / /
+  / \   |    | |    |   / \    \ /  \___
+ /___\  |____/ |____/  /___\    Y       \
+/     \ |   \  |   \  /     \   |        )
+|     | |    \ |    \ |     |   |   ____/
+
+
+// Arrays e.g.
+-----------------------------
+String[] arrayNameStr;
+int[] arrayNameInt;
+int[][] arrayNameInt2D;
+
+// shortcut assignment
+String[] arrayNameStr = {"One", "Two", "Three"}  // declaration and assignment must be done in the same line to use the {...} shortcut
+
+// Array property
+------------------------------------------------------------------------
+<ARRAY_NAME>.length     # returns the number of elements in the array
+
+          _____ _______           ___    ___     ____
+|\    /| |         |    |     |  /   \  |    \  /
+| \  / | |         |    |     | /     \ |     \ \___
+|  \/  | |----     |    |-----| |     | |     |     \
+|      | |         |    |     | \     / |     /      )
+|      | |_____    |    |     |  \___/  |____/  ____/
+
+
+// methods (a.k.a. functions)
+--------------------------------
+public class Methods {
+  //constructor methods are same name as the class
+  public Methods(){
+  }
+  static void myMethod() {
+    System.out.println("Called myMethod");
+  }
+  static int plus(int x, int y) {
+    return x + y;
+  }
+  // Multiple methods can have the same name as long as the number and/or type of parameters are different
+  static String plus(String x, String y) {
+    return x + y;
+  }
+  public static void main(String[] args) {
+    myMethod();
+    System.out.println(plus(99,2));
+    System.out.println(plus("99","2"));
+  }
+}
+// will output:
+Called myMethod
+101
+992
+
+  ____                ____   ____   _____  ____
+ /     |        ^    /      /      |      /
+/      |       / \   \___   \___   |      \___
+|      |      /___\      \      \  |----      \
+\      |     /     \      )      ) |           )
+ \____ |____ |     | ____/  ____/  |_____ ____/
+
+
+// typical way to creat an object from a class
+ClassName instanceName = new ClassName();
+
+// Modifiers
+public class ClassName   # The class is accessible by any other class
+public attributeName     # The attribute is accessible for all classes
+public methodName()      # The method is accessible for all classes
+
+private attributeName    # The attribute is only accessible within the declared class
+private methodName()     # The method is only accessible within the declared class
+
+protected attributeName  # subclasses can access a protected attribute, unlike a private one
+
+final class ClassName    # The class cannot be inherited by other classes
+final attributeName      # The attribute cannot be overridden/modified
+final methodName()       # The method cannot be overridden/modified
+
+static attributeName     # think of it as a global variable that can only be accessed by objects that share the same class
+static methodName()      # can be accesses without creating an object of the class, unlike public
+
+abstract class ClassName # is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class)
+abstract methodName()    # method belongs to an abstract class, and it does not have a body. The body is provided by the subclass
+
+this.attributeName       # this is a way for a method to update its class attributes
+
+ ____            ____                  ____   _____  ____
+|    \    ^     /     |    /    ^     /      |      /
+|    |   / \   /      |   /    / \   /       |      \___
+|____/  /___\  |      |--{    /___\  |    _  |----      \
+|      /     \ \      |   \  /     \ \     / |           )
+|      |     |  \____ |    \ |     |  \___/  |_____ ____/
+
+import package.name.Class;   // Import a single class
+import package.name.*;       // Import the whole package
+
+// e.g. packages
+java.util.Scanner                           # used to get input from the user
+  Scanner myObj = new Scanner(System.in);   # create an instance of Scanner giving it standard in
+  myObj.nextLine();                         # will read one line of input from standard in
+
+java.time.LocalDate                         #
+  LocalDateTime myObj = LocalDateTime.now() #
+
+// package key word
+package packageName;   # defines the package for the file
+
+// Inheritance
+--------------------------------------
+class <CLASS> {
+  // some code
+}
+class <SUB_CLASS> extends <CLASS>{
+  // some code
+}
