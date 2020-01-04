@@ -19,13 +19,20 @@ System.out.println("Hello");
 multi-line comment */
 
 // variables types
-type         # e.g.1     e.g.2
---------------------------------
-String       # "Hello"   "99"
-int          # 5         -1
-float        # 5.99f     5.0f
-char         # 'z'       '1'
-boolean      # true      false
+             wrapper
+type         object    # e.g.1     e.g.2
+----------------------------------------------
+             String    # "Hello"   "99"
+int          Integer   # 5         -1
+long         Long      #
+float        Float     # 5.99f     5.0f
+double       Double    #
+boolean      Boolean   # true      false
+char         Character # 'z'       '1'
+
+// wrapper methods
+    Integer myInt = 100;
+    String myString = myInt.toString()
 
 // Narrowing casting e.g.
 double myDouble = 9.78;
@@ -34,7 +41,8 @@ int myInt = (int) myDouble; // Manual casting: double to int
 // constant variable's use the keywork "final" e.g.
 final int variableName = 99;
 
-// string commands and functions
+// String methods
+// complete list here: https://www.w3schools.com/java/java_ref_string.asp
 ----------------------------------------------------------------------------------------------------------------
 <STR1> + <STR2>       # string concatenation
 <STR>.lenght()        # gives the lenght of a string
@@ -42,6 +50,9 @@ final int variableName = 99;
 <STR>.toLowerCase()   # Lower cases <STR>
 <STR>.indexOf(<KEY>)  # gets the index of <KEY> in <STR> : note 0 is the first position
 <STR1>.concat(<STR2>) # concatenation of <STR2> to the end of string <STR1> : seems the same as the + operation
+
+// escape characters
+----------------------------------------------------------------
 \'                    # escape character for '
 \"                    # escape character for "
 \\                    # escape character for \
@@ -51,7 +62,9 @@ final int variableName = 99;
 \b                    # escape character for Backspace
 \f                    # escape character for Form Feed
 
-// Math
+
+// Math methods
+// complete list here: https://www.w3schools.com/java/java_ref_math.asp
 -------------------------------
 Math.max(x,y)     # the largest value of x or y
 Math.min(x,y)     # the smallest value of x or y
@@ -166,7 +179,6 @@ for (int i = 0; i < 10; i++) {
 /     \ |   \  |   \  /     \   |        )
 |     | |    \ |    \ |     |   |   ____/
 
-
 // Arrays e.g.
 -----------------------------
 String[] arrayNameStr;
@@ -179,6 +191,65 @@ String[] arrayNameStr = {"One", "Two", "Three"}  // declaration and assignment m
 // Array property
 ------------------------------------------------------------------------
 <ARRAY_NAME>.length     # returns the number of elements in the array
+
+// ArrayLists are resizable lists
+import java.util.ArrayList; // import the ArrayList class
+public class MyClass {
+  public static void main(String[] args) {
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+    System.out.println(cars);
+  }
+}
+// ArrayList methods
+cars.get(0);          // To access an element in the ArrayList, use the get() method and refer to the index number:
+cars.set(0, "Opel");  // To modify an element, use the set() method and refer to the index number:
+cars.remove(0);       // To remove an element, use the remove() method and refer to the index number:
+cars.clear();         // To remove all the elements in the ArrayList, use the clear() method:
+cars.size();          // To find out how many elements an ArrayList has, use the size method:
+
+// Sort an ArrayList
+import java.util.Collections;  // Import the Collections class
+// ...
+    Collections.sort(cars);  // Sort cars
+
+                 ____                            ____
+|     |    ^    /      |     | |\    /|    ^    |    \
+|     |   / \   \___   |     | | \  / |   / \   |    |
+|-----|  /___\      \  |-----| |  \/  |  /___\  |____/
+|     | /     \      ) |     | |      | /     \ |
+|     | |     | ____/  |     | |      | |     | |
+
+// HashMap : Note: these are like Python dictionaries
+import java.util.HashMap; // Import the HashMap class
+public class MyClass {
+  public static void main(String[] args) {
+    // Create a HashMap object called capitalCities
+    HashMap<String, String> capitalCities = new HashMap<String, String>();
+    // Add keys and values (Country, City)
+    capitalCities.put("England", "London");
+    capitalCities.put("Germany", "Berlin");
+    capitalCities.put("Norway", "Oslo");
+    capitalCities.put("USA", "Washington DC");
+    System.out.println(capitalCities);
+  }
+}
+// HashMap methods
+capitalCities.get("England");     // To access a value in the HashMap, use the get() method and refer to its key:
+capitalCities.remove("England");  // To remove an item, use the remove() method and refer to the key:
+capitalCities.clear();            // To remove all items, use the clear() method:
+capitalCities.size();             // To find out how many items there are, use the size method:
+// Print keys
+for (String i : capitalCities.keySet()) {
+  System.out.println(i);
+}
+// Print values
+for (String i : capitalCities.values()) {
+  System.out.println(i);
+}
 
           _____ _______           ___    ___     ____
 |\    /| |         |    |     |  /   \  |    \  /
@@ -261,6 +332,7 @@ import package.name.*;       // Import the whole package
 // e.g. packages
 java.util.Scanner                           # used to get input from the user
   Scanner myObj = new Scanner(System.in);   # create an instance of Scanner giving it standard in
+  myObj.hasNextLine();                      # will return true if there is another line to read
   myObj.nextLine();                         # will read one line of input from standard in
 
 java.time.LocalDate                         #
@@ -277,3 +349,71 @@ class <CLASS> {
 class <SUB_CLASS> extends <CLASS>{
   // some code
 }
+
+ _____         ____  _____  ____  _______ _____   ___            ____
+|      \   /  /     |      |    \    |      |    /   \  |\    | /
+|       \ /  /      |      |    |    |      |   /     \ | \   | \___
+|----    X   |      |----  |____/    |      |   |     | |  \  |     \
+|       / \  \      |      |         |      |   \     / |   \ |      )
+|_____ /   \  \____ |_____ |         |    __|__  \___/  |    \| ____/
+
+// e.g.
+try {
+  int[] myNumbers = {1, 2, 3};
+  System.out.println(myNumbers[10]);
+} catch (Exception e) {
+  System.out.println("Something went wrong.");
+} finally {
+  System.out.println("The 'try catch' is finished.");
+}
+
+// throw keyword
+// The throw statement is used together with an exception type.
+// There are many exception types available in Java:
+// ArithmeticException, FileNotFoundException, ArrayIndexOutOfBoundsException, SecurityException, etc:
+    if (age < 18) {
+      throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+    }
+
+ _____ _____        _____  ____
+|        |   |     |      /
+|        |   |     |      \___
+|----    |   |     |----      \
+|        |   |     |           )
+|      __|__ |____ |_____ ____/
+
+import java.io.File;  // Import the File class
+File myObj = new File("filename.txt"); // Specify the filename
+
+// file methods
+Method            Type          Description
+canRead()         Boolean       Tests whether the file is readable or not
+canWrite()        Boolean       Tests whether the file is writable or not
+createNewFile()   Boolean       Creates an empty file
+delete()          Boolean       Deletes a file
+exists()          Boolean       Tests whether the file exists
+getName()         String        Returns the name of the file
+getAbsolutePath() String        Returns the absolute pathname of the file
+length()          Long          Returns the size of the file in bytes
+list()            String[]      Returns an array of the files in the directory
+mkdir()           Boolean       Creates a directory
+
+// writing to a file
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
+
+public class WriteToFile {
+  public static void main(String[] args) {
+    try {
+      FileWriter myWriter = new FileWriter("filename.txt");
+      myWriter.write("Files in Java might be tricky, but it is fun enough!");
+      myWriter.close();
+      System.out.println("Successfully wrote to the file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+}
+
+import java.io.FileNotFoundException;  // Import this class to handle errors
