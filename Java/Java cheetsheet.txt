@@ -1,6 +1,10 @@
-Java SE = Java Standard Edition
+Java SE = Java Platform, Standard Edition
+Java EE = Java Platform, Enterprise Edition
+J2EE = Java 2 Platform Enterprise Edition
 JDK = Java Development Kit
 JRE = Java Runtime Environment
+
+POJO = Plain Old Java Object
 
 // Install Java in an Ubuntu container
 apt-get update
