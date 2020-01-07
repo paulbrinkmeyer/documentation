@@ -1,0 +1,5 @@
+IoC = Inversion of Control
+AOP = Aspect Oriented Programming
+JDBC = Java Database Connectivity
+
+Install
