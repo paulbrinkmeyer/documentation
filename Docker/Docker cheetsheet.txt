@@ -89,6 +89,7 @@ docker service                                  # ????
 docker pull alpine
 docker run -it alpine                          
 
+# git bash needs this command prefixed when running "docker run -it"
 winpty
 
 

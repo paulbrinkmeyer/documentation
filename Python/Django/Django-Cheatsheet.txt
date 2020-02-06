@@ -1,0 +1,51 @@
+reference:
+https://docs.djangoproject.com/en/1.8/intro/tutorial03/
+- Write views that actually do something
+
+
+Install
+  Ubuntu:
+    sudo easy_install django
+
+check version:
+python -c "import django; print(django.get_version())"
+
+Create a project:
+django-admin startproject mysite
+
+in settings.py
+- Change TIME_ZONE to your time zone. e.g.
+
+Create the database based on the settings.py:
+python manage.py migrate
+
+Start dev server:
+python manage.py runserver
+OR
+python manage.py runserver 8080
+
+Create an app:
+python manage.py startapp <appName>
+
+Add app to settings.py INSTALLED_APPS list
+python manage.py makemigrations <appName>
+
+start a shell
+python manage.py shell
+
+create a super uesr
+python manage.py createsuperuser
+
+
+
+
+# app file struture 
+<appName>/
+    __init__.py
+    admin.py
+    apps.py
+    migrations/
+        __init__.py
+    models.py
+    tests.py
+    views.py
