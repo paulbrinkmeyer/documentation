@@ -67,6 +67,11 @@ docker volume rm <VOLUME>                       # remove <VOLUME>
 
 # network commands
 #---------------------------------------------------------------------------------------------------------------------
+# "bridge" is the default network name if one is not given
+docker network create <NETWORK>                 # Create a user-defined bridged network
+docker network rm <NETWORK>                     # Remove a user-defined bridged network
+docker network connect <NETWORK> <CONTAINER>    # Connect a running containter to a user-defined bridged network
+docker network disconnect <NETWORK> <CONTAINER> # Disconnect a running containter to a user-defined bridged network
 docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <RUNNING_CONTAINER>    # get IP address of container
 
 
