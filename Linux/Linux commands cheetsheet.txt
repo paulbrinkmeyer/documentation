@@ -8,6 +8,7 @@ cat          Output the contents of a file. Can be used to create a file with th
 cd           Change directory (e.g. cd folderName)
 chgrp        Change the groups of files
 chmod        Change the privileges of a file
+chown        Change the owner of a file
 cksum        Print CRC checksum and byte counts              (e.g. cksum <FILE_NAME>)
 cp           Copy a file
 curl         used to communicate over the network

@@ -22,7 +22,7 @@ ARG                                 # a way for the builder to pass parameters t
 
 # building image commands:
 #---------------------------------------------------------------------------------------------------------------------
-docker build -t <IMAGE_NAME> .              # create a image from a Dockerfile with the name 
+docker build -t <IMAGE_NAME> .              # create a image from a Dockerfile with the name <IMAGE_NAME>
 docker build -t test .                      # e.g.
 
 
