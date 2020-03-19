@@ -56,7 +56,7 @@ nano         terminal text editor simpler than “vi” but with less features
 nc           can be used to cat a file over the network      (e.g. cat file.txt | nc -w 10 12.34.56.78 9100)
 nohup        Run a process that will continue even after calling process ends (e.g. nohup <command> &)
 nslookup     look up the ip address of a URL
-passwd       Change the password for the current logged in user
+passwd       Change the password for the current logged in user (you might need yppasswd for NIS)
 pkill        
 ps           background processes ("ps aux" is common way to get all processes)
 pushd        will swap the current directoy with the directory one below on the directory stack. "pushd ." adds the curent directory to the stack (see dirs)
