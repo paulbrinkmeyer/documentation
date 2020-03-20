@@ -388,7 +388,7 @@ try {
 
 import java.io.File;  // Import the File class
 File myObj = new File("filename.txt"); // Specify the filename
-
+AnnotationConfigApplicationContext
 // file methods
 Method            Type          Description
 canRead()         Boolean       Tests whether the file is readable or not
@@ -421,3 +421,20 @@ public class WriteToFile {
 }
 
 import java.io.FileNotFoundException;  // Import this class to handle errors
+                          ___   _______         _______ _____   ___            ____
+   ^    |\    | |\    |  /   \     |       ^       |      |    /   \  |\    | /
+  / \   | \   | | \   | /     \    |      / \      |      |   /     \ | \   | \___
+ /___\  |  \  | |  \  | |     |    |     /___\     |      |   |     | |  \  |     \
+/     \ |   \ | |   \ | \     /    |    /     \    |      |   \     / |   \ |      )
+|     | |    \| |    \|  \___/     |    |     |    |    __|__  \___/  |    \| ____/
+
+e.g. Predefined annotations:
+@Deprecated
+@Override
+@SuppressWarnings
+@SuppressWarnings("deprecation")
+@SuppressWarnings({"unchecked", "deprecation"})
+@SafeVarargs
+@FunctionalInterface
+
+@interface                                       # used to define a annotation type
