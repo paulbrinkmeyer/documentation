@@ -1,0 +1,34 @@
+Windows CLI:
+----------------------------------------------------------------------------------------
+ubuntu                                             # start WSL
+ubuntu config --default-user <NEW_DEFAULT_USER>    # Change default user from
+
+
+WSL CLI:
+----------------------------------------------------------------------------------------
+sudo apt-get update                                          # update app get tool
+
+
+# install openssh: follow these steps:
+----------------------------------------------------------------------------------------
+sudo apt remove openssh-server               # remove old version if it exists
+sudo apt install openssh-server              # install current version
+sudo vi /etc/ssh/sshd_config
+  Add "Port 2222"                            # note: port 22 is hard to use in WSL
+  Change "PasswordAuthentication yes"
+  Add "AllowUsers <USER_NAME>"               # where <USER_NAME> is the user you want to have access
+service ssh status                           # check status of SSH service
+sudo service ssh start                       # start the service
+sudo service ssh --full-restart              # if running already use this
+
+
+# install docker on ubuntu 18.04.2 LTS
+----------------------------------------------------------------------------------------
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# need to install docker in windows and turn on the localhost server
+echo "export DOCKER_HOST=localhost:2375" >> ~/.bash_profile
