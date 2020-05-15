@@ -1,5 +1,24 @@
-IoC = Inversion of Control
-AOP = Aspect Oriented Programming
-JDBC = Java Database Connectivity
+IoC  = Inversion of Control
+DI   = Dependency Injection
+  - subset of IoC
 
-Install
+AOP  = Aspect Oriented Programming
+JDBC = Java Database Connectivity
+MVC  = Model-View-Controller
+
+org.springframework.beans.factory.BeanFacDI   = Dependency Injectiontory
+org.springframework.context.ApplicationContext;
+- superset of BeanFactory
+
+
+org.springframework.context.support.FileSystemXmlApplicationContext
+org.springframework.context.support.ClassPathXmlApplicationContext
+WebXmlApplicationContext
+
+
+Bean scope
+- singleton
+- prototype
+- request
+- session
+- global-session
