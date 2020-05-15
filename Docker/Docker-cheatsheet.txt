@@ -18,6 +18,7 @@ USER                                # defines the user for follow on RUN, CMD & 
 EXPOSE                              # documentation to the runner about what ports to publish e.g. (EXPOSE 80/tcp)
 VOLUME                              # define the mount point in the image. later when ran it will need to be mapped to a host
 ARG                                 # a way for the builder to pass parameters to the dockfile via the "docker build --build-arg"... command
+                                    # - NOTE! - It has different meaning when used before and after the FROM statement!
 
 
 # building image commands:
@@ -30,6 +31,7 @@ docker build -t test .                      # e.g.
 #---------------------------------------------------------------------------------------------------------------------
 docker images                            # list all images
 docker image rm <IMAGE>                  # remove <IMAGE>
+docker image prune                       # removes all dangling images... the <none>:<none> ones
 docker image history                     # summary of the commands to send to create the image
 docker image save -o <TAR_IMAGE> <IMAGE> # save <IMAGE> to a <TAR_IMAGE> file
 docker image tag <IMAGE> <TAG>           # tag an <IMAGE> with the given <TAG>
@@ -43,6 +45,7 @@ docker container ls                                     # list all containers th
 docker container ls -a                                  # list all containers stopped and running
 docker container ls -s                                  # list the size of all running containers
 docker container rm <CONTAINER>                         # remove <CONTAINER>
+docker container prune                                  # remove all stopped containers
 docker container rename <CURRNET_NAME_OR_ID> <NEW_NAME> # rename containter to <NEW_NAME>
 docker container cp <SRC> <DST>                         # copy files to and from a container. <SRC>/<DST> will have the format of <CONTAINER_NAME>:<PATH> when referring to a container
 docker container start -i CONTAINER_NAME                # start a container in intractive mode
