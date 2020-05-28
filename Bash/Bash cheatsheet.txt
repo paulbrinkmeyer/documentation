@@ -10,6 +10,7 @@ ${FUNCNAME[0]}  <- returns the current function's name
 --              <- signify the end of command options, after which only positional parameters are accepted
 -               <- conventionally used to specify that a program should handle data coming from the standard input or send data to the standard output
 
+
 Other non-obvious commands
 ------------------------------------------
 $$    <- is the id of the current process
@@ -17,11 +18,13 @@ $?    <- return code of the previous command
 !!    <- execute the previous command again
 !$    <- returns the last parameter used
 
+
 Wildcard expansion
 ---------------------------------------------------
 *           <- matches any string
 ?           <- matches any one character
 {this,that} <- will match either "this" or "that"
+
 
 variables
 --------------------------------
@@ -32,13 +35,15 @@ ${VAR}              # will return the variable's value and not consider any furt
 ${VAR:-DEFAULT}     # same as ${VAR} but if not set then it will take DEFAULT vaule
 ${VAR:+OVERRIDE}    # same as ${VAR} but if set it will take the OVRRIDE value
 
+
 function operations:
 --------------------------------
 declare -F              <- list all Function names
 type functionName       <- Output the definition of a function
 unset -f functionName   <- remove a function
 
-function defintion examples:
+
+function definition examples:
 --------------------------------
 function functionName(){
     echo "Body of function"
@@ -86,17 +91,34 @@ done
 
 
 getopts example:
--------------------------------
-while getopts ":ht" opt; do
+----------------------------------------------------------------------------------------------------------
+while getopts ":ht:" opt; do          # the first ":" tells it not to use the default usage error messages
+                                      # the second ":" indicates that the "t" option stores a value
     case ${opt} in
-    h ) # process option h
+    a )                               # process option a
         ;;
-    t ) # process option t
+    t ) T_VALUE=${OPTARG}             # process option t, ${OPTARG} holds its value
         ;;
-    \? ) echo "Usage: cmd [-h] [-t]"
+    \? ) echo "Usage: cmd [-a] [-t]"  # example way to handle usage errors
         ;;
     esac
 done
+shift $((OPTIND - 1))                 # This is good practice to shift off already parsed parameters
+
+
+getopts example again without comments
+----------------------------------------
+while getopts ":ht:" opt; do
+    case ${opt} in
+    a ) # process option a
+        ;;
+    t ) T_VALUE=${OPTARG}
+        ;;
+    \? ) echo "Usage: cmd [-a] [-t]"
+        ;;
+    esac
+done
+shift $((OPTIND - 1))
 
 
 For loop structure examples:
@@ -114,10 +136,12 @@ done
 Boolean notes:
 --------------------------------
 reports true in a test:
+true
 "1"
 "0"
 
-reprots false in a test:
+reports false in a test:
+false
 ""
 
 Test option examples:
