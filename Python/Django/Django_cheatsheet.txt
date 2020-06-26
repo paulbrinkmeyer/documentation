@@ -1,51 +1,98 @@
-reference:
-https://docs.djangoproject.com/en/1.8/intro/tutorial03/
-- Write views that actually do something
-
-
 Install
   Ubuntu:
-    sudo easy_install django
+    $ sudo easy_install django
+  Windows via Git Bash
+    $ pip instal django
 
 check version:
-python -c "import django; print(django.get_version())"
+$ python -c "import django; print(django.get_version())"
+
+
+https://docs.djangoproject.com/en/3.0/intro/tutorial01/
 
 Create a project:
-django-admin startproject mysite
+$ django-admin startproject mysite
+- This will create the following:
+mysite/                      # this folder name can be changed at any time with breaking anything
+mysite/manage.py             # command line tool for the project
+mysite/mysite/__init__.py    # tells python that this directory is a package
+mysite/mysite/asgi.py        # An entry-point for ASGI-compatible web servers to serve the project
+mysite/mysite/settings.py    # settings/configuration for the project
+mysite/mysite/urls.py        # the URL declarations for the project
+mysite/mysite/wsgi.py        # An entry-point for WSGI-compatible web servers to serve the project
 
 in settings.py
-- Change TIME_ZONE to your time zone. e.g.
+- Change TIME_ZONE to your time zone.
 
 Create the database based on the settings.py:
-python manage.py migrate
+$ python manage.py migrate         # creates DB tables for the INSTALLED_APPS in settings.py
+- This creates the following file:
+mysite/db.sqlite3
 
-Start dev server:
-python manage.py runserver
+Start dev server:                  # This is not to be consider a production server
+$ python manage.py runserver       # defaults to port 8000
 OR
-python manage.py runserver 8080
+$ python manage.py runserver 8080  # choose a specific port e.g. 8080
 
 Create an app:
-python manage.py startapp <appName>
+$ python manage.py startapp <appName>
+- This creates the following files:
+mysite/<appName>/__init__.py
+mysite/<appName>/admin.py
+mysite/<appName>/apps.py
+mysite/<appName>/migrations/__init__.py
+mysite/<appName>/models.py
+mysite/<appName>/tests.py
+mysite/<appName>/views.py
+
+Create a urls.py file
+$ touch mysite/<appName>/urls.py     # see documentaion on the format of this
+
+Link the urls.py to the project urls.py. e.g. add the following to the urlpatterns
+from django.urls import include, path           # you'll need to import "include"
+path('<appName>/', include('<appName>.urls')),  # add this to urlpatterns list
 
 Add app to settings.py INSTALLED_APPS list
-python manage.py makemigrations <appName>
+- e.g. add this value '<appName>.apps.<AppName>Config'   # <AppName>Config is the class name in apps.py
+
+
+https://docs.djangoproject.com/en/3.0/intro/tutorial02/
+
+model change process:
+- make updates to the models.py file
+$ python manage.py makemigrations <appName>   # this will add the apps models to the migration list
+$ python manage.py sqlmigrate <appName> 0001  # see the SQL that will be made by the migration
+$ python manage.py check                      # checks for issues before migrating
+$ python manage.py migrate                    # to apply the migration
 
 start a shell
-python manage.py shell
+$ python manage.py shell
+>>> from <appName>.models import <model1>, <model2>
+e.g from first_app.models import Choice, Question
+>>> <model1>.objects.all()                            # see the instnaces of that model
+e.g. Question.objects.all()
+
+# example script:
+from first_app.models import Choice, Question
+from django.utils import timezone
+q = Question(question_text="What's new?", pub_date=timezone.now())
+q.save()                 # saves the question to the database
+q.id                     # will give the actual id
+q.question_text          # will give the actual question_text
+q.pub_date               # will give the actual pub_date object
+
+# change an attribute:
+q.question_text = "What's up?"
+q.save()                         # updateds the changed value to the database
+
+Question.objects.all()                                    # get a list of all questions
+Question.objects.filter(id=1)                             # get the question with id=1
+Question.objects.filter(question_text__startswith='What') # get the questions that start with "What"
+
+# Get the question that was published this year.
+>>> from django.utils import timezone
+>>> current_year = timezone.now().year
+>>> Question.objects.get(pub_date__year=current_year)
 
 create a super uesr
-python manage.py createsuperuser
-
-
-
-
-# app file struture 
-<appName>/
-    __init__.py
-    admin.py
-    apps.py
-    migrations/
-        __init__.py
-    models.py
-    tests.py
-    views.py
+$ python manage.py createsuperuser
