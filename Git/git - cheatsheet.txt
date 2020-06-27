@@ -1,0 +1,73 @@
+Command to create key ssh-keygen It will create an id_rsa and id_rsa.pub key in ~/.shh
+
+
+CMD  arg1       arg2                        arg3                                     notes                
+---- ---------- --------------------------- ---------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------
+gitk                                                                                 a log GUI            
+                                                                                                          
+git                                                                                                       
+     add        <FILENAME>                                                           To stage <FILENAME>           
+     branch                                                                          will list all local branches           
+                 -a                                                                  will list all local and remote branches           
+                                             --contains=<SHA>                        will list all local and remote branches that has <SHA>           
+                <BRANCH_NAME>                                                        will create the local branch <BRANCH_NAME>           
+                 -d <BRANCH_TO_DELETE>                                               delete local branch that doesn't have commits waiting           
+                 -D <BRANCH_TO_DELETE>                                               delete local branch even if there are commits that aren't pushed           
+     checkout    -- <FILENAME>                                                       delete the local copy of <FILENAME> and replacing it with the global copy           
+                <BRANCH_NAME>                                                        will switch over to the given <BRANCH_NAME>           
+                 -b <NEW_BRANCH_NAME>                                                "create a new local branch (same as ""git branch <NEW_BRANCH_NAME>"")"           
+     cherry-pick <SHA>                                                                will commit all same things that happened in <SHA> even if from a different branch.           
+     clone       git@git.vcd.hp.com:testing                                          example use of clone           
+     commit                                                                          puts it on your local repository           
+     config      --get                      remote.origin.url                        How to determine the url that a local git repo was originally cloned from           
+                 --global                   "user.name ""Firstname Lastname"""       allows you to set your user name           
+                                            "user.email ""your_email@provider.com""" allows you to set your email address           
+                                            color.ui true                                                 
+                core.filemode                false                                   "will ignore the ""old mode XXXX  new mode YYYY"" diffs"           
+                credential.helper wincred                                            (Windows only) will store your gitHub HTTPS token along with your Windows user account (no need to type your password everytime)
+                 -l OR --list                                                        lists all the config settings           
+     gui                                                                             "a GUI for stagging  committing and pushing"
+     log         -- <FILE_PATH>                                                      "shows the changes of a file  even if the file was deleted!"
+                 -p                                                                  Shows detail differences changed           
+                 --diff-filter=D             --summary                               "List all commits with deleted files "" | grep delete"" makes a nice list of deleted files"           
+                 --name-only                                                         will just show the name of files that are changed and not the details           
+                 --name-status                                                       "Similar to ""--name-only"" with one character status as well"           
+                 --stat                                                              "Similar to ""--name-only"" and ""--name-status"" with a little bit more change info. However  it truncates file paths
+                 --author                   <PART_OF_AUTHORS_NAME>                   filter by a specific author           
+                 <SHA/BRANCH>..<SHA/BRANCH>                                          log what is only in the second <SHA/BRANCH> and not in the first           
+                 --follow                   <FILE_NAME>                              git will try to follow name changes of <FILE_NAME> when giving the log           
+                 --                         <FILE_NAME>                              will give you the log of the removed <FILE_NAME>            
+     pull                                                                                                 
+     push       <REMOTE>                    <BRANCH_NAME>                            used to push a local branch to the remote (e.g. git push origin products2014)           
+                 --all                       -u                                      push all local branches to the remote location           
+     remote     update                      origin --prune                           updates the local list of remote branches           
+                set-url                     origin <NEW_GIT_ORIGN>                   reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git
+                show                        origin                                   shows what URL is being used for pushes & pulls + other info about all the branches both remote and local           
+     reset      HEAD                        <FILENAME>                               unstage <FILENAME>           
+                 --soft                     HEAD^                                    undo last local commit           
+                 --hard                     <SHA of servers HEAD>                    "undo all local changes e.g. ""git reset --hard origin/master"" will undo all local commits"           
+     rev-list    --first-parent             <BRANCH_NAME>                            list all SHAs for <BRNACH_NAME>           
+     revert     <sha>                                                                undos                
+                 -m                         1 <SHA>                                  revert a merge           
+     show       <SHA>                                                                show the details of the sha checked in           
+                <SHA>:<FILE_FULL_PATH>                                               show the contents of <FILE_FULL_PATH> at <SHA>           
+     stash      save                                                                                      
+                pop                                                                                       
+     status                                                                          show the status of uncomitted changes           
+                                                                                                          
+git remote prune origin                                                              this got rid of the deleted branches that were showing after renaming 2013 to products2013        
+                                                                                                          
+                                                                                                          
+                                                                                                          
+                                                                                                          
+                                                                                                          
+Useful histroy view:                                                                                                      
+"git whatchanged --format=format:"">> %cn |  %ci%n>> %s"""                                                                                                      
+                                                                                                          
+                                                                                                          
+This is how to store your current changes and work on a different branch:                                                                                                      
+git  stash      save                                                                                      
+git  checkout   <branch>                                                                                  
+// do something                                                                                                      
+git  checkout   <oldbranch>                                                                               
+git  stash      pop                                                                                       
