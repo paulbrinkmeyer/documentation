@@ -1,0 +1,14 @@
+Install for Windows: https://sqlite.org/download.html
+- get the sqlite-tools-win32
+  * add the directory to "C:\Program Files (x86)"
+  * add the directory path to the path environment variable
+
+sqlite shell command:
+$ sqlite3 <FILE_NAME>    - will start the program; <FILE_NAME> is optional
+
+.help                    - lists the help page
+.exit                    - closes sqlite
+.open <FILE_NAME>        - opens the given database
+.schema <TABLE>          - describes the table's fields
+.tables                  - lists the tables
+select * from <TABLE>;   - to see all the values in <TABLE>
