@@ -85,9 +85,13 @@ q.pub_date               # will give the actual pub_date object
 q.question_text = "What's up?"
 q.save()                         # updateds the changed value to the database
 
+# useful database commands
 Question.objects.all()                                    # get a list of all questions
+Question.objects.get(pub_date__year=<YEAR>)               # get a list of questions published on <YEAR> given
+                                                          # note that pub_date is a DateTimeField of Question
 Question.objects.filter(id=1)                             # get the question with id=1
-Question.objects.filter(question_text__startswith='What') # get the questions that start with "What"
+Question.objects.filter(question_text__startswith='What') # get the questions that start with "What"; 
+                                                          # note that question_text is a CharField of Question
 
 # Get the question that was published this year.
 >>> from django.utils import timezone
