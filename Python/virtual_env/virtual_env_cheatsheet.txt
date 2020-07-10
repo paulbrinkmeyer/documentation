@@ -1,0 +1,21 @@
+# Install the library
+pip install virtualenv
+
+# make a directory to store the environment in e.g.
+mkdir /work/py_virt
+
+# change to the made directory e.g.
+cd /work/py_virt
+
+# create a environment and name it e.g. env1
+python -m venv env1
+
+# to activate in Windows' Git Bash environment e.g.
+source /work/py_virt/env1/Scripts/activate
+
+# while activated the environment name in parentheses should be shown on the command prompt
+
+# To deactivate use this command from any directory
+deactivate
+
+# WARNING aliases to python or pip will override the use of the virtual environment
