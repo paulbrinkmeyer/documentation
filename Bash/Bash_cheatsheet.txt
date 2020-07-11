@@ -89,8 +89,11 @@ while true; do
     sleep 1
 done
 
+# one line format:
+while true; do date; sleep 1; done
 
-getopts example:
+
+# getopts example:
 ----------------------------------------------------------------------------------------------------------
 while getopts ":ht:" opt; do          # the first ":" tells it not to use the default usage error messages
                                       # the second ":" indicates that the "t" option stores a value

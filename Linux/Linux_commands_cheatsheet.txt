@@ -79,6 +79,7 @@ sudo         run a command with root privilages
 tail         output the last 10 lines of standard in. The -f flag is very useful for following log files still being appended to.
 tar          Used to store and open files in a archive (open a tar file: tar -xvf <XXX>.tar) 
 tee          read from standard input and write to standard output and a file (e.g.  ls | tee log.txt)
+time         reports the execution time of a given command (e.g. time curl google.com)
 touch        Change file timestamp. Also can make a file.
 top          A running list of the top processes
 tr           Translate, squeeze, and/or delete characters from standard input, writing to standard output.

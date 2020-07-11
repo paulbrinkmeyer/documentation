@@ -28,7 +28,7 @@ git
                  core.filemode              false                                 will ignore the "old mode XXXX  new mode YYYY" diffs
                  credential.helper wincred ...................................... (Windows only) will store your gitHub HTTPS token along with your Windows user account (no need to type your password everytime)
      diff                                                                         Show the differences between HEAD and the local changes
-                 HEAD^                                                            Show the differences between HEAD and the previous commit
+                 HEAD^ .......................................................... Show the differences between HEAD and the previous commit
      gui                                                                          a GUI for stagging, committing and pushing local changes
      log         --stat ......................................................... Similar to --name-only and --name-status with a little bit more change info. However, it truncates file paths
                  -p                                                               Shows detail differences of each commit in history
