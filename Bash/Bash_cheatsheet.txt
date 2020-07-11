@@ -32,8 +32,18 @@ VAR=1               # assignment
 VAR='with spaces'   # assignment with spaces
 $VAR                # will return the variable's value
 ${VAR}              # will return the variable's value and not consider any further characters past the "}" as part of it's name
-${VAR:-DEFAULT}     # same as ${VAR} but if not set then it will take DEFAULT vaule
+${VAR:-DEFAULT}     # same as ${VAR} but if not set then it will take the DEFAULT value
 ${VAR:+OVERRIDE}    # same as ${VAR} but if set it will take the OVRRIDE value
+${#VAR}             # will return the length of VAR
+
+
+variables - get sub-strings
+--------------------------------
+VAR=123456789       # the following examples assume VAR has been set to this
+${VAR:0:5}          # 12345
+${VAR:3}            # 456789
+${VAR:3:2}          # 45
+${VAR:(-4)}         # 6789
 
 
 function operations:
