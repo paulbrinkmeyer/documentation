@@ -20,12 +20,10 @@ VOLUME                              # define the mount point in the image. later
 ARG                                 # a way for the builder to pass parameters to the dockfile via the "docker build --build-arg"... command
                                     # - NOTE! - It has different meaning when used before and after the FROM statement!
 
-
 # building image commands:
 #---------------------------------------------------------------------------------------------------------------------
 docker build -t <IMAGE_NAME> .              # create a image from a Dockerfile with the name <IMAGE_NAME>
 docker build -t test .                      # e.g.
-
 
 # image commands
 #---------------------------------------------------------------------------------------------------------------------
@@ -34,9 +32,9 @@ docker image rm <IMAGE>                  # remove <IMAGE>
 docker image prune                       # removes all dangling images... the <none>:<none> ones
 docker image history                     # summary of the commands to send to create the image
 docker image save -o <TAR_IMAGE> <IMAGE> # save <IMAGE> to a <TAR_IMAGE> file
+docker image load -i <TAR_IMAGE>         # load <TAR_IMAGE> file
 docker image tag <IMAGE> <TAG>           # tag an <IMAGE> with the given <TAG>
 docker commit <CONTAINER> <IMAGE>        # creates the <IMAGE> from a <CONTAINER>
-
 
 # container commmands
 #---------------------------------------------------------------------------------------------------------------------
@@ -50,11 +48,14 @@ docker container rename <CURRNET_NAME_OR_ID> <NEW_NAME> # rename containter to <
 docker container cp <SRC> <DST>                         # copy files to and from a container. <SRC>/<DST> will have the format of <CONTAINER_NAME>:<PATH> when referring to a container
 docker container start -i CONTAINER_NAME                # start a container in intractive mode
 docker top <CONTAINER>                                  # 
-
+#
+# exit a container intractive mode without stopping the container: CTRL+P followed by CTRL+Q
+docker attach CONTAINER_NAME                            # will attach the command line back to the container
 
 # run commands
 #---------------------------------------------------------------------------------------------------------------------
-docker run -it <IMAGE_NAME>                           # create and start a container
+docker container run -it IMAGE_NAME                   # same as: docker run -it <IMAGE_NAME>
+docker run -it <IMAGE_NAME>                           # create and start a container with a CLI
 docker run --rm <IMAGE_NAME>                          # Automatically remove the container when it exits
 docker run --name <CONTAINER_NAME> <IMAGE_NAME>       # Method to name a container
 docker run --entrypoint <CMD> <IMAGE_NAME> <CMD_PARM> # Override the images ENTRYPOINT with <CMD> instead using the parameters <CMD_PARM>
@@ -78,36 +79,32 @@ docker network connect <NETWORK> <CONTAINER>    # Connect a running containter t
 docker network disconnect <NETWORK> <CONTAINER> # Disconnect a running containter to a user-defined bridged network
 docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <RUNNING_CONTAINER>    # get IP address of container
 
-
-
 # other commands
 #---------------------------------------------------------------------------------------------------------------------
 docker inspect <RESOURCE>                       # inspect <RESOURCE>. It can be a container, volume, ...
 docker exec -it <CONTAINER_NAME> <EXE>          # CLI for the <EXE> inside of <CONTAINER_NAME> e.g. docker exec -it <CONTAINER_NAME> bash
 e.g.
 docker exec -it test-container bash
-
-
-
+#
 docker service                                  # ????
-
-
 
 # quick method to get a basic linux environment up and running.
 #---------------------------------------------------------------------------------------------------------------------
 docker pull alpine
 docker run -it alpine                          
 
-# git bash needs this command prefixed when running "docker run -it"
-winpty
+# Random notes
+#---------------------------------------------------------------------------------------------------------------------
+winpty                                          # git bash needs this command prefixed when running "docker run -it"
 
 
 
 
-docker container run -it IMAGE_NAME           # same as: docker run -it <IMAGE_NAME>
 
 
 
 
-docker attach CONTAINER_NAME                  # will attach the command line back to the container
-# exit a container intractive mode without stopping the container: CTRL+P followed by CTRL+Q
+
+
+
+

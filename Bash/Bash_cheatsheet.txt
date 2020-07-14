@@ -12,11 +12,20 @@ ${FUNCNAME[0]}  <- returns the current function's name
 
 
 Other non-obvious commands
-------------------------------------------
-$$    <- is the id of the current process
-$?    <- return code of the previous command
-!!    <- execute the previous command again
-!$    <- returns the last parameter used
+--------------------------------------------------------------------------------------------------
+$$                 <- is the id of the current process
+$?                 <- return code of the previous command
+!!                 <- execute the previous command again
+!$                 <- returns the last parameter of the previous command
+!^                 <- returns the first parameter of the previous command
+!:<NUM>            <- returns the <NUM>th parameter of the previous command
+!*                 <- returns all the parameters of the previous command
+!<NUM>             <- execute the <NUM> command in the history list
+!<TEXT>            <- execute the command that most recently begins with <TEXT> from the history list
+!<CMD>:*           <- returns all the parameters of the command that is returned by !<CMD>
+!<CMD>:<NUM>       <- returns the <NUM>th parameter of the command that is returned by !<CMD>
+!<CMD>:p           <- show the output that will be used for the !<CMD>
+^<FIND>^<REPLACE>  <- rerun the previous command by replacing <FIND> with <REPLACE>
 
 
 Wildcard expansion
