@@ -1,0 +1,5 @@
+Common commands
+Set-Location             Change a directory
+Get-CildItem             List files in a directory
+Rename-Item              Rename a files
+Get-Alias <CMD>          Shows the Command Prompt <CMD> map to the PowerShell command

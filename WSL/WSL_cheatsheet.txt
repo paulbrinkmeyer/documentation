@@ -1,3 +1,12 @@
+Install WSL
+----------------------------------------------------------------------------------------
+Source: https://docs.microsoft.com/en-us/windows/wsl/install-win10
+* Run the following PowerShell command
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+* If installing WSL2 do the following
+  - TBD
+* restart computer
+
 Windows CLI:
 ----------------------------------------------------------------------------------------
 ubuntu                                             # start WSL
