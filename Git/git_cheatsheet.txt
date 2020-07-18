@@ -51,6 +51,7 @@ git
                  --soft                     HEAD^                                 undo last local commit
                  --hard                     <SHA of servers HEAD> ............... undo all local changes e.g. "git reset --hard origin/master" will undo all local commits
      rev-list    --first-parent             <BRANCH_NAME>                         list all SHAs for <BRNACH_NAME>
+     rev-parse   HEAD                                                             get the most recent commit SHA
      revert      <sha> .......................................................... undos
                  -m                         1 <SHA>                               revert a merge
      show        <SHA> .......................................................... show the details of the sha checked in
