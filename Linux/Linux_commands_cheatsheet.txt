@@ -35,7 +35,7 @@ ftp          Start a ftp session                             (e.g. ftp <IP_ADDRE
 getopt       Method for parsing script parameters. Similar to Python's argparse. Bug: parameters can't have spaces in them even if quoted!
 getopts      Much like getopt and allows you to step through each option one at a time. Similar to a Python generator
 gpg          Encrypt files                                   (e.g. gpg -c <FILE> # to encrypt; gpg <FILE> # to decrypt)
-grep         Output the line that contains a specific string (e.g. grep -r SEARCH_STRING *)
+grep         Output the line that contains a specific string (e.g. grep -r SEARCH_STRING *). -l option will just list the file name
 groups       List the groups the current user is a part of
 gzip         Used to compress files. "-d" will decompress files. "-k" will keep the original files. "-r" will do all files in a directory and all sub-directoies.
 head         Output the first 10 lines of standard in ("-n <numLines>" is commonly used to change the default of 10)
@@ -60,8 +60,9 @@ nohup        Run a process that will continue even after calling process ends (e
 nslookup     look up the ip address of a URL
 passwd       Change the password for the current logged in user (you might need yppasswd for NIS)
 pkill        
+popd         will change the working directory to the top directory on the directory stack and remove it from the stack
 ps           background processes ("ps aux" is common way to get all processes)
-pushd        will swap the current directoy with the directory one below on the directory stack. "pushd ." adds the curent directory to the stack (see dirs)
+pushd        will swap the current directoy with the directory one below on the directory stack. "pushd ." adds the current directory to the stack (see dirs)
 pwd          Output the path of the working directory
 readlink     will return the full path (minus links) to the given directory (e.g. readlink -f $(pwd))
 rm           Delete a file
@@ -100,6 +101,13 @@ zcat         same as cat but works on .gz files instead
 zip          Compress files into a zip file                  (e.g. that zips an entire folder: "zip filename.Zip *")
 
 
+Directory stack commands:
+---------------------------
+dirs
+popd
+pushd
+
+
 TRICKS:
 
 semi-secure delete of a folder (read shred man page):
@@ -113,9 +121,6 @@ Append the contents of one file to the end of another
 
 Force a user to logout
 - e.g.: pkill -KILL -u "<USER_NAME>"
-
-List all files that have an instance of a string that are in the current directory and all the sub-directories
-- e.g.: grep -r -l <STRING> *
 
 ----------------------------------------------------------------------------------
 
