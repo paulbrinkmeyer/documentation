@@ -10,8 +10,9 @@ chgrp        Change the groups of files
 chmod        Change the privileges of a file
 chown        Change the owner of a file
 cksum        Print CRC checksum and byte counts              (e.g. cksum <FILE_NAME>)
+compgen      list bash settings, -v for variables, -c for all commands, -k for bash keywords, -b for bash build-ins
 cp           Copy a file
-curl         used to communicate over the network
+curl         used to communicate over the network, -s for silent mode, -d to post data, -H for headers
 cut          used to remove parts of lines sent to std out   (e.g. alias | cut -c 7-)
 date         Outputs the current date. Useful for timestamps (e.g. date +"%F_%T) 
 df           Shows mounted drives and the space available in them
@@ -93,7 +94,7 @@ usermod      change user settings. e.g. add a group to a user: usermod -a -G <GR
 vdir         Verbos version of "dir"
 vi           open vi editor
 watch        runs a given command over and over agian every 2 seconds (e.g. watch ls -al)
-wc           counts the number of lines, words, and bytes of files
+wc           counts the number of lines (-l), words (-w), or bytes (-c) of a file or standard-input
 which        tells you the path of where a given command is executed from (see "type -a" or "command -v" are likely better options)
 who          Output who is currently logged in
 xxd          view the contents of a file's bits along side the text representation of it
@@ -110,17 +111,21 @@ pushd
 
 TRICKS:
 
-semi-secure delete of a folder (read shred man page):
+# Get the position of a delimiter string in a variable:
+VAR=123456delimiter789
+echo $VAR | grep -bo "delimiter" | sed 's/:/\n/' | head -n 1     # this will return 6
+
+# semi-secure delete of a folder (read shred man page):
 find <dir> -type f -exec shred {} \;
 
-Find and replace oldWord with newWorld for all .c files in the current directory
-- find . -name "*.c" -exec sed -i "s/oldWord/newWord/g" '{}' \;
+# Find and replace oldWord with newWorld for all .c files in the current directory
+find . -name "*.c" -exec sed -i "s/oldWord/newWord/g" '{}' \;
 
-Append the contents of one file to the end of another
-- e.g.: cat <FILE_TO_ADD> >> <FILE_TO_APPEND_TO>
+# Append the contents of one file to the end of another e.g.:
+cat <FILE_TO_ADD> >> <FILE_TO_APPEND_TO>
 
-Force a user to logout
-- e.g.: pkill -KILL -u "<USER_NAME>"
+# Force a user to logout e.g.:
+pkill -KILL -u "<USER_NAME>"
 
 ----------------------------------------------------------------------------------
 
