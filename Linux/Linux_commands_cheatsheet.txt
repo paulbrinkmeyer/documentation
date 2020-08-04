@@ -14,7 +14,7 @@ compgen      list bash settings, -v for variables, -c for all commands, -k for b
 cp           Copy a file
 curl         used to communicate over the network, -s for silent mode, -d to post data, -H for headers
 cut          used to remove parts of lines sent to std out   (e.g. alias | cut -c 7-)
-date         Outputs the current date. Useful for timestamps (e.g. date +"%F_%T) 
+date         Outputs the current date. Useful for timestamps (e.g. date +"%F_%Hh%Mm%Ss")
 df           Shows mounted drives and the space available in them
 diff         Compare two files against each other
 dir          Output the sub-dir of the working directory     (see vdir)
@@ -88,7 +88,7 @@ top          A running list of the top processes
 tr           Translate, squeeze, and/or delete characters from standard input, writing to standard output.
 type         gives info about the command given (e.g. type -a <command>) will give you all locations of this command  
 uname        print system info (e.g. uname -a) 
-unset        Used to remove an environment variable          (e.g unset VAR)
+unset        Used to remove a shell variable          (e.g unset VAR)
 unique       removes duplicate consecutive lines
 usermod      change user settings. e.g. add a group to a user: usermod -a -G <GROUP> <USER>
 vdir         Verbos version of "dir"
@@ -100,6 +100,14 @@ who          Output who is currently logged in
 xxd          view the contents of a file's bits along side the text representation of it
 zcat         same as cat but works on .gz files instead
 zip          Compress files into a zip file                  (e.g. that zips an entire folder: "zip filename.Zip *")
+
+
+job processing commands:
+--------------------------------------
+Ctrl-Z       suspends the current job
+bg           see above
+jobs         see above
+fg           see above
 
 
 Directory stack commands:
