@@ -65,6 +65,7 @@ popd         will change the working directory to the top directory on the direc
 ps           background processes ("ps aux" is common way to get all processes)
 pushd        will swap the current directoy with the directory one below on the directory stack. "pushd ." adds the current directory to the stack (see dirs)
 pwd          Output the path of the working directory
+read         read a line at a time of a file and split the line by spaces (e.g. read word1 remaining_words < file; echo $remaining_words)
 readlink     will return the full path (minus links) to the given directory (e.g. readlink -f $(pwd))
 rm           Delete a file
 rmdir        Delete an empty directory. use "rm -r <DIR_NAME>" to remove a full directory (USE WITH CAUTION!).
