@@ -35,10 +35,11 @@ git
                  --author                   <PART_OF_AUTHORS_NAME> .............. filter by a specific author
                  --name-only                                                      will just show the name of files that are changed and not the details
                  --name-status .................................................. Similar to --name-only with one character status as well
-                 --follow                   <FILE_NAME>                           git will try to follow name changes of <FILE_NAME> when giving the log
+                 --oneline                                                        Show small version of SHA and the first line of the log all in one line for each commit shown
+                 --follow                   <FILE_NAME>                           git will try to follow name changes of <FILE_NAME> when getting the log
                  -- <FILE_PATH> ................................................. shows the changes of a file  even if the file was deleted!
                  --diff-filter=D            --summary                             List all commits with deleted files; " | grep delete" makes a nice list of deleted files"
-                 <SHA/BRANCH>..<SHA/BRANCH> ..................................... log what is only in the second <SHA/BRANCH> and not in the first
+                 <SHA/BRANCH>..<SHA/BRANCH> ..................................... log all commits after the first <SHA/BRANCH> up to the second, not including the first but including the second.
      pull                                                                         pull in changes from the remote
      push ....................................................................... push all local commits to the remote
                  <REMOTE>                   <BRANCH_NAME>                         used to push a local branch to the remote (e.g. git push origin products2014)

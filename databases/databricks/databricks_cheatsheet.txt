@@ -1,0 +1,41 @@
+Apache Spark interfaces:
+- Resilient Distributed Dataset (RDD)
+    * available languages: Java, Python & Scala
+- DataFrame
+    * Superset of RDD
+    * available languages: Java, Python & Scala
+- DataSet
+    * Combo of RDD & DataFrame
+    * available languages: Java & Scala (no Python)
+
+
+Notebook commands:
+%sql                       # switch to using SQL as the language
+%python                    # switch to using Python as the language
+
+Spark commands:
+data = spark.read.csv(
+    "/databricks-datasets/samples/population-vs-price/data_geo.csv" # location 
+    header="true",
+    inferSchema="true"
+)                          # read data from a csv file
+
+data.cache()                              # Cache data for faster reuse
+data = data.dropna()                      # drop rows with missing values
+data.take(x)                              # top x values of a table
+display(data)                             # show all the data
+data.createOrReplaceTempView("data_geo")  # creats a table called data_geo that can be queried by SQL now
+
+
+Python:
+--------------------------------------------------------------------------------------------------------------
+dbutils.fs.ls("/databricks-datasets/samples/docs/")                        # how to read a file location
+textFile = spark.read.text("/databricks-datasets/samples/docs/README.md")  # how to load a file
+textFile.count()                                                           # count the number lines in the file
+textFile.first()                                                           # get the first line of the file
+linesWithSpark = textFile.filter(textFile.value.contains("Spark"))         # filter the file with lines that have "Spark" in it
+linesWithSpark.take(5)                                                     # show the top five lines
+
+
+
+Skipped Datasets tutorial

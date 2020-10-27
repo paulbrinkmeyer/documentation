@@ -1,0 +1,28 @@
+Boolean notes:
+=============================================================================
+
+Reports True in a test:
+---------------------------------------------------------------------
+True
+1
+9999
+-1
+-9999
+"some_string"
+{None}
+{'field'}
+{'field': None}
+[None]
+(None,)
+(None, None)
+
+Reports False in a test:
+---------------------------------------------------------------------
+None
+False
+0
+""
+{}
+[]
+()
+(<TEST>)    # where <TEST> is any other check that fails e.g. (None)
