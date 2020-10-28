@@ -62,6 +62,7 @@ nslookup     look up the ip address of a URL
 passwd       Change the password for the current logged in user (you might need yppasswd for NIS)
 pkill        
 popd         will change the working directory to the top directory on the directory stack and remove it from the stack
+printf       output a formated string
 ps           background processes ("ps aux" is common way to get all processes)
 pushd        will swap the current directoy with the directory one below on the directory stack. "pushd ." adds the current directory to the stack (see dirs)
 pwd          Output the path of the working directory

@@ -1,0 +1,9 @@
+Terraform
+* refresh
+* plan
+* apply
+* destroy
+
+
+Core
+* 

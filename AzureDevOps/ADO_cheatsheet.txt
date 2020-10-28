@@ -1,0 +1,11 @@
+https://docs.microsoft.com/en-us/azure/devops/pipelines/
+
+$(System.DefaultWorkingDirectory)
+$(Pipeline.Workspace)
+
+Build.Reason
+- Schedule
+
+
+Output Variables:
+https://www.nigelfrank.com/blog/azure-devops-output-variables/
