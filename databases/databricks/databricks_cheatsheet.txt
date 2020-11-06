@@ -9,10 +9,6 @@ Apache Spark interfaces:
     * available languages: Java & Scala (no Python)
 
 
-Notebook commands:
-%sql                       # switch to using SQL as the language
-%python                    # switch to using Python as the language
-
 Spark commands:
 data = spark.read.csv(
     "/databricks-datasets/samples/population-vs-price/data_geo.csv" # location 
@@ -39,3 +35,162 @@ linesWithSpark.take(5)                                                     # sho
 
 
 Skipped Datasets tutorial
+
+
+ ___            _______          ____   ____  _____   ____         ____          _____ _____        _____         ____         ____  _______  _____
+|    \     ^       |       ^    |    \ |    \   |    /     |    / /             |        |   |     |             /      \   / /         |    |      |\    /|
+|     \   / \      |      / \   |    / |    |   |   /      |   /  \___          |        |   |     |             \___    \ /  \___      |    |      | \  / |
+|     |  /___\     |     /___\  |---<  |____/   |   |      |--{       \         |----    |   |     |----             \    Y       \     |    |----  |  \/  |
+|     / /     \    |    /     \ |    \ |   \    |   \      |   \       )        |        |   |     |                  )   |        )    |    |      |      |
+|____/  |     |    |    |     | |____/ |    \ __|__  \____ |    \ ____/         |      __|__ |____ |_____        ____/    |   ____/     |    |_____ |      |
+
+Databricks File System (DBFS)
+ref: https://docs.databricks.com/data/databricks-file-system.html
+
+
+display(dbutils.fs.ls("dbfs:/"))                            # show root files
+dbutils.fs.mkdirs("/foobar/")                               # make a directory
+dbutils.fs.put("/foobar/baz.txt", "Hello, World!")          # create a file and add test to it
+dbutils.fs.rm("/foobar/baz.txt")                            # remove a file
+
+shorthand commands:
+%fs ls                                                      # List the DBFS root
+%fs rm -r foobar                                            # Recursively remove the files under foobar
+%fs put -f "/mnt/my-file" "Hello world!"                    # Overwrite the file "/mnt/my-file" with the string "Hello world!"
+
+
+                   ____  _____   ____          ____   ___                                      ___     ____
+|\    /|    ^     /        |    /             /      /   \  |\    /| |\    /|    ^    |\    | |    \  /
+| \  / |   / \   /         |   /             /      /     \ | \  / | | \  / |   / \   | \   | |     \ \___
+|  \/  |  /___\  |    _    |   |             |      |     | |  \/  | |  \/  |  /___\  |  \  | |     |     \
+|      | /     \ \     /   |   \             \      \     / |      | |      | /     \ |   \ | |     /      )
+|      | |     |  \___/  __|__  \____         \____  \___/  |      | |      | |     | |    \| |____/  ____/
+Magic Commands:
+%run                           # run another notebook
+%sh                            # run shell code
+%fs                            # File System commands
+%md                            # include documentation
+
+language switch commands:
+%python                       # switch to using Python as the language
+%r
+%scala
+%sql                          # switch to using SQL as the language
+
+
+shortcuts:
+shift+Enter                   # run a cell
+
+
+
+_______  _____  ____           _____           ___           ___     ____
+   |    |      |    \ |\    /|   |   |\    |  /   \  |      /   \   /      \   /
+   |    |      |    | | \  / |   |   | \   | /     \ |     /     \ /        \ /
+   |    |----  |____/ |  \/  |   |   |  \  | |     | |     |     | |    _    Y
+   |    |      |   \  |      |   |   |   \ | \     / |     \     / \     /   |
+   |    |_____ |    \ |      | __|__ |    \|  \___/  |____  \___/   \___/    |
+Terminology:
+
+cell
+cluster
+notebook
+workspace
+
+ ____   ____   _____  ___     _____  _____ _____          _____  ___                             ____  _____          ____         _____  ____
+|    \ |    \ |      |    \  |      |        |   |\    | |      |    \          |     |    ^    |    \   |      ^    |    \ |     |      /
+|    | |    | |      |     \ |      |        |   | \   | |      |     \         \     /   / \   |    |   |     / \   |    / |     |      \___
+|____/ |____/ |----  |     | |----  |----    |   |  \  | |----  |     |          \   /   /___\  |____/   |    /___\  |---<  |     |----      \
+|      |   \  |      |     / |      |        |   |   \ | |      |     /           \ /   /     \ |   \    |   /     \ |    \ |     |           )
+|      |    \ |_____ |____/  |_____ |      __|__ |    \| |_____ |____/             V    |     | |    \ __|__ |     | |____/ |____ |_____ ____/
+Predefined variables:
+
+sc                             # Spark Context
+spark                          # Spark Session
+display(DF)                    # a visual way to see the DF dataframe
+
+udf(FUNCTION)                  # a user defined function
+
+
+Spark commands:
+spark.sql                                         # returns a DataFrame representing the result of the given query
+spark.table(TABLE)                                # returns a DataFrame for a given table
+spark.read.parquet("/path/of/file.parquet")
+spark.read.json(
+spark.udf.register(FUN_NAM, UDF_FUNCTION)         # register a function to be used in a SQL statement
+
+
+Data frame functions:
+printSchema()
+count()
+take(5)
+(df.write
+  .option("compression", "snappy")                             # compress using snappy
+  .mode("overwrite")                                           #
+  .parquet(outPath)                                            #
+)
+saveAsTable("
+distinct
+WithColumn("columnName", COLUMN DATA)
+groupBy("columnName_N", "columnName_N+1").agg(...
+createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
+
+
+Action operations
+-------------------
+count()
+collect()                   # get the entire contents of the dataframe, Cation don't do this on big data sets
+show()                      # visually shows the first 20 records
+take(NUM)                   # get NUM rows
+first, head                 #
+describe, summary           #
+
+Narrow operations
+------------------
+read
+select
+filter/where
+write
+cast
+union
+
+Wide operations
+--------------------
+distinct
+groupBy
+sort/orderBy
+join
+
+
+
+
+Rows methods in Python
+index
+count
+asDict
+row.key
+row["key"]
+key in row
+
+
+
+
+
+
+
+
+
+python libraries
+from pyspark.sql.types import LongType, StringType, StructType, StructField
+
+from pyspark.sql.functions import col
+col(COLUMN)                    # gives you the column info for the context of the current dataframe
+
+
+
+
+Setup CLI notes:
+filename: .databricks.cfg
+file contents:
+host = URL
+username = login
+password = XXXXXXX
