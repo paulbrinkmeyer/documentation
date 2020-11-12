@@ -128,6 +128,9 @@ take(5)
   .mode("overwrite")                                           #
   .parquet(outPath)                                            #
 )
+
+write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
+
 saveAsTable("
 distinct
 WithColumn("columnName", COLUMN DATA)
