@@ -41,3 +41,12 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 # need to install docker in windows and turn on the localhost server
 echo "export DOCKER_HOST=localhost:2375" >> ~/.bash_profile
+
+
+# install python 3.8
+---------------------------------------------------------------------------------------
+# https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.8

@@ -118,24 +118,27 @@ spark.read.parquet("/path/of/file.parquet")
 spark.read.json(
 spark.udf.register(FUN_NAM, UDF_FUNCTION)         # register a function to be used in a SQL statement
 
+ ___            _______                 _____  ____                    _____         _____                   ____ _______ _____   ___            ____
+|    \     ^       |       ^           |      |    \    ^    |\    /| |             |      |     | |\    |  /        |      |    /   \  |\    | /
+|     \   / \      |      / \          |      |    |   / \   | \  / | |             |      |     | | \   | /         |      |   /     \ | \   | \___   *
+|     |  /___\     |     /___\         |----  |____/  /___\  |  \/  | |----         |----  |     | |  \  | |         |      |   |     | |  \  |     \
+|     / /     \    |    /     \        |      |   \  /     \ |      | |             |      \     / |   \ | \         |      |   \     / |   \ |      ) *
+|____/  |     |    |    |     |        |      |    \ |     | |      | |_____        |       \___/  |    \|  \____    |    __|__  \___/  |    \| ____/
 
 Data frame functions:
 printSchema()
 count()
 take(5)
-(df.write
-  .option("compression", "snappy")                             # compress using snappy
-  .mode("overwrite")                                           #
-  .parquet(outPath)                                            #
-)
-
+write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
+createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
 
-saveAsTable("
-distinct
+distinct()
+
 WithColumn("columnName", COLUMN DATA)
 groupBy("columnName_N", "columnName_N+1").agg(...
-createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
+select:
+  df.select("event.eventDetail.identityInfo.supplyUniqueId")   # to flatten fields values in a struct
 
 
 Action operations
@@ -197,3 +200,9 @@ file contents:
 host = URL
 username = login
 password = XXXXXXX
+
+
+
+
+Tools
+https://datathirst.net/projects/dbfs-explorer/

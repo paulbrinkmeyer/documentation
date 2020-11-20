@@ -6,7 +6,7 @@ JRE = Java Runtime Environment
 
 POJO = Plain Old Java Object
 
-// Install Java in an Ubuntu container
+// Install Java in an Ubuntu container (add "sudo" if in a normal env)
 apt-get update
 apt-get install openjdk-11-jre
 apt-get install openjdk-11-jdk
@@ -298,7 +298,7 @@ Called myMethod
  \____ |____ |     | ____/  ____/  |_____ ____/
 
 
-// typical way to creat an object from a class
+// typical way to create an object from a class
 ClassName instanceName = new ClassName();
 
 // Modifiers
