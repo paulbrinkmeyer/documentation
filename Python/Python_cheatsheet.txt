@@ -26,3 +26,10 @@ False
 []
 ()
 (<TEST>)    # where <TEST> is any other check that fails e.g. (None)
+
+
+
+pip
+---------------------------------------------------------------------------
+pip list --outdated                           # check for outdated modules
+pip install <MODULE> --upgrade                # update a module
