@@ -9,20 +9,6 @@ Apache Spark interfaces:
     * available languages: Java & Scala (no Python)
 
 
-Spark commands:
-data = spark.read.csv(
-    "/databricks-datasets/samples/population-vs-price/data_geo.csv" # location 
-    header="true",
-    inferSchema="true"
-)                          # read data from a csv file
-
-data.cache()                              # Cache data for faster reuse
-data = data.dropna()                      # drop rows with missing values
-data.take(x)                              # top x values of a table
-display(data)                             # show all the data
-data.createOrReplaceTempView("data_geo")  # creats a table called data_geo that can be queried by SQL now
-
-
 Python:
 --------------------------------------------------------------------------------------------------------------
 dbutils.fs.ls("/databricks-datasets/samples/docs/")                        # how to read a file location
@@ -32,10 +18,38 @@ textFile.first()                                                           # get
 linesWithSpark = textFile.filter(textFile.value.contains("Spark"))         # filter the file with lines that have "Spark" in it
 linesWithSpark.take(5)                                                     # show the top five lines
 
+_____          ____  _______                     _____           ____          ____         ____   ____           ____                _____                         _____          ___      ___             ____
+  |   |\    | /         |       ^    |     |       |   |\    |  /             |    \ \   / /      |    \    ^    |    \ |    /          |   |\    |        |      |   |   |\    | |    \   /   \  |      | /
+  |   | \   | \___      |      / \   |     |       |   | \   | /              |    |  \ /  \___   |    |   / \   |    | |   /           |   | \   |        |      |   |   | \   | |     \ /     \ |      | \___
+  |   |  \  |     \     |     /___\  |     |       |   |  \  | |    _         |____/   Y       \  |____/  /___\  |____/ |--{            |   |  \  |        |  /\  |   |   |  \  | |     | |     | |  /\  |     \
+  |   |   \ |      )    |    /     \ |     |       |   |   \ | \     /        |        |        ) |      /     \ |   \  |   \           |   |   \ |        | /  \ |   |   |   \ | |     / \     / | /  \ |      )
+__|__ |    \| ____/     |    |     | |____ |____ __|__ |    \|  \___/         |        |   ____/  |      |     | |    \ |    \        __|__ |    \|        |/    \| __|__ |    \| |____/   \___/  |/    \| ____/
 
 
-Skipped Datasets tutorial
+Installing Pyspark in windows:
+--------------------------------------------------------------------------------
+reference: https://phoenixnap.com/kb/install-spark-on-windows-10
+.
+Install Java
+Install Python
+Install Apache Spark
+Configure Spark installation
+Install winutils
+Configure log level of Spark
 
+  ____   ___                       ___                   ____   _____ _______          ____           ____   ___                                      ___     ____
+ /      /   \  |\    /| |\    /|  /   \  |\    |        /      |         |    |     | |    \         /      /   \  |\    /| |\    /|    ^    |\    | |    \  /
+/      /     \ | \  / | | \  / | /     \ | \   |        \___   |         |    |     | |    |        /      /     \ | \  / | | \  / |   / \   | \   | |     \ \___
+|      |     | |  \/  | |  \/  | |     | |  \  |            \  |----     |    |     | |____/        |      |     | |  \/  | |  \/  |  /___\  |  \  | |     |     \
+\      \     / |      | |      | \     / |   \ |             ) |         |    \     / |             \      \     / |      | |      | /     \ |   \ | |     /      )
+ \____  \___/  |      | |      |  \___/  |    \|        ____/  |_____    |     \___/  |              \____  \___/  |      | |      | |     | |    \| |____/  ____/
+
+
+Common setup commands:
+---------------------------------------------
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+sc = spark.sparkContext
 
  ___            _______          ____   ____  _____   ____         ____          _____ _____        _____         ____         ____  _______  _____
 |    \     ^       |       ^    |    \ |    \   |    /     |    / /             |        |   |     |             /      \   / /         |    |      |\    /|
@@ -107,36 +121,45 @@ Predefined variables:
 
 sc                             # Spark Context
 spark                          # Spark Session
-display(DF)                    # a visual way to see the DF dataframe
-
+display(DF)                    # a visual way to see the DF data
 udf(FUNCTION)                  # a user defined function
 
+ ____   ____           ____                  ____   ___                                      ___     ____
+/      |    \    ^    |    \ |    /         /      /   \  |\    /| |\    /|    ^    |\    | |    \  /
+\___   |    |   / \   |    | |   /         /      /     \ | \  / | | \  / |   / \   | \   | |     \ \___
+    \  |____/  /___\  |____/ |--{          |      |     | |  \/  | |  \/  |  /___\  |  \  | |     |     \
+     ) |      /     \ |   \  |   \         \      \     / |      | |      | /     \ |   \ | |     /      )
+____/  |      |     | |    \ |    \         \____  \___/  |      | |      | |     | |    \| |____/  ____/
 
 Spark commands:
-spark.createDataFrame(data,...)                   # create a DataFrame
-spark.sql                                         # returns a DataFrame representing the result of the given query
-spark.table(TABLE)                                # returns a DataFrame for a given table
-spark.read.parquet("/path/of/file.parquet")       # returns a DataFrame for a given parquet file
-spark.read.json("/path/of/file.json")             # returns a DataFrame for a given json file
-spark.read.json(sc.parallelize([json_str]))       # returns a DataFrame for a given json string - https://stackoverflow.com/questions/49675860/pyspark-converting-json-string-to-dataframe
-spark.udf.register(FUN_NAM, UDF_FUNCTION)         # register a function to be used in a SQL statement
+spark.createDataFrame(data,...)                    # create a DataFrame
+spark.sql                                          # returns a DataFrame representing the result of the given query
+spark.table(TABLE)                                 # returns a DataFrame for a given table
+spark.read.csv("/path/of/file.csv", header="true") # returns a DataFrame for a given csv file
+spark.read.parquet("/path/of/file.parquet")        # returns a DataFrame for a given parquet file
+spark.read.json("/path/of/file.json")              # returns a DataFrame for a given json file
+spark.read.json(sc.parallelize([json_str]))        # returns a DataFrame for a given json string - https://stackoverflow.com/questions/49675860/pyspark-converting-json-string-to-dataframe
+spark.udf.register(FUN_NAM, UDF_FUNCTION)          # register a function to be used in a SQL statement
+
 
  ___            _______                 _____  ____                    _____         _____                   ____ _______ _____   ___            ____
 |    \     ^       |       ^           |      |    \    ^    |\    /| |             |      |     | |\    |  /        |      |    /   \  |\    | /
-|     \   / \      |      / \          |      |    |   / \   | \  / | |             |      |     | | \   | /         |      |   /     \ | \   | \___   *
+|     \   / \      |      / \          |      |    |   / \   | \  / | |             |      |     | | \   | /         |      |   /     \ | \   | \___
 |     |  /___\     |     /___\         |----  |____/  /___\  |  \/  | |----         |----  |     | |  \  | |         |      |   |     | |  \  |     \
-|     / /     \    |    /     \        |      |   \  /     \ |      | |             |      \     / |   \ | \         |      |   \     / |   \ |      ) *
+|     / /     \    |    /     \        |      |   \  /     \ |      | |             |      \     / |   \ | \         |      |   \     / |   \ |      )
 |____/  |     |    |    |     |        |      |    \ |     | |      | |_____        |       \___/  |    \|  \____    |    __|__  \___/  |    \| ____/
 
 Data frame functions:
 printSchema()
+cache()                                                        # Cache data for faster reuse
 count()
-take(5)
+distinct()
+dropna()                                                       # drop rows with missing values
+take(x)                                                        # top x values of a table
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
 createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
 
-distinct()
 
 WithColumn("columnName", COLUMN DATA)
 groupBy("columnName_N", "columnName_N+1").agg(...
@@ -217,14 +240,7 @@ password = XXXXXXX
 
 
 
-Installing Pyspark in windows:
---------------------------------------------------------------------------------
-Install Java
-Install Python
-Install Apache Spark
-Configure Spark installation
-Install winutils
-Configure log level of Spark
+
 
 
 Tools
