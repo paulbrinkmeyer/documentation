@@ -66,12 +66,15 @@ display(dbutils.fs.ls("dbfs:/"))                            # show root files
 dbutils.fs.mkdirs("/foobar/")                               # make a directory
 dbutils.fs.put("/foobar/baz.txt", "Hello, World!")          # create a file and add test to it
 dbutils.fs.rm("/foobar/baz.txt")                            # remove a file
+dbutils.notebook.run(<PATH>, <TIME_OUT_IN_SEC>)
 
 shorthand commands:
 %fs ls                                                      # List the DBFS root
+%fs mkdirs <DIR>                                            # make a directory (note the command has an "s" at the end unlike the linux command)
+%fs mv                                                      # move/rename a file
 %fs rm -r foobar                                            # Recursively remove the files under foobar
 %fs put -f "/mnt/my-file" "Hello world!"                    # Overwrite the file "/mnt/my-file" with the string "Hello world!"
-
+%fs head dbfs:/path/to/file                                 # kind of like the linux "cat" command
 
                    ____  _____   ____          ____   ___                                      ___     ____
 |\    /|    ^     /        |    /             /      /   \  |\    /| |\    /|    ^    |\    | |    \  /
@@ -80,7 +83,7 @@ shorthand commands:
 |      | /     \ \     /   |   \             \      \     / |      | |      | /     \ |   \ | |     /      )
 |      | |     |  \___/  __|__  \____         \____  \___/  |      | |      | |     | |    \| |____/  ____/
 Magic Commands:
-%run                                                 # run another notebook
+%run                                                 # run another notebook, call be done by dbutils.notebook.run()
 %run path/to/NotebookB $VarA="ValueA" $VarB="ValueB" # give parameters to a notebook
 %sh                                                  # run shell code
 %fs                                                  # File System commands
@@ -139,6 +142,7 @@ spark.read.csv("/path/of/file.csv", header="true") # returns a DataFrame for a g
 spark.read.parquet("/path/of/file.parquet")        # returns a DataFrame for a given parquet file
 spark.read.json("/path/of/file.json")              # returns a DataFrame for a given json file
 spark.read.json(sc.parallelize([json_str]))        # returns a DataFrame for a given json string - https://stackoverflow.com/questions/49675860/pyspark-converting-json-string-to-dataframe
+spark.read.text(/path/of/file.txt")                # returns a DataFrame for a given file where each line is a row
 spark.udf.register(FUN_NAM, UDF_FUNCTION)          # register a function to be used in a SQL statement
 
 
@@ -155,13 +159,15 @@ cache()                                                        # Cache data for 
 count()
 distinct()
 dropna()                                                       # drop rows with missing values
+select(...)
+selectExpr()
 take(x)                                                        # top x values of a table
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
 createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
 
 
-WithColumn("columnName", COLUMN DATA)
+withColumn("columnName", COLUMN DATA)
 groupBy("columnName_N", "columnName_N+1").agg(...
 select:
   df.select("event.eventDetail.identityInfo.supplyUniqueId")   # to flatten fields values in a struct
@@ -191,6 +197,11 @@ distinct
 groupBy
 sort/orderBy
 join
+
+
+Schema:
+------------------------------
+df = spark.createDataFrame(df.rdd, new_schema)      # useful way to update the schema ref: https://chih-ling-hsu.github.io/2017/03/28/how-to-change-schema-of-a-spark-sql-dataframe
 
 
 
