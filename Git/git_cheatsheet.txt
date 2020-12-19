@@ -41,6 +41,7 @@ git
                  -- <FILE_PATH> ................................................. shows the changes of a file  even if the file was deleted!
                  --diff-filter=D            --summary                             List all commits with deleted files; " | grep delete" makes a nice list of deleted files"
                  <SHA/BRANCH>..<SHA/BRANCH> ..................................... log all commits after the first <SHA/BRANCH> up to the second, not including the first but including the second.
+     merge       --abort                                                          To cancel resolving any current merge conflicts
      pull                                                                         pull in changes from the remote
      push ....................................................................... push all local commits to the remote
                  <REMOTE>                   <BRANCH_NAME>                         used to push a local branch to the remote (e.g. git push origin products2014)
