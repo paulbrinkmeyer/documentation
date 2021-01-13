@@ -2,6 +2,7 @@ https://docs.microsoft.com/en-us/azure/devops/pipelines/
 
 $(System.DefaultWorkingDirectory)
 $(Pipeline.Workspace)
+$(Build.SourcesDirectory)
 
 Build.Reason
 - Schedule

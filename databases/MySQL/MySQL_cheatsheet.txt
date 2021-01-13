@@ -1,0 +1,11 @@
+link: https://gist.github.com/hofmannsven/9164408
+
+/* MySQL comment statement */   # comment
+show databases;                 # Show all databases
+create database [database];     # Create new database
+use [database];                 # Select database
+select database();              # Determine what database is in use
+show tables;                    # Show all tables
+create database [database];     # Create databse, where [database] is replaced with its name
+create table [table]            # Create table, where [table] is replaced with its name
+exit;                           # logout
