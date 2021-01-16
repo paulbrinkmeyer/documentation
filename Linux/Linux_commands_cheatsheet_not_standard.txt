@@ -1,0 +1,6 @@
+convert       comes from ImageMagick (http://www.imagemagick.org/script/convert.php)
+e.g.
+convert -quality 100 -density 500 XXX.pdf XXX.jpg
+
+ufw           Uncomplicated Firewall - Default with Ubuntu
+jq            Used to make json easier to read ( ... | jq . )
