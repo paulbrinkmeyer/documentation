@@ -1,5 +1,5 @@
-Boolean notes:
 =============================================================================
+Boolean notes:
 
 Reports True in a test:
 ---------------------------------------------------------------------
@@ -28,8 +28,33 @@ False
 (<TEST>)    # where <TEST> is any other check that fails e.g. (None)
 
 
+========================================================================================================
+virtual environments:
+----------------------------------------------------------------------------------------
+pip install virtualenv                 # install virtual envrionment package
 
-pip
+Steps (e.g.):
+---------------------------------------------------------------------------------------
+mkdir /c/work/pyenv               # Create a folder to store the environments in
+cd /c/work/pyenv                  # cd to the created folder
+python -m venv env                # this will create the director "env", change it to a different name if desired
+cd ./env/Scripts                  # This is the windows location. Linux might be ./env/bin
+source activate                   # now you are running in the virtual env
+deactivate                        # this will return you back to the normal OS environment
+
+
+===================================================================================================
+packages
+---------------------------------------------------------------------------------------
+python setup.py bdist_wheel       # create a wheel package from a setup.py file (need "wheel" package installd)
+pytnon setup.py sdist             # create a .gz package from a setup.py file (note: sdist & bdist_wheel can both be parameters)
+
+common package commands:
+----------------------------------------------------------------------------------------------------------
+python -m pip install --upgrade pip setuptools wheel            # initial setup
+python -m pip install git+https://github.com/python/mypy        # e.g. package install from a git URL that has a setup.py file
+
+pip commands
 ---------------------------------------------------------------------------
 pip list --outdated                           # check for outdated modules
 pip install <MODULE> --upgrade                # update a module

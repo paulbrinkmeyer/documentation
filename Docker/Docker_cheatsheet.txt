@@ -97,9 +97,12 @@ docker run -it alpine
 # Random notes
 #---------------------------------------------------------------------------------------------------------------------
 winpty                                          # git bash needs this command prefixed when running "docker run -it"
+apk add git                                     # e.g. way to add apts to an apline container
 
-
-
+# e.g. of common docker environments (the "//" ensures that it works in Windows Git Bash and in Linux)
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+python:      winpty docker run -it --rm -v $(pwd | sed 's/\//\/\//g'):$(pwd | sed 's/\//\/\//g') -v $(echo ~ | sed 's/\//\/\//g')://root --workdir=$(pwd | sed 's/\//\/\//g') python:3.8 bash
+MySQL:       winpty docker run -it --rm -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=mysql -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql:latest
 
 
 
