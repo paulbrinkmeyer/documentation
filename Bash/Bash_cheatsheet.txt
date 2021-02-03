@@ -44,7 +44,8 @@ ${VAR}              # will return the variable's value and not consider any furt
 ${VAR:-DEFAULT}     # same as ${VAR} but if not set then it will take the DEFAULT value
 ${VAR:+OVERRIDE}    # same as ${VAR} but if set it will take the OVRRIDE value
 ${#VAR}             # will return the length of VAR
-
+'$VAR'              # returns $VAR (even if VAR was set to something)
+"$VAR"              # returns 1    (assuming VAR=1 was called earlier)
 
 variables - get sub-strings
 --------------------------------

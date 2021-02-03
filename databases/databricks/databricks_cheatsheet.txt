@@ -136,7 +136,7 @@ ____/  |      |     | |    \ |    \         \____  \___/  |      | |      | |   
 
 Spark commands:
 spark.createDataFrame(data,...)                    # create a DataFrame
-spark.sql                                          # returns a DataFrame representing the result of the given query
+spark.sql()                                        # returns a DataFrame representing the result of the given query
 spark.table(TABLE)                                 # returns a DataFrame for a given table
 spark.read.csv("/path/of/file.csv", header="true") # returns a DataFrame for a given csv file
 spark.read.parquet("/path/of/file.parquet")        # returns a DataFrame for a given parquet file
