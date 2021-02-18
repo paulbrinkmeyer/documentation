@@ -28,6 +28,36 @@ False
 (<TEST>)    # where <TEST> is any other check that fails e.g. (None)
 
 
+
+if statements:
+-----------------------
+if <CHECK>:
+    <TRUE_BODY>
+else:
+    <FALSE_BODY>
+.
+One line if statement
+<TRUE_BODY> if <CHECK> else <FALSE_BODY>
+
+
+
+========================================================================================================
+built in functions
+----------------------------------------------------------------------------------------
+all(<ITERABLE>)                       # True if all items in an iterable are true, otherwise it returns False
+any(<ITERABLE>)                       # True if any item in an iterable are true, otherwise it returns False
+range(start, stop, step)              # generator of integers from start (included) to stop (not included)
+
+
+========================================================================================================
+pytest
+----------------------------------------------------------------------------------------
+@pytest.mark.skip(reason="because")                  # decorator to skip a test
+@pytest.mark.skipif(<CONDITION>,reason="because")    # decorator to skip a test on a condition
+
+mock
+@patch("path.of.object.to.mock")                     # decorator to mock an object
+
 ========================================================================================================
 virtual environments:
 ----------------------------------------------------------------------------------------
