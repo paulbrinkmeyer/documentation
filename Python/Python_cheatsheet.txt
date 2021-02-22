@@ -36,22 +36,37 @@ if <CHECK>:
 else:
     <FALSE_BODY>
 .
-One line if statement
-<TRUE_BODY> if <CHECK> else <FALSE_BODY>
+One line conditional assignment:
+var = <TRUE_VALUE> if <CHECK> else <FALSE_VALUE>
 
-
+========================================================================================================
+Variable types:
+examples
+int_a  = 123                          # integer
+str_a  = "string"                     # string
+bool_a = True                         # boolean
+dict_a = {"a":"A", "b":"B", "c":"B"}  # dictionary
+list_a = ["a", "b", "c"]              # list
+set_a  = {"a", "b", "c"}              # set
 
 ========================================================================================================
 built in functions
 ----------------------------------------------------------------------------------------
 all(<ITERABLE>)                       # True if all items in an iterable are true, otherwise it returns False
 any(<ITERABLE>)                       # True if any item in an iterable are true, otherwise it returns False
+print(<STR>)                          # output <STR> plus a newline to standard out
 range(start, stop, step)              # generator of integers from start (included) to stop (not included)
-
+str(<OBJECT>)                         # convert <OBJECT> to a string
+type(<VAR>)                           # gives the type object of <VAR>
 
 ========================================================================================================
 pytest
 ----------------------------------------------------------------------------------------
+modules
+------------
+pytest                 # default
+pytest-cov             # gives coverage options
+
 @pytest.mark.skip(reason="because")                  # decorator to skip a test
 @pytest.mark.skipif(<CONDITION>,reason="because")    # decorator to skip a test on a condition
 
