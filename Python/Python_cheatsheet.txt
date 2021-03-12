@@ -67,6 +67,11 @@ modules
 pytest                 # default
 pytest-cov             # gives coverage options
 
+CLI:
+------------
+pytest                 # run all tests in a given folder recursively to all child folders
+pytest -k <TEST_NAME>  # run only the test with the name <TEST_NAME>
+
 @pytest.mark.skip(reason="because")                  # decorator to skip a test
 @pytest.mark.skipif(<CONDITION>,reason="because")    # decorator to skip a test on a condition
 
@@ -102,4 +107,4 @@ python -m pip install git+https://github.com/python/mypy        # e.g. package i
 pip commands
 ---------------------------------------------------------------------------
 pip list --outdated                           # check for outdated modules
-pip install <MODULE> --upgrade                # update a module
+pip install --upgrade <MODULE>                # update a module
