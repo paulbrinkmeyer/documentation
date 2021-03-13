@@ -164,6 +164,7 @@ selectExpr()
 take(x)                                                        # top x values of a table
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
+write.format("delta").save(outPath)                            # create a delta
 createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
 
 
