@@ -28,7 +28,6 @@ False
 (<TEST>)    # where <TEST> is any other check that fails e.g. (None)
 
 
-
 if statements:
 -----------------------
 if <CHECK>:
@@ -108,3 +107,13 @@ pip commands
 ---------------------------------------------------------------------------
 pip list --outdated                           # check for outdated modules
 pip install --upgrade <MODULE>                # update a module
+
+
+===================================================================================================
+One line file share servers
+----------------------------
+Python 2:
+python -m SimpleHTTPServer
+
+Python 3:
+python -m http.server
