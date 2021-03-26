@@ -1,4 +1,4 @@
-dockerfiles notes:
+Dockerfile notes:
 ---------------------------------------------------------------------------------------------------------------------
 # escape=`                          # common windows directive to escape on ` instead of \
 FROM <IMAGE>                        # <IMAGE> to load from, must be the first instruction after any directives or ARG
@@ -17,14 +17,15 @@ USER                                # defines the user for follow on RUN, CMD & 
 #
 EXPOSE                              # documentation to the runner about what ports to publish e.g. (EXPOSE 80/tcp)
 VOLUME                              # define the mount point in the image. later when ran it will need to be mapped to a host
-ARG                                 # a way for the builder to pass parameters to the dockfile via the "docker build --build-arg"... command
+ARG                                 # a way for the builder to pass parameters to the Dockfile via the "docker build --build-arg"... command
                                     # - NOTE! - It has different meaning when used before and after the FROM statement!
 
-# building image commands:
+# building image commands (assumes a Dockerfile is in the current working directory):
 #---------------------------------------------------------------------------------------------------------------------
-docker build -t <IMAGE_NAME> .              # create an image from a Dockerfile with the name <IMAGE_NAME>
-docker build -t test .                      # e.g.
-docker build --build-arg <ARG> .            # pass arguments to a Dockerfile
+docker build -t <IMAGE_NAME> .           # create an image from a Dockerfile with the name <IMAGE_NAME>
+docker build -t test .                   # e.g.
+docker build --build-arg <ARG> .         # pass arguments to a Dockerfile
+docker build --no-cache .                # don't use any cached images
 
 # image commands
 #---------------------------------------------------------------------------------------------------------------------
@@ -84,8 +85,7 @@ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}
 #---------------------------------------------------------------------------------------------------------------------
 docker inspect <RESOURCE>                       # inspect <RESOURCE>. It can be a container, volume, ...
 docker exec -it <CONTAINER_NAME> <EXE>          # CLI for the <EXE> inside of <CONTAINER_NAME> e.g. docker exec -it <CONTAINER_NAME> bash
-e.g.
-docker exec -it test-container bash
+docker exec -it test-container bash             # e.g.
 #
 docker service                                  # ????
 

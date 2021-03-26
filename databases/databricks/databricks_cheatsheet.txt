@@ -66,7 +66,7 @@ display(dbutils.fs.ls("dbfs:/"))                            # show root files
 dbutils.fs.mkdirs("/foobar/")                               # make a directory
 dbutils.fs.put("/foobar/baz.txt", "Hello, World!")          # create a file and add test to it
 dbutils.fs.rm("/foobar/baz.txt")                            # remove a file
-dbutils.notebook.run(<PATH>, <TIME_OUT_IN_SEC>)
+dbutils.notebook.run(<PATH>, <TIME_OUT_IN_SEC>)             # run another notebook in an isolated environment
 
 shorthand commands:
 %fs ls                                                      # List the DBFS root
@@ -83,7 +83,7 @@ shorthand commands:
 |      | /     \ \     /   |   \             \      \     / |      | |      | /     \ |   \ | |     /      )
 |      | |     |  \___/  __|__  \____         \____  \___/  |      | |      | |     | |    \| |____/  ____/
 Magic Commands:
-%run                                                 # run another notebook, call be done by dbutils.notebook.run()
+%run                                                 # run another notebook using the current environment unlike dbutils.notebook.run() which isolates its environment
 %run path/to/NotebookB $VarA="ValueA" $VarB="ValueB" # give parameters to a notebook
 %sh                                                  # run shell code
 %fs                                                  # File System commands

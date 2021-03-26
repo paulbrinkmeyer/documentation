@@ -19,6 +19,7 @@ git
      cherry-pick <SHA> .......................................................... will commit all same things that happened in <SHA> even if from a different branch.
      clone       git@git.vcd.hp.com:testing                                       example use of clone
      commit ..................................................................... commit all staged files. Will be prompted for a commit message
+                 --allow-empty                                                    a way to do a no-op commit
                  -m <COMMIT_MSG>                                                  commit all staged flles with the commit message of <COMMIT_MSG>
      config      -l OR --list ................................................... lists all the config settings
                  --get                      remote.origin.url                     How to determine the url that a local git repo was originally cloned from
@@ -47,7 +48,7 @@ git
                  <REMOTE>                   <BRANCH_NAME>                         used to push a local branch to the remote (e.g. git push origin products2014)
                  --all                      -u .................................. push all local branches to the remote location
      remote      update                     origin --prune                        updates the local list of remote branches
-                 prune                      origin                                this got rid of the deleted branches that were showing after renaming 2013 to products2013
+                 prune                      origin                                removes links to branches that have been deleted on the remote
                  set-url                    origin <NEW_GIT_ORIGN> .............. reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git
                  show                       origin                                shows what URL is being used for pushes & pulls + other info about all the branches both remote and local
      reset       HEAD                       <FILENAME> .......................... unstage <FILENAME>
