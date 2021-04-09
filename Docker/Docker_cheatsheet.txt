@@ -26,6 +26,7 @@ docker build -t <IMAGE_NAME> .           # create an image from a Dockerfile wit
 docker build -t test .                   # e.g.
 docker build --build-arg <ARG> .         # pass arguments to a Dockerfile
 docker build --no-cache .                # don't use any cached images
+docker build -f path/to/Dockerfile .     # use a Dockerfile from a different location 
 
 # image commands
 #---------------------------------------------------------------------------------------------------------------------
