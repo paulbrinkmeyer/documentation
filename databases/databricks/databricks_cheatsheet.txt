@@ -28,14 +28,17 @@ __|__ |    \| ____/     |    |     | |____ |____ __|__ |    \|  \___/         | 
 
 Installing Pyspark in windows:
 --------------------------------------------------------------------------------
-reference: https://phoenixnap.com/kb/install-spark-on-windows-10
-.
-Install Java
 Install Python
-Install Apache Spark
-Configure Spark installation
-Install winutils
-Configure log level of Spark
+Install pyspark                        https://spark.apache.org/docs/latest/api/python/getting_started/index.html
+Install Java
+copy winutils.exe to C:\hadoop\bin     https://github.com/cdarlint/winutils
+- Set the following environment variables
+  Name            Path (e.g.)                                                Description
+  --------------  --------------------------------------------------------   ------------------------------------
+  JAVA_HOME       C:\Program Files\Java\jre1.8.0_271                         Java executable directory
+  PYSPARK_PYTHON  C:\Users\brinkmep\AppData\Local\Programs\Python\Python39   Python executable directory
+  HADOOP_HOME     C:\hadooop
+
 
   ____   ___                       ___                   ____   _____ _______          ____           ____   ___                                      ___     ____
  /      /   \  |\    /| |\    /|  /   \  |\    |        /      |         |    |     | |    \         /      /   \  |\    /| |\    /|    ^    |\    | |    \  /
@@ -71,6 +74,7 @@ dbutils.notebook.run(<PATH>, <TIME_OUT_IN_SEC>)             # run another notebo
 shorthand commands:
 %fs ls                                                      # List the DBFS root
 %fs mkdirs <DIR>                                            # make a directory (note the command has an "s" at the end unlike the linux command)
+#fs cp <SRC> <DEST>                                         # copy a file
 %fs mv                                                      # move/rename a file
 %fs rm -r foobar                                            # Recursively remove the files under foobar
 %fs put -f "/mnt/my-file" "Hello world!"                    # Overwrite the file "/mnt/my-file" with the string "Hello world!"
@@ -162,13 +166,14 @@ dropna()                                                       # drop rows with 
 select(...)
 selectExpr()
 take(x)                                                        # top x values of a table
+withColumn("columnName", COLUMN DATA)                          # update column data (does not work with nested structs)
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
-write.format("delta").save(outPath)                            # create a delta
+write.format("delta").mode("overwrite").save(outPath)          # create a delta table and removed the previous one
 createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
 
 
-withColumn("columnName", COLUMN DATA)
+
 groupBy("columnName_N", "columnName_N+1").agg(...
 select:
   df.select("event.eventDetail.identityInfo.supplyUniqueId")   # to flatten fields values in a struct
@@ -260,3 +265,13 @@ password = XXXXXXX
 Tools
 --------------------------------------------------------------------------------
 https://datathirst.net/projects/dbfs-explorer/
+
+
+
+
+
+Scheam notes
+-----------------------------------
+df.schema                           # 
+df.printSchema()                    # nice visual way to see it
+df.schema.jsonValue()               # will dump the schema in a JSON format
