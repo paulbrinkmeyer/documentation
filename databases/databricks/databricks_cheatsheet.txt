@@ -227,13 +227,13 @@ Widgets methods:
 -----------------------------------------
 # If you add a command to remove a widget, you cannot add a subsequent command to
 # create a widget in the same cell. You must create the widget in another cell.
-dbutils.widgets.help("text")                               # will give info about the text function, text can be any other function
-dbutils.widgets.text("X", "value_of_X")
+dbutils.widgets.help("text")                                           # will give info about the text function, text can be any other function
+dbutils.widgets.text("X", "value_of_X")                                # will created the widget at the top of the notebook
 dbutils.widgets.dropdown("X123", "1", [str(x) for x in range(1, 10)])
 dbutils.widgets.combobox(...)
 dbutils.widgets.multiselect(...)
-dbutils.widgets.get("X")
-dbutils.widgets.remove("X")
+dbutils.widgets.get("X")                                               # get the value of a widget. will error if not available
+dbutils.widgets.remove("X")                                            # will remove the widget from the notebook
 dbutils.widgets.removeAll()
 %run /path/to/notebook $X="10" $Y="1"                                  # pass argurments to set widget values. this e.g. will set the X & Y widgets
 

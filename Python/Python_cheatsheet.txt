@@ -59,6 +59,14 @@ str(<OBJECT>)                         # convert <OBJECT> to a string
 type(<VAR>)                           # gives the type object of <VAR>
 
 ========================================================================================================
+Standard Library functions
+----------------------------------------------------------------------------------------
+import os
+os.getcwd()            # get the current working directory
+os.listdir()           # list the contents of a directory
+os.remove()            # remove a file
+
+========================================================================================================
 pytest
 ----------------------------------------------------------------------------------------
 modules
