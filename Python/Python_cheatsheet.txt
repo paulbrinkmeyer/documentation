@@ -106,7 +106,6 @@ pip install virtualenv                 # install virtual envrionment package
 Steps (e.g.):
 ---------------------------------------------------------------------------------------
 mkdir /c/work/pyenv               # Create a folder to store the environments in
-cd /c/work/pyenv                  # cd to the created folder
 python -m venv env                # this will create the director "env", change it to a different name if desired
 cd ./env/Scripts                  # This is the windows location. Linux might be ./env/bin
 source activate                   # now you are running in the virtual env
