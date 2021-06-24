@@ -4,9 +4,22 @@ $(System.DefaultWorkingDirectory)
 $(Pipeline.Workspace)
 $(Build.SourcesDirectory)
 
+
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.teamfoundation.build.webapi.buildreason?view=azure-devops-dotnet
 Build.Reason
 - Schedule
+- Manual
+- IndividualCI
 
 
 Output Variables:
-https://www.nigelfrank.com/blog/azure-devops-output-variables/
+https://www.nigelfrank.com/blog/azure-devops-output-variables
+
+
+Condition functions:
+-------------------------------------------------------------------------------------
+and(<cond1>, <cond2>, <opt_cond3>, ... )  # true if all <cond#>s are true
+or(<cond1>, <cond2>, <opt_cond3>, ... )   # true if any <cond#> is true
+not(<cond>)                               # true if <cond> if false
+eq(<value1>, <value2>)                    # true if they are equal
+succeeded()                               # true if the previous step passed

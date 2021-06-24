@@ -85,6 +85,7 @@ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}
 # other commands
 #---------------------------------------------------------------------------------------------------------------------
 docker inspect <RESOURCE>                       # inspect <RESOURCE>. It can be a container, volume, ...
+docker inspect <CONTAINTER> | grep IPAddress    # get the IP address of a container
 docker exec -it <CONTAINER_NAME> <EXE>          # CLI for the <EXE> inside of <CONTAINER_NAME> e.g. docker exec -it <CONTAINER_NAME> bash
 docker exec -it test-container bash             # e.g.
 #

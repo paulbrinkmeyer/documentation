@@ -1,11 +1,13 @@
 link: https://gist.github.com/hofmannsven/9164408
 
-/* MySQL comment statement */   # comment
-show databases;                 # Show all databases
-create database [database];     # Create new database
-use [database];                 # Select database
-select database();              # Determine what database is in use
-show tables;                    # Show all tables
-create database [database];     # Create databse, where [database] is replaced with its name
-create table [table]            # Create table, where [table] is replaced with its name
-exit;                           # logout
+/* MySQL comment statement */                   # comment
+show databases;                                 # Show all databases
+create database [database];                     # Create new database
+use [database];                                 # Select database
+select database();                              # Determine what database is in use
+show tables;                                    # Show all tables
+describe <database>.<table>                     # Show the schema for the table
+create database [database];                     # Create databse, where [database] is replaced with its name
+create table [table]                            # Create table, where [table] is replaced with its name
+alter table <table> modify <field> varchar(100) # e.g. way to change a fields character length to 100
+exit;                                           # logout

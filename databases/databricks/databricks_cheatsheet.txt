@@ -80,6 +80,11 @@ shorthand commands:
 %fs put -f "/mnt/my-file" "Hello world!"                    # Overwrite the file "/mnt/my-file" with the string "Hello world!"
 %fs head dbfs:/path/to/file                                 # kind of like the linux "cat" command
 
+FileStore
+---------------------------------------------------
+e.g. URL way to download a file from the FileStore:
+https://dataos-dev.cloud.databricks.com/files/shared_uploads/paul.brinkmeyer@hp.com/schema.json
+
                    ____  _____   ____          ____   ___                                      ___     ____
 |\    /|    ^     /        |    /             /      /   \  |\    /| |\    /|    ^    |\    | |    \  /
 | \  / |   / \   /         |   /             /      /     \ | \  / | | \  / |   / \   | \   | |     \ \___
@@ -163,6 +168,7 @@ cache()                                                        # Cache data for 
 count()
 distinct()
 dropna()                                                       # drop rows with missing values
+limit(x)                                                       # only show x values of a table
 select(...)
 selectExpr()
 take(x)                                                        # top x values of a table

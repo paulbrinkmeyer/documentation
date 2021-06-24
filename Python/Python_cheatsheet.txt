@@ -67,6 +67,19 @@ os.listdir()           # list the contents of a directory
 os.remove()            # remove a file
 
 ========================================================================================================
+logging
+----------------------------------------------------------------------------------------
+logging.basicConfig(format=... ) options:
+%(levelname)s       # the severity level
+%(levelno)s         # Numeric logging level for the message (DEBUG, INFO, WARN, ERROR, CRITICAL)
+%(asctime)s         # time like this: 2021-06-04 18:46:42,241
+%(msecs)03d         # the 3 digits for milliseconds
+%(threadName)s      # e.g. MainThread
+%(name)s            # the name of the file
+%(message)s         # message given to the Logger object
+full list: https://www.python.org/dev/peps/pep-0282/#formatters
+
+========================================================================================================
 pytest
 ----------------------------------------------------------------------------------------
 modules
