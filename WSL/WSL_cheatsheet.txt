@@ -18,6 +18,18 @@ WSL CLI:
 sudo apt-get update                                          # update app get tool
 
 
+GUI (!!! instructions under dev !!!)
+----------------------------------------------------------------------------------------
+Steps:
+1. install and open MobaXterm
+   a. make sure the "X server" is running in MobaXterm - icon in upper right of window
+2. Open the WSL CLI
+   a. sudo apt update
+   b. sudo apt upgrade
+   c. export DISPLAY=:0         # this can be added to the .bashrc file to eliminate this step each time
+   d. nautilus . &
+
+
 # install openssh: follow these steps:
 ----------------------------------------------------------------------------------------
 sudo apt remove openssh-server               # remove old version if it exists

@@ -1,5 +1,12 @@
 link: https://gist.github.com/hofmannsven/9164408
 
+CLI on Ubuntu:
+apt-get install mysql-client
+
+Common CLI commands:
+mysql --host <HOST> -u <USERNAME> -p            # login to MySQL server running at <HOST> with <USERNAME> and will be promoted for a password 
+
+
 /* MySQL comment statement */                   # comment
 show databases;                                 # Show all databases
 create database [database];                     # Create new database
