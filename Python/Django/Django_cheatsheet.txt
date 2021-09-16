@@ -85,7 +85,15 @@ q.pub_date               # will give the actual pub_date object
 q.question_text = "What's up?"
 q.save()                         # updateds the changed value to the database
 
-# useful database commands
+# Common QuerySet methods:
+ModleName.objects.all()
+ModleName.objects.get()
+ModleName.objects.filter()
+ModleName.objects.exclude()
+# Complete list of QuerySet methods:
+https://docs.djangoproject.com/en/3.2/ref/models/querysets/#queryset-api
+
+# Useful database commands e.g.
 Question.objects.all()                                    # get a list of all questions
 Question.objects.get(pub_date__year=<YEAR>)               # get a list of questions published on <YEAR> given
                                                           # note that pub_date is a DateTimeField of Question
