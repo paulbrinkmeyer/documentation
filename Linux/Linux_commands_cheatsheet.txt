@@ -36,7 +36,7 @@ ftp          Start a ftp session                             (e.g. ftp <IP_ADDRE
 getopt       Method for parsing script parameters. Similar to Python's argparse. Bug: parameters can't have spaces in them even if quoted!
 getopts      Much like getopt and allows you to step through each option one at a time. Similar to a Python generator
 gpg          Encrypt files                                   (e.g. gpg -c <FILE> # to encrypt; gpg <FILE> # to decrypt)
-grep         Output the line that contains a specific string (e.g. grep -r SEARCH_STRING *). -l option will just list the file name
+grep         Output the line that contains a specific string (e.g. grep -r --include="*.txt" -F SEARCH_STRING .) -l option will just list the file name
 groups       List the groups the current user is a part of
 gzip         Used to compress files. "-d" will decompress files. "-k" will keep the original files. "-r" will do all files in a directory and all sub-directoies.
 head         Output the first 10 lines of standard in ("-n <numLines>" is commonly used to change the default of 10)
