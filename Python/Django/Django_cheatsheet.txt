@@ -102,6 +102,25 @@ Question.objects.filter(id=1)                             # get the question wit
 Question.objects.filter(question_text__startswith='What') # get the questions that start with "What"; 
                                                           # note that question_text is a CharField of Question
 
+# filter method special parameters
+FieldName=X              # shorthand for FieldName__exact=X
+FieldName__exact=X       # FieldName is an exact match of X
+FieldName__iexact=X      # FieldName is a case-insensitive exact match of X
+FieldName__contains=X    # FieldName contains X in it case-sensitive
+FieldName__icontains=X   # FIeldName contains X in it case-insensitive
+FieldName__startswith=X  # FieldName starts with X case-sensitive
+FieldName__istartswith=X # FieldName starts with X case-insensitive
+FieldName__endswith=X    # FieldName ends with X case-sensitive
+FieldName__iendswith=X   # FieldName ends witb X case-insensitive
+FieldName__lt=X          # FieldName is less than X
+FieldName__lte=X         # FieldName is less than or equal to X
+FieldName__gt=X          # FieldName is greater than X
+FieldName__gte=X         # FieldName is greater than or equal to X
+ModleName_id=X           # ModleName ForeignKey is equal to X
+# Complete list:
+https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups
+
+
 # Get the question that was published this year.
 >>> from django.utils import timezone
 >>> current_year = timezone.now().year
