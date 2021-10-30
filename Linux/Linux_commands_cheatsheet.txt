@@ -99,6 +99,7 @@ watch        runs a given command over and over agian every 2 seconds (e.g. watc
 wc           counts the number of lines (-l), words (-w), or bytes (-c) of a file or standard-input
 which        tells you the path of where a given command is executed from (see "type -a" or "command -v" are likely better options)
 who          Output who is currently logged in
+xargs        useful for giving output of one command as parameters for the next (e.g. ls | xargs wc)
 xxd          view the contents of a file's bits along side the text representation of it
 zcat         same as cat but works on .gz files instead
 zip          Compress files into a zip file                  (e.g. that zips an entire folder: "zip filename.Zip *")
@@ -128,8 +129,13 @@ echo $VAR | grep -bo "delimiter" | sed 's/:/\n/' | head -n 1     # this will ret
 # semi-secure delete of a folder (read shred man page):
 find <dir> -type f -exec shred {} \;
 
-# Find and replace oldWord with newWorld for all .c files in the current directory
+# Find and replace oldWord with newWorld for all .c files in the current and child directories
 find . -name "*.c" -exec sed -i "s/oldWord/newWord/g" '{}' \;
+
+# Another example. I had issues with the above example updating the time stamp of all the files it touched even
+# if the oldWord did not exist in it. This made git gui think the file had changed and wouldn't stop complaining about it
+# in a buggy kind of way. This method didn't have that issue:
+grep -rl oldWord | xargs sed -i "s/oldWord/newWord/g"
 
 # Append the contents of one file to the end of another e.g.:
 cat <FILE_TO_ADD> >> <FILE_TO_APPEND_TO>
