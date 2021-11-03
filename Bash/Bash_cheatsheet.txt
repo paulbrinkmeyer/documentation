@@ -262,6 +262,16 @@ while read line || [ -n "$line" ]; do
 done < filename
 
 
+Useful functions
+--------------------------------------------------------------------------
+change_to_this_files_dir(){
+    # This is useful when needing to do operations related to the
+    # directory of the current script.
+    file_dir=$(dirname "$0")
+    cd $file_dir
+}
+
+
 Useful tricks
 --------------------------------------------------------------------------
 alias ll='ls -al'             <- common alias
