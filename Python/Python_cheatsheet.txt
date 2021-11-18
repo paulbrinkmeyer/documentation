@@ -58,6 +58,9 @@ range(start, stop, step)              # generator of integers from start (includ
 str(<OBJECT>)                         # convert <OBJECT> to a string
 type(<VAR>)                           # gives the type object of <VAR>
 
+hasattr(<OBJECT>,<FIELD>)             # check if an object has a field with the name of <FIELD>. It's safer than guessing that object.field exists.
+getattr(<OBJECT>,<FIELD>[,<DEFAULT>]) # useful for getting an objects field value using the <FIELD> string to reference it
+
 ========================================================================================================
 Standard Library functions
 ----------------------------------------------------------------------------------------
