@@ -1,0 +1,93 @@
+
+all the following start with document.getElementById('id').
+innerHTML      = 'new HTML' <- change HTML
+<attribute>    = 'value'    <- change <attribute>'s value, where <attribute> is any specific attribute
+style.fontSize = '35px'     <- change the css
+style.display  = 'none'     <- hide HTML
+style.display  = 'block'    <- unhide HTML
+
+
+document element:
+---------------------------------------------------------------------------
+document.getElementById('id')     <- do something with a specific element
+document.write("HTML to show")    <- output HTML
+
+window.alert("text of alert")     <- display a pop up with the given alert
+console.log("text to log")        <- log to the hidden console (F12 in chrome will bring this up, under the "console" tab)
+
+
+Built in functions:
+-------------------------------------------------------------------------------------------
+Date()           <- e.g. output: Sun Nov 07 2021 15:41:37 GMT-0800 (Pacific Standard Time)
+
+Numbers
+------------------------------
+1       <- will output 1
+1.0     <- will output 1
+1.50    <- will output 1.5
+
+Number operators
+-------------------
++  <- addition
+-  <- subtraction
+*  <- multiplication
+/  <- division
+%  <- modulus
+() <- controls operation order e.g. (5+6)*10 is 110 where 5+6*10 is 65
+++VAR <- pre-increment  e.g. var y=5; var x=++y;  // y is 6 & x is 6
+VAR++ <- post-increment e.g. var y=5; var x=y++;  // y is 6 & x is 5
+--VAR <- pre-decrement  e.g. var y=5; var x=--y;  // y is 4 & x is 4
+VAR-- <- post-decrement e.g. var y=5; var x=y--;  // y is 4 & x is 5
+
+Number assignment operators
+---------------------------
+=   <- standard assignment
++=  <- add right value to left variable and assign it back to left variable
+-=  <- subtract right value from left variable and assign it back to left variable
+*=  <- multiple right value by left variable and assign it back to left variable
+/=  <- divide left variable by right value and assign it back to left variable
+
+variable usage
+----------------------------
+var vs let        // "var" is more global then "let"
+var x, y, z;      // Declare 3 variables
+x = 5;            // Assign the value 5 to x
+y = 6;            // Assign the value 6 to y
+z = x + y;        // Assign the sum of x and y to z
+let x, X          // these are not the same, JS is case sensitive
+var x;            // x is undefined
+var x=5; var x;   // x is 5, declaring again doesn't remove the original value
+var x = "5"+2+3   // x is 523
+var x = "5"+(2+3) // x is 55
+
+
+String:
+------------------------------
+"string"   <- raw string option 1
+'string'   <- raw string option 2
+
+string operations
+-------------------------------------------
++          <- concatenate e.g. "x = " + x
++=         <- concatenate left variable to right value and assign it back to left variable
+
+other operations
+-----------------------------------------------
+// this is a comment     <- one line comment
+/* multiple line
+   comment */            <- multiple line comment
+let a; a=5;              <- multiple statements one line is allowed
+
+
+Function definition:
+-----------------------------
+e.g.
+function myFunction() {
+  document.getElementById("id").innerHTML = "Paragraph changed.";
+}
+
+
+<script> tag attributes:
+------------------------------------
+src         <- location of file or URL that stores the source to be used
+
