@@ -13,8 +13,9 @@ document.getElementById('id')     <- do something with a specific element
 document.write("HTML to show")    <- output HTML
 
 window.alert("text of alert")     <- display a pop up with the given alert
+alert("text of alert")            <- same as window.alert(...)
 console.log("text to log")        <- log to the hidden console (F12 in chrome will bring this up, under the "console" tab)
-
+window.print()                    <- user the browser to print the the content of the current window
 
 Built in functions:
 -------------------------------------------------------------------------------------------
@@ -26,11 +27,12 @@ Numbers
 1.0     <- will output 1
 1.50    <- will output 1.5
 
-Number operators
+Arithmetic operators
 -------------------
 +  <- addition
 -  <- subtraction
 *  <- multiplication
+** <- exponentiation
 /  <- division
 %  <- modulus
 () <- controls operation order e.g. (5+6)*10 is 110 where 5+6*10 is 65
@@ -46,6 +48,8 @@ Number assignment operators
 -=  <- subtract right value from left variable and assign it back to left variable
 *=  <- multiple right value by left variable and assign it back to left variable
 /=  <- divide left variable by right value and assign it back to left variable
+%=  <- modulus divide left variable by right value and assign it back to left variable
+**= <- left variable to the power of the right variable and assign it back to left variable
 
 variable usage
 ----------------------------
@@ -59,6 +63,51 @@ var x;            // x is undefined
 var x=5; var x;   // x is 5, declaring again doesn't remove the original value
 var x = "5"+2+3   // x is 523
 var x = "5"+(2+3) // x is 55
+var $VAR          // is a valid variable name. $ can be used in variable names
+
+
+comparison operators
+-------------------------------------------------------------
+==   // equal to
+===  // equal value and equal type
+!=   // not equal
+!==  // not equal value or not equal type
+>    // greater than
+<    // less than
+>=   // greater than or equal to
+<=   // less than or equal to
+?    // ternary operator
+
+logical operators
+-------------------------------
+&&   // logical and
+||   // logical or
+!    // logical not
+
+Operator Description            Example  Same as      Result Decimal
+&        AND                    5 & 1    0101 & 0001  0001   1
+|        OR                     5 | 1    0101 | 0001  0101   5
+~        NOT                    ~ 5      ~0101        1010   10
+^        XOR                    5 ^ 1    0101 ^ 0001  0100   4
+<<       Zero fill left shift   5 << 1   0101 << 1    1010   10
+>>       Signed right shift     5 >> 1   0101 >> 1    0010   2
+>>>      Zero fill right shift  5 >>> 1  0101 >>> 1   0010   2
+
+
+
+keywords
+----------------------------------------------------
+var          Declares a variable in a global scope; Can be re-declared and won't change the original value
+let          Declares a block variable; Can NOT be re-declared
+const        Declares a block constant
+if           TBD
+switch       TBD
+for          TBD
+function     TBD
+return       TBD
+try          TBD
+typeof VAR   Returns the type of VAR
+undefined    used to set variables back to undefined
 
 
 String:
