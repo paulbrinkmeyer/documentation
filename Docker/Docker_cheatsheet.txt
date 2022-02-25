@@ -33,6 +33,7 @@ docker build -f path/to/Dockerfile .     # use a Dockerfile from a different loc
 docker images                            # list all images
 docker image rm <IMAGE>                  # remove <IMAGE>
 docker image prune                       # removes all dangling images... the <none>:<none> ones
+docker image prune --all --force         # removes all images
 docker image history                     # summary of the commands to send to create the image
 docker image save -o <TAR_IMAGE> <IMAGE> # save <IMAGE> to a <TAR_IMAGE> file
 docker image load -i <TAR_IMAGE>         # load <TAR_IMAGE> file
@@ -41,6 +42,7 @@ docker commit <CONTAINER> <IMAGE>        # creates the <IMAGE> from a <CONTAINER
 
 # container commmands
 #---------------------------------------------------------------------------------------------------------------------
+docker cp                                               # shorthand for "docker container cp"
 docker ps                                               # shorthand for "docker container ls"
 docker container ls                                     # list all containers that are running
 docker container ls -a                                  # list all containers stopped and running
@@ -72,6 +74,7 @@ docker run -p <HOST_PORT>:<CONTAINER_PORT>            # expose and map the <CONT
 docker volume ls                                # list volumes
 docker volume create <VOLUME>                   # create <VOLUME>
 docker volume rm <VOLUME>                       # remove <VOLUME> 
+docker volume rm $(docker volume ls -q)         # remove all volumes
 
 # network commands
 #---------------------------------------------------------------------------------------------------------------------
@@ -110,7 +113,26 @@ MySQL:       winpty docker run -it --rm -p 3306:3306 -e MYSQL_USER=mysql -e MYSQ
 
 
 
+#docker compose
+#---------------------------------------------------------------------------------------------------------------------
+docker-compose up                               # start a compose staying connected to the terminal output
+docker-compose up -d                            # start a compose in the background
+docker-compose down                             # stop all containers in a compose
 
 
+
+
+# docker cleanup - run all these commands:
+-------------------------------------------------------------
+docker-compose down
+docker container prune -f
+docker image prune --all --force
+docker volume rm $(docker volume ls -q)
+
+# docker see all - run all these commands:
+-------------------------------------------------------------
+docker ps -a
+docker images
+docker volume ls
 
 

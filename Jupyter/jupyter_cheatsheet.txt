@@ -1,5 +1,6 @@
 pip install jupyterlab
 pip install jupyterlab-spellchecker
+pip install --upgrade jupyterlab jupyterlab-git    <- issues with Git-bash and creds
 jupyter-lab
 
 pip install notebook

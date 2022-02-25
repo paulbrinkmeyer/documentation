@@ -127,10 +127,12 @@ common package commands:
 python -m pip install --upgrade pip setuptools wheel            # initial setup
 python -m pip install git+https://github.com/python/mypy        # e.g. package install from a git URL that has a setup.py file
 
-pip commands
+pip common commands
 ---------------------------------------------------------------------------
 pip list --outdated                           # check for outdated modules
 pip install --upgrade <MODULE>                # update a module
+pip install <MODULE>==<VERSION>               # install a specific version
+pip uninstall <MODULE>                        # uninstall a module
 
 
 ===================================================================================================
