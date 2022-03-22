@@ -18,3 +18,4 @@ create database [database];                     # Create databse, where [databas
 create table [table]                            # Create table, where [table] is replaced with its name
 alter table <table> modify <field> varchar(100) # e.g. way to change a fields character length to 100
 exit;                                           # logout
+\q                                              # shorthand for "exit;"
