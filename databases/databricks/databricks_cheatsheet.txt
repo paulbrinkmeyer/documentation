@@ -3,6 +3,7 @@ Apache Spark interfaces:
     * available languages: Java, Python & Scala
 - DataFrame
     * Superset of RDD
+    * Unlike an RDD, data is organized into named columns
     * available languages: Java, Python & Scala
 - DataSet
     * Combo of RDD & DataFrame
@@ -163,15 +164,21 @@ spark.udf.register(FUN_NAM, UDF_FUNCTION)          # register a function to be u
 |____/  |     |    |    |     |        |      |    \ |     | |      | |_____        |       \___/  |    \|  \____    |    __|__  \___/  |    \| ____/
 
 Data frame functions:
+
+Link:
+https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.DataFrame.html?highlight=dataframe#pyspark.sql.DataFrame
+
+
 printSchema()
 cache()                                                        # Cache data for faster reuse
-count()
+count()                                                        # the number of records in the data frame
 distinct()
 dropna()                                                       # drop rows with missing values
-limit(x)                                                       # only show x values of a table e.g. limit(0) will give you an empty table but will keep the schema intact
+limit(num)                                                     # Limits the result count to the number specified. e.g. limit(0) will give you an empty data frame but will keep the schema intact
+orderBy(field, ascending=False)                                # sort by field in descending order
 select(...)
 selectExpr()
-take(x)                                                        # top x values of a table
+take(num)                                                      # Returns the first num rows as a list of Row. It is different from limit() in that it doesn't return a dataframe. It returns the actual data.
 withColumn("columnName", COLUMN DATA)                          # update column data (does not work with nested structs)
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView

@@ -284,4 +284,5 @@ TEMP=/tmp/file.$$.$RANDOM     <- safer temporary file
 command &> fileName           <- outputs standard out and stardard error to file
 
 sed 's/oldString/newString/g' <- replace oldString with newString
-    
+
+echo $(date)${RANDOM}salt | sha256sum   <- generate a password

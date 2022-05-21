@@ -69,6 +69,10 @@ docker run -v <SRC>:<DEST>:<OPT> <IMAGE_NAME>         # shortcut way to --mount,
 docker run --mount type:<TYPE>,src:<SRC>,dst:<DST>    # explicit way of doing "-v", default <TYPE> is volume
 docker run -p <HOST_PORT>:<CONTAINER_PORT>            # expose and map the <CONTAINER_PORT> to the <HOST_PORT>
 
+# start commands
+#---------------------------------------------------------------------------------------------------------------------
+docker start
+
 # volume commands
 #---------------------------------------------------------------------------------------------------------------------
 docker volume ls                                # list volumes
@@ -106,9 +110,9 @@ apk add git                                     # e.g. way to add apts to an apl
 
 # e.g. of common docker environments (the "//" ensures that it works in Windows Git Bash and in Linux)
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-python:      winpty docker run -it --rm -v $(pwd | sed 's/\//\/\//g'):$(pwd | sed 's/\//\/\//g') -v $(echo ~ | sed 's/\//\/\//g')://root --workdir=$(pwd | sed 's/\//\/\//g') python:3.8 bash
-MySQL:       winpty docker run -it --rm -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=mysql -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql:latest
-
+python:       winpty docker run -it --rm -v $(pwd | sed 's/\//\/\//g'):$(pwd | sed 's/\//\/\//g') -v $(echo ~ | sed 's/\//\/\//g')://root --workdir=$(pwd | sed 's/\//\/\//g') python:3.8 bash
+MySQL:        winpty docker run -it --rm -p 3306:3306 -e MYSQL_USER=mysql -e MYSQL_PASSWORD=mysql -e MYSQL_DATABASE=mysql -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql:latest
+bash on slim: winpty docker run -it --rm python:slim bash
 
 
 
@@ -118,7 +122,7 @@ MySQL:       winpty docker run -it --rm -p 3306:3306 -e MYSQL_USER=mysql -e MYSQ
 docker-compose up                               # start a compose staying connected to the terminal output
 docker-compose up -d                            # start a compose in the background
 docker-compose down                             # stop all containers in a compose
-
+docker-compose up --build                       # ???
 
 
 

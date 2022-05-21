@@ -1,8 +1,8 @@
-=============================================================================
+===============================================================================
 Boolean notes:
 
 Reports True in a test:
----------------------------------------------------------------------
+-------------------------------------------------------------------------------
 True
 1
 9999
@@ -17,7 +17,7 @@ True
 (None, None)
 
 Reports False in a test:
----------------------------------------------------------------------
+-------------------------------------------------------------------------------
 None
 False
 0
@@ -38,7 +38,7 @@ else:
 One line conditional assignment:
 var = <TRUE_VALUE> if <CHECK> else <FALSE_VALUE>
 
-========================================================================================================
+===============================================================================
 Variable types:
 examples
 int_a  = 123                          # integer
@@ -48,11 +48,65 @@ dict_a = {"a":"A", "b":"B", "c":"B"}  # dictionary
 list_a = ["a", "b", "c"]              # list
 set_a  = {"a", "b", "c"}              # set
 
-========================================================================================================
+
+===============================================================================
+String slicing
+var = "abc123"
+...
+var[0]       -> "a"
+var[3]       -> "1"
+var[1:3]     -> "bc"
+var[-4]      -> "c"
+var[-2:]     -> "23"
+...
+
+String percent replacement per printf in C:
+link: https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm
+-------------------------------------------------------------------------------
+format: %[flags][width][.precision][length]specifier
+specifier:
+c           Character
+d or i      Signed decimal integer
+e           Scientific notation (mantissa/exponent) using e character
+E           Scientific notation (mantissa/exponent) using E character
+f           Decimal floating point
+g           Uses the shorter of %e or %f
+G           Uses the shorter of %E or %f
+o           Signed octal
+s           String of characters
+u           Unsigned decimal integer
+x           Unsigned hexadecimal integer
+X           Unsigned hexadecimal integer (capital letters)
+p           Pointer address
+n           Nothing printed
+%           % Character
+
+flags:
+-           Left-justify within the given field width; Right justification is the default (see width sub-specifier).
++           Forces to precede the result with a plus or minus sign (+ or -) even for positive numbers. By default, only negative numbers are preceded with a -ve sign.
+(space)     If no sign is going to be written, a blank space is inserted before the value.
+#           Used with o, x or X specifiers the value is preceded with 0, 0x or 0X respectively for values different than zero. Used with e, E and f, it forces the written output to contain a decimal point even if no digits would follow. By default, if no digits follow, no decimal point is written. Used with g or G the result is the same as with e or E but trailing zeros are not removed.
+0           Left-pads the number with zeroes (0) instead of spaces, where padding is specified (see width sub-specifier).
+
+width:
+(number)    Minimum number of characters to be printed. If the value to be printed is shorter than this number, the result is padded with blank spaces. The value is not truncated even if the result is larger.
+*           The width is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
+
+precision:
+.number    For integer specifiers (d, i, o, u, x, X) − precision specifies the minimum number of digits to be written. If the value to be written is shorter than this number, the result is padded with leading zeros. The value is not truncated even if the result is longer. A precision of 0 means that no character is written for the value 0. For e, E and f specifiers − this is the number of digits to be printed after the decimal point. For g and G specifiers − This is the maximum number of significant digits to be printed. For s − this is the maximum number of characters to be printed. By default all characters are printed until the ending null character is encountered. For c type − it has no effect. When no precision is specified, the default is 1. If the period is specified without an explicit value for precision, 0 is assumed.
+.*         The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
+
+length:
+h          The argument is interpreted as a short int or unsigned short int (only applies to integer specifiers: i, d, o, u, x and X).
+l          The argument is interpreted as a long int or unsigned long int for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s.
+L          The argument is interpreted as a long double (only applies to floating point specifiers: e, E, f, g and G).
+
+===============================================================================
 built in functions
-----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 all(<ITERABLE>)                       # True if all items in an iterable are true, otherwise it returns False
 any(<ITERABLE>)                       # True if any item in an iterable are true, otherwise it returns False
+isinstance(<VAR>, <TYPE>)             # Check if <VAR> is of type <TYPE> e.g. isinstance("hi", str)
 print(<STR>)                          # output <STR> plus a newline to standard out
 range(start, stop, step)              # generator of integers from start (included) to stop (not included)
 str(<OBJECT>)                         # convert <OBJECT> to a string
@@ -60,17 +114,17 @@ type(<VAR>)                           # gives the type object of <VAR>
 
 hasattr(<OBJECT>,<FIELD>)             # check if an object has a field with the name of <FIELD>. It's safer than guessing that object.field exists.
 getattr(<OBJECT>,<FIELD>[,<DEFAULT>]) # useful for getting an objects field value using the <FIELD> string to reference it
-srtattr(<OBJECT>,<FIELD>,<VALUE>)     # useful for setting an objects field value using the <FIELD> string to reference it
+setattr(<OBJECT>,<FIELD>,<VALUE>)     # useful for setting an objects field value using the <FIELD> string to reference it
 
-========================================================================================================
+===============================================================================
 Standard Library functions
-----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 import os
 os.getcwd()            # get the current working directory
 os.listdir()           # list the contents of a directory
 os.remove()            # remove a file
 
-========================================================================================================
+===============================================================================
 logging
 ----------------------------------------------------------------------------------------
 logging.basicConfig(format=... ) options:
@@ -83,9 +137,9 @@ logging.basicConfig(format=... ) options:
 %(message)s         # message given to the Logger object
 full list: https://www.python.org/dev/peps/pep-0282/#formatters
 
-========================================================================================================
+===============================================================================
 pytest
-----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 modules
 ------------
 pytest                 # default
@@ -95,6 +149,9 @@ CLI:
 ------------
 pytest                 # run all tests in a given folder recursively to all child folders
 pytest -k <TEST_NAME>  # run only the test with the name <TEST_NAME>
+pytest --durations=0   # Show all times for tests, setup and teardown
+pytest --durations=1   # show the slowest test, setup or teardown
+pytest --durations=10  # show the slowest 10 tests, setups or teardowns
 
 @pytest.mark.skip(reason="because")                  # decorator to skip a test
 @pytest.mark.skipif(<CONDITION>,reason="because")    # decorator to skip a test on a condition
@@ -102,13 +159,13 @@ pytest -k <TEST_NAME>  # run only the test with the name <TEST_NAME>
 mock
 @patch("path.of.object.to.mock")                     # decorator to mock an object
 
-========================================================================================================
+===============================================================================
 virtual environments:
-----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 pip install virtualenv                 # install virtual envrionment package
 
 Steps (e.g.):
----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 mkdir /c/work/pyenv               # Create a folder to store the environments in
 python -m venv env                # this will create the director "env", change it to a different name if desired
 cd ./env/Scripts                  # This is the windows location. Linux might be ./env/bin
@@ -116,14 +173,14 @@ source activate                   # now you are running in the virtual env
 deactivate                        # this will return you back to the normal OS environment
 
 
-===================================================================================================
+===============================================================================
 packages
----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 python setup.py bdist_wheel       # create a wheel package from a setup.py file (need "wheel" package installd)
 pytnon setup.py sdist             # create a .gz package from a setup.py file (note: sdist & bdist_wheel can both be parameters)
 
 common package commands:
-----------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 python -m pip install --upgrade pip setuptools wheel            # initial setup
 python -m pip install git+https://github.com/python/mypy        # e.g. package install from a git URL that has a setup.py file
 
@@ -135,7 +192,7 @@ pip install <MODULE>==<VERSION>               # install a specific version
 pip uninstall <MODULE>                        # uninstall a module
 
 
-===================================================================================================
+===============================================================================
 One line file share servers
 ----------------------------
 Python 2:
