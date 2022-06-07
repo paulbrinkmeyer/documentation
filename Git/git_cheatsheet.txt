@@ -13,6 +13,7 @@ git
                  <BRANCH_NAME> .................................................. will create the local branch <BRANCH_NAME>
                  -d <BRANCH_TO_DELETE>                                            delete local branch that doesn't have commits waiting
                  -D <BRANCH_TO_DELETE> .......................................... delete local branch even if there are commits that aren't pushed
+                 -m <NEW_BRANCH_NAME>                                             rename the local branch ("git push origin --delete <OLD_BRANCH_NAME>" to remove the old one from the remote and "git push --set-upstream origin <NEW_BRANCH_NAME>" to pull from the new remote branch)
      checkout    -- <FILENAME>                                                    undo uncommited local changes to <FILENAME>
                  <BRANCH_NAME> .................................................. will switch over to the given <BRANCH_NAME>
                  -b <NEW_BRANCH_NAME>                                             "create a new local branch (same as ""git branch <NEW_BRANCH_NAME>"")"

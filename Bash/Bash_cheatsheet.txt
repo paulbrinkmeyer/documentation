@@ -94,15 +94,17 @@ functionName()
 If statement structure examples:
 --------------------------------
 if <test>; then
-    <body>
+    <body1>
 elif
-    <body>
+    <body2>
 else
-    <body>
+    <body3>
 fi
 
-if <test>; then <body>; fi
-
+# one line if statements
+if <test>; then <body1>; fi
+if <test>; then <body1>; else <body2>; fi
+if <test>; then <body1>; elif <body2>; else <body3>; fi
 
 case examples:
 -------------------------------
@@ -129,18 +131,15 @@ while true; do date; sleep 1; done
 
 # getopts example:
 ----------------------------------------------------------------------------------------------------------
-while getopts ":ht:" opt; do          # the first ":" tells it not to use the default usage error messages
-                                      # the second ":" indicates that the "t" option stores a value
+while getopts ":ht:" opt; do              # the first ":" tells it not to use the default usage error messages
+                                          # the second ":" indicates that the "t" option stores a value
     case ${opt} in
-    a )                               # process option a
-        ;;
-    t ) T_VALUE=${OPTARG}             # process option t, ${OPTARG} holds its value
-        ;;
-    \? ) echo "Usage: cmd [-a] [-t]"  # example way to handle usage errors
-        ;;
+        a) ;;                                 # process option a
+        t) T_VALUE=${OPTARG} ;;               # process option t, ${OPTARG} holds its value
+        h|\?) echo "Usage: cmd [-a] [-t]" ;;  # example way to handle usage errors
     esac
 done
-shift $((OPTIND - 1))                 # This is good practice to shift off already parsed parameters
+shift $((OPTIND - 1))                     # This is good practice to shift off already parsed parameters
 
 
 getopts example again without comments
@@ -176,6 +175,7 @@ reports true in a test:
 true
 "1"
 "0"
+[ false ]
 
 reports false in a test:
 false
