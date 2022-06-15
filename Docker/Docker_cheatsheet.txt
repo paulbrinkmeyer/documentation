@@ -115,15 +115,14 @@ MySQL:        winpty docker run -it --rm -p 3306:3306 -e MYSQL_USER=mysql -e MYS
 bash on slim: winpty docker run -it --rm python:slim bash
 
 
-
-
 #docker compose
-#---------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 docker-compose up                               # start a compose staying connected to the terminal output
 docker-compose up -d                            # start a compose in the background
 docker-compose down                             # stop all containers in a compose
-docker-compose up --build                       # ???
-
+docker-compose up --build                       # rebuilds the containers before starting them
+docker-compose up --attach <CONTAINER>          # will only show output for <CONTAINER> instead of all of them (use "docker attach <OTHER_CONTAINER>" to get at other containers later)
+docker logs -f <RUNNING_CONTAINER>              # follow the logs of a running container. Useful when --attach was used on a different container
 
 
 # docker cleanup - run all these commands:
@@ -133,6 +132,7 @@ docker container prune -f
 docker image prune --all --force
 docker volume rm $(docker volume ls -q)
 
+
 # docker see all - run all these commands:
 -------------------------------------------------------------
 docker ps -a
@@ -140,3 +140,13 @@ docker images
 docker volume ls
 
 
+# WSL 2
+#----------------------------------------------------------------------------------------------------------------------
+sudo service docker start            # need to run this on startup to be able to use docker
+
+
+steps to eliminate the need for sudo in front of docker commands:
+#-----------------------------------------------------------------
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker

@@ -1,0 +1,5 @@
+steps:
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+- logout and back in again
+$ nvm install --lts
+$ nvm install node

@@ -1,4 +1,17 @@
-Install WSL
+WSL 2
+---------------------------------------------------------------------------
+wsl --install               # installs WSL 2 with an ubuntu instance
+wsl -l -v                   # Lists distributions
+wsl --import <DistName> <InstallFolder> <WSL2ImageTarball>  # install another distribution
+wsl --shutdown              # shutdown WSL 2
+ubuntu                      # start up WSL 2
+
+
+create another instance: https://cloudbytes.dev/snippets/how-to-install-multiple-instances-of-ubuntu-in-wsl2
+
+
+
+Install WSL 1
 ----------------------------------------------------------------------------------------
 Source: https://docs.microsoft.com/en-us/windows/wsl/install-win10
 * Run the following PowerShell command
@@ -24,14 +37,33 @@ Steps:
 1. install and open MobaXterm
    a. make sure the "X server" is running in MobaXterm - icon in upper right of window
 2. Open the WSL CLI
-   a. sudo apt update
-   b. sudo apt upgrade
-   c. export DISPLAY=:0         # this can be added to the .bashrc file to eliminate this step each time
-   d. nautilus . &
+   - sudo apt update
+   - sudo apt upgrade
+   - sudo apt install nautilus
+   - export DISPLAY=:0         # this can be added to the .bashrc file to eliminate this step each time
+   - nautilus . &
+
+... example troubleshooting: link: https://www.onwardpath.com/resources/how-to-solve-mobaxterm-x11-proxy-authorization-not-recognized-error
+paul@HP-CND14651W8:~$ sudo nautilus
+** (org.gnome.Nautilus:21669): WARNING **: 17:36:01.555: Error on getting connection: Failed to load SPARQL backend: Error spawning command line ?dbus-launch --autolaunch= --binary-syntax --close-stderr?: Child process exited with code 1
+MoTTY X11 proxy: Unsupported authorisation protocol
+Unable to init server: Could not connect: Connection refused
+paul@HP-CND14651W8:~$ xauth list
+HP-CND14651W8/unix:10  MIT-MAGIC-COOKIE-1  bf01d9d91e56e34910b4139b06478f11
+HP-CND14651W8/unix:11  MIT-MAGIC-COOKIE-1  b7661a33f8c8a440cb06e0d352b05de5
+paul@HP-CND14651W8:~$ sudo xauth add HP-CND14651W8/unix:10 MIT-MAGIC-COOKIE-1  b7661a33f8c8a440cb06e0d352b05de5
+xauth:  file /root/.Xauthority does not exist
+paul@HP-CND14651W8:~$ sudo xauth add HP-CND14651W8/unix:10 MIT-MAGIC-COOKIE-1  b7661a33f8c8a440cb06e0d352b05de5
+paul@HP-CND14651W8:~$ sudo nautilus
+
+   - sudo apt install ubuntu-desktop gnome
+
+export DISPLAY=localhost:10.0
 
 
-# install openssh: follow these steps:
+# install openssh: follow these steps: (tested on WSL 1 & 2)
 ----------------------------------------------------------------------------------------
+sudo apt update
 sudo apt remove openssh-server               # remove old version if it exists
 sudo apt install openssh-server              # install current version
 sudo vi /etc/ssh/sshd_config
@@ -41,6 +73,11 @@ sudo vi /etc/ssh/sshd_config
 service ssh status                           # check status of SSH service
 sudo service ssh start                       # start the service
 sudo service ssh --full-restart              # if running already use this
+
+
+# install Node.js on WSL 2
+-----------------------------------------------------------------------------------------------------------------------
+https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl
 
 
 # install docker on ubuntu 18.04.2 LTS

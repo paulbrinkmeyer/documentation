@@ -23,6 +23,7 @@ git
                  --allow-empty                                                    a way to do a no-op commit
                  -m <COMMIT_MSG>                                                  commit all staged flles with the commit message of <COMMIT_MSG>
      config      -l OR --list ................................................... lists all the config settings
+                 --unset                    <VAR_NAME>                            remove <VAR_NAME> config setting
                  --get                      remote.origin.url                     How to determine the url that a local git repo was originally cloned from
                  --global                   user.name "Firstname Lastname" ...... allows you to set your user name
                                             user.email "your_email@provider.com"  allows you to set your email address

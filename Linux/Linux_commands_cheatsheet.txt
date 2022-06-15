@@ -37,17 +37,18 @@ getopt       Method for parsing script parameters. Similar to Python's argparse.
 getopts      Much like getopt and allows you to step through each option one at a time. Similar to a Python generator
 gpg          Encrypt files                                   (e.g. gpg -c <FILE> # to encrypt; gpg <FILE> # to decrypt)
 grep         Output the line that contains a specific string (e.g. grep -r --include="*.txt" -F SEARCH_STRING .) -l option will just list the file name
-groups       List the groups the current user is a part of
+groups       List the groups the current user is a part of (give a user name to see user's groups)
 gzip         Used to compress files. "-d" will decompress files. "-k" will keep the original files. "-r" will do all files in a directory and all sub-directoies.
 head         Output the first 10 lines of standard in ("-n <numLines>" is commonly used to change the default of 10)
 history      print out the history of commands entered from the terminal
+id           Print user and group information for the specified USER
 ifconfig     Similar to Windows ipconfig (see "ip" command)
 ip           Useful ip info (e.g. "ip addr l" is similar to ifconfig, however some systems don't have ifconifg)
 info         Outputs help info similar to this file
 jobs         List of all background jobs
 kill         (e.g. kill -9 is the hammer method for killing a process) (e.g. "kill $(jobs -p)" will kill all jobs) 
 less         View a file. Can scroll up and down.
-ln           used to make hard/soft links to files           (e.g. ln <sourceFIle> <destinationFile>)
+ln           used to make hard (-s for soft) links to files            (e.g. ln <sourceFIle> <destinationFile>)
 ls           Output the contents of the working directory
 lsblk        Lists all mounted hard drives
 mkdir        Create a directory (-p will make parent directories too) 
@@ -57,6 +58,7 @@ mv           Move or rename a file (mv <FILE_TO_COPY> <FOLDER_LOCATION>)
 nautilus     Used in RedHat 6, CentOS & ubuntu 14.04 to open a folder browser window of the current folder
 nano         terminal text editor simpler than “vi” but with less features
 nc           can be used to cat a file over the network      (e.g. cat file.txt | nc -w 10 12.34.56.78 9100)
+newgrp       changes the current real group ID to the named group
 nohup        Run a process that will continue even after calling process ends (e.g. nohup <command> &)
 nslookup     look up the ip address of a URL
 passwd       Change the password for the current logged in user (you might need yppasswd for NIS)
@@ -105,8 +107,22 @@ zcat         same as cat but works on .gz files instead
 zip          Compress files into a zip file                  (e.g. that zips an entire folder: "zip filename.Zip *")
 
 
+user privilege commands:
+-----------------------------------------------------------------------------------------------------------------------
+id $USER                                print the current users info
+groups                                  see above (same as "id -nG")
+groups username                         see a specific user's groups
+sudo usermod -a -G groupname username   add a user to a group (-a is important)
+sudo groupadd groupname                 add the current user to a group
+cat /etc/group                          see all groups and their users
+getent group groupname                  see all the users for a specific group
+chgrp groupname filename                change the group of a file
+chown username filename                 change the owner of a file
+usermod -g primarygroupname username    assign a primary group to a user
+
+
 job processing commands:
---------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Ctrl-Z       suspends the current job
 bg           see above
 jobs         see above
@@ -114,10 +130,19 @@ fg           see above
 
 
 Directory stack commands:
----------------------------
+-----------------------------------------------------------------------------------------------------------------------
 dirs
 popd
 pushd
+
+
+Link file commands:
+-----------------------------------------------------------------------------------------------------------------------
+ln -s sourcefile linkedfile         create a soft link to a file
+ln sourcefile linkedfile            create a hard link to a file
+find / -samefile somefile           list all the files with a link to a file
+ls -l                               list all the hard links to a file (second group)
+
 
 
 TRICKS:
