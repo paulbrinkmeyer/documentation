@@ -102,6 +102,31 @@ l          The argument is interpreted as a long int or unsigned long int for in
 L          The argument is interpreted as a long double (only applies to floating point specifiers: e, E, f, g and G).
 
 ===============================================================================
+=======
+========================================================================================================
+String replacement methods multiple options:
+ * name = "Paul"; print("my name is " + name)       ->   my name is Paul
+ * name = "Paul"; print(f"my name is {name}")       ->   my name is Paul
+ * print("my name is {name}".format(name="Paul"))   ->   my name is Paul
+
+
+========================================================================================================
+function definition examples:
+----------------------------
+# simple form
+def function_name():
+    pass
+
+# with parameters and a return value
+def function_name(param1, param2="default_value"):
+    return True
+
+# optional annotations. They have no effect other than documentation of the parameters and return types.
+def function_name(param1: int) -> str:
+    return str(param1k)
+
+========================================================================================================
+
 built in functions
 -------------------------------------------------------------------------------
 all(<ITERABLE>)                       # True if all items in an iterable are true, otherwise it returns False
@@ -145,13 +170,20 @@ modules
 pytest                 # default
 pytest-cov             # gives coverage options
 
-CLI:
+CLI (standard):
 ------------
 pytest                 # run all tests in a given folder recursively to all child folders
 pytest -k <TEST_NAME>  # run only the test with the name <TEST_NAME>
 pytest --durations=0   # Show all times for tests, setup and teardown
 pytest --durations=1   # show the slowest test, setup or teardown
 pytest --durations=10  # show the slowest 10 tests, setups or teardowns
+=======
+pytest -s              # shows all standard output
+
+CLI (with coverage)
+--------------------
+pytest --cov                            # show coverage report
+pytest --cov --cov-report=term-missing  # show coverage report and the exact missing line numbers
 
 @pytest.mark.skip(reason="because")                  # decorator to skip a test
 @pytest.mark.skipif(<CONDITION>,reason="because")    # decorator to skip a test on a condition
