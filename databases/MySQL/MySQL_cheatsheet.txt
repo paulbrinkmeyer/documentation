@@ -19,3 +19,47 @@ create table [table]                            # Create table, where [table] is
 alter table <table> modify <field> varchar(100) # e.g. way to change a fields character length to 100
 exit;                                           # logout
 \q                                              # shorthand for "exit;"
+
+
+
+/* commands to get a quick overview of the databases */
+SHOW DATABASES;
+USE <databaseName>;
+SHOW TABLES;
+DESCRIBE <tableName>;
+SELECT * FROM <tableName>;
+
+/* creating a database and a table in it */
+CREATE DATABASE db_php;
+USE db_php;
+CREATE TABLE users (name VARCHAR(128), password VARCHAR(128) ) ENGINE MyISAM;
+
+/* adding data to a table */
+INSERT INTO users (name, password) VALUES ('paulbrinkmeyer', 'brinkmeyer');
+
+/* updating data in a table (format followed by an example) */
+UPDATE <tableName> SET <fieldName>=<newValue> WHERE <condition>;
+UPDATE users       SET password   ='paul'     WHERE name='paulbrinkmeyer';
+
+/* renaming a table */
+ALTER TABLE <oldTableName> RENAME <newTableName>;
+
+/* !!! delete a database or table !!! */
+DROP DATABASE <databaseName>;
+DROP TABLE <tableName>;
+
+/* Location of database raw info */
+C:\Documents and Settings\All Users\Application Data\MySQL\MySQL Server 5.5\data\db_php
+
+/* command to backup database */
+C:\Users\Paul>mysqldump -u root -ppbizzle db_php > db_php_backup1.sql
+
+/* command to restore a database */
+C:\Users\Paul>mysql -u root -ppbizzle -D db_php < db_php_backup1.sql
+
+/* quit */
+EXIT
+
+/* Inserting different types of data into tables
+INSERT INTO table_name VALUES (NAMED_STRUCT('field1','value1','field2','value2'))    # e.g. inserting a struct type
+INSERT INTO table_name VALUES (ARRAY('value1','value2'))                             # e.g. inserting an array type
