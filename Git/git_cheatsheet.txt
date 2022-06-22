@@ -7,6 +7,7 @@ gitk                                                                            
 
 git
      add         <FILENAME> ..................................................... stage <FILENAME>
+     apply       <DIFF_FILE>                                                      apply a patch (DIFF_FILE) to the local environment
      branch                                                                       list all local branches
                  -a ............................................................. list all local and remote branches
                                             --contains=<SHA>                      list all local and remote branches that has <SHA>
@@ -20,6 +21,7 @@ git
      cherry-pick <SHA> .......................................................... will commit all same things that happened in <SHA> even if from a different branch.
      clone       git@git.vcd.hp.com:testing                                       example use of clone
      commit ..................................................................... commit all staged files. Will be prompted for a commit message
+                 --amend                                                          by itself it lets you change the last local commit message (if you "git add" something before calling this it will let you add that to the last commit too)
                  --allow-empty                                                    a way to do a no-op commit
                  -m <COMMIT_MSG>                                                  commit all staged flles with the commit message of <COMMIT_MSG>
      config      -l OR --list ................................................... lists all the config settings

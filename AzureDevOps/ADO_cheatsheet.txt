@@ -1,3 +1,9 @@
+By default:
+stages run sequentially
+jobs run in parallel
+steps run sequentially
+
+
 https://docs.microsoft.com/en-us/azure/devops/pipelines/
 
 $(System.DefaultWorkingDirectory)
