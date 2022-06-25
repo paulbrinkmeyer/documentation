@@ -51,6 +51,7 @@ set_a  = {"a", "b", "c"}              # set
 
 ===============================================================================
 String slicing
+-------------------------------------------------------------------------------
 var = "abc123"
 ...
 var[0]       -> "a"
@@ -60,6 +61,7 @@ var[-4]      -> "c"
 var[-2:]     -> "23"
 ...
 
+-------------------------------------------------------------------------------
 String percent replacement per printf in C:
 link: https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm
 -------------------------------------------------------------------------------
@@ -101,13 +103,20 @@ h          The argument is interpreted as a short int or unsigned short int (onl
 l          The argument is interpreted as a long int or unsigned long int for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s.
 L          The argument is interpreted as a long double (only applies to floating point specifiers: e, E, f, g and G).
 
-===============================================================================
-=======
-========================================================================================================
+-------------------------------------------------------------------------------
 String replacement methods multiple options:
+-------------------------------------------------------------------------------
  * name = "Paul"; print("my name is " + name)       ->   my name is Paul
  * name = "Paul"; print(f"my name is {name}")       ->   my name is Paul
  * print("my name is {name}".format(name="Paul"))   ->   my name is Paul
+
+-------------------------------------------------------------------------------
+Special strings
+-------------------------------------------------------------------------------
+"string"     -> normal string that will interpret escape characters used after "\"
+b"string"    -> a byte string
+f"string"    -> see "String replacement methods multiple options" above
+r"string"    -> raw string without escape characters and can't end in an odd number of '\'
 
 
 ========================================================================================================
