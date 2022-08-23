@@ -16,6 +16,7 @@ git
                  -D <BRANCH_TO_DELETE> .......................................... delete local branch even if there are commits that aren't pushed
                  -m <NEW_BRANCH_NAME>                                             rename the local branch ("git push origin --delete <OLD_BRANCH_NAME>" to remove the old one from the remote and "git push --set-upstream origin <NEW_BRANCH_NAME>" to pull from the new remote branch)
      checkout    -- <FILENAME>                                                    undo uncommited local changes to <FILENAME>
+                 <SHA> <FILENAME>                                                 checkout a file from a different SHA
                  <BRANCH_NAME> .................................................. will switch over to the given <BRANCH_NAME>
                  -b <NEW_BRANCH_NAME>                                             "create a new local branch (same as ""git branch <NEW_BRANCH_NAME>"")"
      cherry-pick <SHA> .......................................................... will commit all same things that happened in <SHA> even if from a different branch.

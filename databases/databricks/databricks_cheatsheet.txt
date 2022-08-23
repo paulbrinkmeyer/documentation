@@ -172,11 +172,17 @@ https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.DataFr
 printSchema()
 cache()                                                        # Cache data for faster reuse
 count()                                                        # the number of records in the data frame
-distinct()
+distinct()                                                     # show only one instance of a unique row
 dropna()                                                       # drop rows with missing values
+filter()                                                       # e.g. df.filter(df.field_name == "value_to_filter_for")
+filter(df.col_name == "some_value")                            # filter on col_name with values that are equal to "some_value"
+filter(df.col_name != "some_value")                            # filter on col_name with values that are not equal to "some_value"
+filter(df.col_name.isin(list_of_values))                       # filter on col_name with any value in list_of_values
+filter(df.col_name.isNull())                                   # filter on col_name with values that are null
+filter(df.col_name.isNotNull())                                # filter on col_name with values that are not null
 limit(num)                                                     # Limits the result count to the number specified. e.g. limit(0) will give you an empty data frame but will keep the schema intact
 orderBy(field, ascending=False)                                # sort by field in descending order
-select(...)
+select(...)                                                    # show only the given columns from the DF
 selectExpr()
 take(num)                                                      # Returns the first num rows as a list of Row. It is different from limit() in that it doesn't return a dataframe. It returns the actual data.
 withColumn("columnName", COLUMN DATA)                          # update column data (does not work with nested structs)
@@ -241,7 +247,7 @@ Widgets methods:
 # If you add a command to remove a widget, you cannot add a subsequent command to
 # create a widget in the same cell. You must create the widget in another cell.
 dbutils.widgets.help("text")                                           # will give info about the text function, text can be any other function
-dbutils.widgets.text("X", "value_of_X")                                # will created the widget at the top of the notebook
+dbutils.widgets.text("X", "value_of_X_on_first_init")                  # will created the widget at the top of the notebook
 dbutils.widgets.dropdown("X123", "1", [str(x) for x in range(1, 10)])
 dbutils.widgets.combobox(...)
 dbutils.widgets.multiselect(...)

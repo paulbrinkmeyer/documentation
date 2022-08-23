@@ -1,14 +1,22 @@
 WSL 2
 ---------------------------------------------------------------------------
-wsl --install               # installs WSL 2 with an ubuntu instance
-wsl -l -v                   # Lists distributions
-wsl --import <DistName> <InstallFolder> <WSL2ImageTarball>  # install another distribution
-wsl --shutdown              # shutdown WSL 2
-ubuntu                      # start up WSL 2
+wsl --install                        # installs WSL 2 with an ubuntu instance
+wsl --install -d <DistName>          # install a specific online distro
+ubuntu                               # start up WSL 2
+wsl -l -v                            # list distros
+wsl -l --online                      # list distros that can be downloaded
+wsl -d <DistName>                    # start a specific distro
+wsl -t <DistName>                    # stop (terminate) a speific distro
+wsl --unregister <DistName>          # remove a distro
+wsl --shutdown                       # shutdown all distros and close WSL 2
+wsl --export <DistName> <FileName>   # export a distro to a tar file
+wsl --import <DistName> <InstallFolder> <WSL2ImageTarball>   # import a distro from a tar file
+e.g.
+wsl --import ubuntu_2 ~/wsl_pkgs/ubuntu_2 ./ubuntu-21.04-server-cloudimg-amd64-wsl.rootfs.tar.gz
 
-
-create another instance: https://cloudbytes.dev/snippets/how-to-install-multiple-instances-of-ubuntu-in-wsl2
-
+create another instance
+------------------------------------
+link: https://cloudbytes.dev/snippets/how-to-install-multiple-instances-of-ubuntu-in-wsl2
 
 
 Install WSL 1
@@ -26,9 +34,14 @@ ubuntu                                             # start WSL
 ubuntu config --default-user <NEW_DEFAULT_USER>    # Change default user from
 
 
-WSL CLI:
+WSL CLI common commands:
 ----------------------------------------------------------------------------------------
-sudo apt-get update                                          # update app get tool
+sudo apt-get update                               # update app get tool
+sudo apt-get upgrade
+sudo apt-get install python3.10
+sudo apt-get install python-is-python3
+sudo apt-get install python3-pip
+selenium
 
 
 GUI (!!! instructions under dev !!!)

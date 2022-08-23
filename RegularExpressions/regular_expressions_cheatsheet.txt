@@ -1,15 +1,12 @@
-Quantifier
-+       One or more
-{3}     Exactly three times
-{2,4}   Two to four times
-{3,}    Three or more times
-*       Zero or more times
-?       Once or none
-
-Characters
+Character matching (any character that isn't a special character will match that exact character)
 .       any character except newline
 \.      period
 \d      one digit from 0 to 9 (same as [0-9])
+\D      single character that is NOT a digit [^0-9]
+\l      match a single lowercase letter [a-z]
+\L      single character that is not lowercase [^a-z]
+\u      single uppercase character [A-Z]
+\U      single character that is not uppercase [^A-Z]
 \w      letter, digit or underscore
 \s      white space characters (space, tab, newline, carriage return, vertical tab)
 \S      Not a white space character
@@ -17,15 +14,23 @@ Characters
 \r      carriage return
 \n      newline
 \\      single backslash
-
-Logic
-|       Or
-(  )    Capturing group e.g. (this|that)
 [aw28]  Matches a,w,2 or 8
 [4-8]   Matches 4,5,6,7 or 8
 [a7-9]  Matches a,7,8 or 9
 [^#]    not #
 [^3-6]  not 3,4,5 or 6
+
+Quantifier
+?       Once or none
++       One or more
+*       Zero or more times
+{3}     Exactly three times
+{2,4}   Two to four times
+{3,}    Three or more times
+
+Logic
+|       Or
+(  )    Capturing group e.g. (this|that)
 
 Anchors and Boundaries
 ^       Start of line

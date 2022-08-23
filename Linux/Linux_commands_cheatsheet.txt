@@ -50,6 +50,8 @@ kill         (e.g. kill -9 is the hammer method for killing a process) (e.g. "ki
 less         View a file. Can scroll up and down.
 ln           used to make hard (-s for soft) links to files            (e.g. ln <sourceFIle> <destinationFile>)
 ls           Output the contents of the working directory
+lsb_release  Used to get system version info (-a is most useful, -d will get just the OS version)
+lshw         List System Hardware info (needs sudo to see product field)
 lsblk        Lists all mounted hard drives
 mkdir        Create a directory (-p will make parent directories too) 
 more         View a file. Can only scroll down.

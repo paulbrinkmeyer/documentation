@@ -27,16 +27,40 @@ False
 ()
 (<TEST>)    # where <TEST> is any other check that fails e.g. (None)
 
-
+===============================================================================
 if statements:
 -----------------------
-if <CHECK>:
+if <CHECK1>:
     <TRUE_BODY>
+elif <CHECK2>:
+    # code to run if <CHECK1> is False and <CHECK2> is True
 else:
     <FALSE_BODY>
-.
+
 One line conditional assignment:
+--------------------------------
 var = <TRUE_VALUE> if <CHECK> else <FALSE_VALUE>
+
+===============================================================================
+try block:
+---------------------------
+try:
+    # code to try and run
+except:
+    # code to run on error
+else:
+    # code to run when no error occurs
+finally:
+    # code that will always run (error or not)
+# code passed this point will not run if there was an error
+
+catch all try block e.g.:
+-------------------------
+try:
+    ...
+except Exception as e:
+    ...
+    raise e
 
 ===============================================================================
 Variable types:
@@ -48,17 +72,29 @@ dict_a = {"a":"A", "b":"B", "c":"B"}  # dictionary
 list_a = ["a", "b", "c"]              # list
 set_a  = {"a", "b", "c"}              # set
 
+Check for type, will return a boolean: e.g.
+-------------------------------------------
+type(VAR) is int
+type(VAR) is str
+type(VAR) is bool
+type(VAR) is dict
+type(VAR) is list
+type(VAR) is set
 
 ===============================================================================
 String slicing
 -------------------------------------------------------------------------------
 var = "abc123"
 ...
-var[0]       -> "a"
-var[3]       -> "1"
-var[1:3]     -> "bc"
-var[-4]      -> "c"
-var[-2:]     -> "23"
+var[0]       -> "a"     # get first value
+var[3]       -> "1"     # get 4th value
+var[:3]      -> "abc"   # get first 3 values
+var[0:3]     -> "abc"   # same as var[:3] but more explicit
+var[3:]      -> "123"   # get last 3 values
+var[1:3]     -> "bc"    # get 2nd to 3rd values
+var[-1]      -> "3"     # get last value
+var[-4]      -> "c"     # get 4th to last value
+var[-2:]     -> "23"    # get last 2 values
 ...
 
 -------------------------------------------------------------------------------
