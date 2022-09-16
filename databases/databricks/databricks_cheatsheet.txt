@@ -85,6 +85,7 @@ FileStore
 ---------------------------------------------------
 e.g. URL way to download a file from the FileStore:
 https://dataos-dev.cloud.databricks.com/files/shared_uploads/paul.brinkmeyer@hp.com/schema.json
+https://dataos-dev.cloud.databricks.com/files/shared_uploads/paul.brinkmeyer@hp.com/ledm_record_matts_version/part-00000-tid-4137980894004585984-952bc053-b546-4f37-9643-9d5fb264b286-69-1-c000.json
 
                    ____  _____   ____          ____   ___                                      ___     ____
 |\    /|    ^     /        |    /             /      /   \  |\    /| |\    /|    ^    |\    | |    \  /
@@ -176,6 +177,7 @@ distinct()                                                     # show only one i
 dropna()                                                       # drop rows with missing values
 filter()                                                       # e.g. df.filter(df.field_name == "value_to_filter_for")
 filter(df.col_name == "some_value")                            # filter on col_name with values that are equal to "some_value"
+filter(col(col_name) == "some_value")                          # works with struct fields for the col_name
 filter(df.col_name != "some_value")                            # filter on col_name with values that are not equal to "some_value"
 filter(df.col_name.isin(list_of_values))                       # filter on col_name with any value in list_of_values
 filter(df.col_name.isNull())                                   # filter on col_name with values that are null
@@ -189,6 +191,8 @@ withColumn("columnName", COLUMN DATA)                          # update column d
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
 write.format("delta").mode("overwrite").save(outPath)          # create a delta table and remove the previous one
+write.format('json').save(outPath)                             # create a json file of the dataframe data
+
 createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
 
 
@@ -239,6 +243,13 @@ row.key
 row["key"]
 key in row
 
+
+
+Column functions:
+---------------------------------------------------------------------------
+from pyspark.sql import functions as F
+
+F.lit("default_value"))                 # creates a column with the "default_value" for all records
 
 
 

@@ -24,8 +24,45 @@ https://www.nigelfrank.com/blog/azure-devops-output-variables
 
 Condition functions:
 -------------------------------------------------------------------------------------
-and(<cond1>, <cond2>, <opt_cond3>, ... )  # true if all <cond#>s are true
-or(<cond1>, <cond2>, <opt_cond3>, ... )   # true if any <cond#> is true
-not(<cond>)                               # true if <cond> if false
-eq(<value1>, <value2>)                    # true if they are equal
-succeeded()                               # true if the previous step passed
+and(<cond1>, <cond2>, <opt_cond3>, ... )           # true if all <cond#>s are true
+or(<cond1>, <cond2>, <opt_cond3>, ... )            # true if any <cond#> is true
+not(<cond>)                                        # true if <cond> if false
+eq(<value1>, <value2>)                             # true if they are equal
+in(<var>, <allowed_value1>, <allowed_value2>, ...) # <var> is one of the allowed values
+succeeded()                                        # true if the previous step/job/stage passed
+succeededOrFailed()                                # true if the previous step/job/stage passed or failed
+always()                                           # always true, even if the pipeline is canceled!
+failed()                                           # true if the previous step/job/stage failed
+
+Method for running a job if a previous job was skipped:
+Issue reference for a better solution someday: https://developercommunity.visualstudio.com/t/Add-succeededOrSkipped-condition-exp/950260?space=21&q=succeeded+or+skipped+condition
+-------------------------------------------------------------------------
+dependsOn:
+  - job_name
+condition: in(dependencies.job_name.result, 'Succeeded', 'SucceededWithIssues', 'Skipped')
+
+
+if statement with parameters and variables, e.g.:
+
+parameters:
+  - name: set_flag
+    default: true
+    type: boolean
+  - name: flag1
+    default: true
+    type: boolean
+  - name: flag2
+    default: true
+    type: boolean
+
+variables:
+  ${{ if parameters.set_flag }}:
+    flag: " -f"
+steps:
+  - script echo flag=${{ variables.flag }}
+  - ${{ if parameters.flag1 }}:
+    - script: echo flag1 is true
+  - ${{ elseif parameters.flag2 }}:
+    - script: echo flag1 is false and flag2 is true
+  - ${{ else }}:
+    - script: echo flag1 and flag2 are false

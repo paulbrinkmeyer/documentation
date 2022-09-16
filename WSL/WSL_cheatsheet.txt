@@ -12,12 +12,14 @@ wsl --shutdown                       # shutdown all distros and close WSL 2
 wsl --export <DistName> <FileName>   # export a distro to a tar file
 wsl --import <DistName> <InstallFolder> <WSL2ImageTarball>   # import a distro from a tar file
 e.g.
-wsl --import ubuntu_2 ~/wsl_pkgs/ubuntu_2 ./ubuntu-21.04-server-cloudimg-amd64-wsl.rootfs.tar.gz
+wsl --import ubuntu_2 ~/wsl_pkgs/ubuntu_2 ./ubuntu-20.04.tar
+
+# note to rename a distro the only working solution I found was to export an official one and then import it with the new name
 
 create another instance
 ------------------------------------
 link: https://cloudbytes.dev/snippets/how-to-install-multiple-instances-of-ubuntu-in-wsl2
-
+- don't use the tar found here. use the official ones from "wsl -l --online" and install by "wsl --install -d <DistName>"
 
 Install WSL 1
 ----------------------------------------------------------------------------------------
@@ -93,6 +95,7 @@ sudo service ssh --full-restart              # if running already use this
 https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl
 
 
+link: https://docs.docker.com/engine/install/ubuntu/
 # install docker on ubuntu 18.04.2 LTS
 ----------------------------------------------------------------------------------------
 sudo apt install apt-transport-https ca-certificates curl software-properties-common

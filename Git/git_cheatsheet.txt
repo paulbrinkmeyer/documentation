@@ -56,6 +56,7 @@ git
                  prune                      origin                                removes links to branches that have been deleted on the remote
                  set-url                    origin <NEW_GIT_ORIGN> .............. reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git
                  show                       origin                                shows what URL is being used for pushes & pulls + other info about all the branches both remote and local
+                 -v                                                               shows the fetch and push locations
      reset       HEAD                       <FILENAME> .......................... unstage <FILENAME>
                  --soft                     HEAD^                                 undo last local commit
                  --hard                     <SHA of servers HEAD> ............... undo all local changes e.g. "git reset --hard origin/master" will undo all local commits

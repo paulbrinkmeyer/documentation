@@ -22,7 +22,7 @@ ARG                                 # a way for the builder to pass parameters t
 
 # building image commands (assumes a Dockerfile is in the current working directory):
 #---------------------------------------------------------------------------------------------------------------------
-docker build -t <IMAGE_NAME> .           # create an image from a Dockerfile with the name <IMAGE_NAME>
+docker build -t <IMAGE_NAME> <PATH>      # create an image from a Dockerfile with the name <IMAGE_NAME>
 docker build -t test .                   # e.g.
 docker build --build-arg <ARG> .         # pass arguments to a Dockerfile
 docker build --no-cache .                # don't use any cached images
