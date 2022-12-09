@@ -46,6 +46,7 @@ ${VAR:+OVERRIDE}    # same as ${VAR} but if set it will take the OVRRIDE value
 ${#VAR}             # will return the length of VAR
 '$VAR'              # returns $VAR (even if VAR was set to something)
 "$VAR"              # returns 1    (assuming VAR=1 was called earlier)
+local VAR           # define VAR as local to the function that it is in. Variables are global to the script by default
 
 variables - get sub-strings
 --------------------------------

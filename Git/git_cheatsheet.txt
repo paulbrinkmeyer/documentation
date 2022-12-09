@@ -59,7 +59,7 @@ git
                  -v                                                               shows the fetch and push locations
      reset       HEAD                       <FILENAME> .......................... unstage <FILENAME>
                  --soft                     HEAD^                                 undo last local commit
-                 --hard                     <SHA of servers HEAD> ............... undo all local changes e.g. "git reset --hard origin/master" will undo all local commits
+                 --hard                     <SHA of servers HEAD> ............... undo all local not staged changes (will not delete new files) e.g. "git reset --hard origin/master"
      rev-list    --first-parent             <BRANCH_NAME>                         list all SHAs for <BRNACH_NAME>
      rev-parse   HEAD                                                             get the most recent commit SHA
      revert      <sha> .......................................................... undos

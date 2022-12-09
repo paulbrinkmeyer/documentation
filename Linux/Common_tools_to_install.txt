@@ -1,5 +1,12 @@
+Debian (e.g. Ubuntu)
+apt update
 apt-get install net-tools             # has ifconfig
 apt-get install openssh-server        # SSH server
 apt-get install iputils-ping          # ping
 apt-get install curl                  # curl
 apt-get install less                  # less
+apt-get install jq                    # jq
+apt-get install npm                   # npm
+
+Alpine:
+apk update

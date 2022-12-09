@@ -1,5 +1,6 @@
 WSL 2
 ---------------------------------------------------------------------------
+wsl                                  # shortcut for wsl -d <DistName> where there is only one <DistName>
 wsl --install                        # installs WSL 2 with an ubuntu instance
 wsl --install -d <DistName>          # install a specific online distro
 ubuntu                               # start up WSL 2
@@ -9,10 +10,10 @@ wsl -d <DistName>                    # start a specific distro
 wsl -t <DistName>                    # stop (terminate) a speific distro
 wsl --unregister <DistName>          # remove a distro
 wsl --shutdown                       # shutdown all distros and close WSL 2
+wsl --status                         #
+wsl --set-version <DistName> <ver>   # Change the version of WSL infrastructure to use
 wsl --export <DistName> <FileName>   # export a distro to a tar file
-wsl --import <DistName> <InstallFolder> <WSL2ImageTarball>   # import a distro from a tar file
-e.g.
-wsl --import ubuntu_2 ~/wsl_pkgs/ubuntu_2 ./ubuntu-20.04.tar
+wsl --import <DistName> <InstallFolder> <WSL2ImageTarball>   # import a distro from a tar file e.g. wsl --import ubuntu_2 ~/wsl_pkgs/ubuntu_2 ./ubuntu-20.04.tar
 
 # note to rename a distro the only working solution I found was to export an official one and then import it with the new name
 
@@ -21,14 +22,6 @@ create another instance
 link: https://cloudbytes.dev/snippets/how-to-install-multiple-instances-of-ubuntu-in-wsl2
 - don't use the tar found here. use the official ones from "wsl -l --online" and install by "wsl --install -d <DistName>"
 
-Install WSL 1
-----------------------------------------------------------------------------------------
-Source: https://docs.microsoft.com/en-us/windows/wsl/install-win10
-* Run the following PowerShell command
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-* If installing WSL2 do the following
-  - TBD
-* restart computer
 
 Windows CLI:
 ----------------------------------------------------------------------------------------
@@ -44,6 +37,68 @@ sudo apt-get install python3.10
 sudo apt-get install python-is-python3
 sudo apt-get install python3-pip
 selenium
+
+
+# install openssh: follow these steps: (tested on WSL 1 & 2)
+----------------------------------------------------------------------------------------
+sudo apt update
+sudo apt remove openssh-server               # remove old version if it exists
+sudo apt install openssh-server              # install current version
+sudo vi /etc/ssh/sshd_config
+  Add "Port 2222"                            # note: port 22 is hard to use in WSL
+  Change "PasswordAuthentication yes"
+  Add "AllowUsers <USER_NAME>"               # where <USER_NAME> is the user you want to have access
+service ssh status                           # check status of SSH service
+sudo service ssh start                       # start the service
+sudo service ssh --full-restart              # if running already use this
+
+
+# install Node.js on WSL 2
+-----------------------------------------------------------------------------------------------------------------------
+https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl
+
+
+# Install docker on WSL 2
+https://nickjanetakis.com/blog/install-docker-in-wsl-2-without-docker-desktop
+----------------------------------------------------------------------------------------
+# Install Docker, you can ignore the warning from Docker about using WSL
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# Add your user to the Docker group
+sudo usermod -aG docker $USER
+
+# Install Docker Compose v2
+sudo apt-get update && sudo apt-get install docker-compose-plugin
+
+# Sanity check that both tools were installed successfully
+docker --version
+docker compose version
+
+# Using Ubuntu 22.04 or Debian 10 / 11? You need to do 1 extra step for iptables
+# compatibility, you'll want to choose option (1) from the prompt to use iptables-legacy.
+sudo update-alternatives --config iptables
+
+# add the following to your ~/.bashrc file
+if grep -q "microsoft" /proc/version > /dev/null 2>&1; then
+    if service docker status 2>&1 | grep -q "is not running"; then
+        wsl.exe --distribution "${WSL_DISTRO_NAME}" --user root \
+            --exec /usr/sbin/service docker start > /dev/null 2>&1
+    fi
+fi
+
+
+link: https://docs.docker.com/engine/install/ubuntu/
+# install docker on ubuntu 18.04.2 LTS with WSL 1
+----------------------------------------------------------------------------------------
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# need to install docker in windows and turn on the localhost server
+echo "export DOCKER_HOST=localhost:2375" >> ~/.bash_profile
 
 
 GUI (!!! instructions under dev !!!)
@@ -74,44 +129,3 @@ paul@HP-CND14651W8:~$ sudo nautilus
    - sudo apt install ubuntu-desktop gnome
 
 export DISPLAY=localhost:10.0
-
-
-# install openssh: follow these steps: (tested on WSL 1 & 2)
-----------------------------------------------------------------------------------------
-sudo apt update
-sudo apt remove openssh-server               # remove old version if it exists
-sudo apt install openssh-server              # install current version
-sudo vi /etc/ssh/sshd_config
-  Add "Port 2222"                            # note: port 22 is hard to use in WSL
-  Change "PasswordAuthentication yes"
-  Add "AllowUsers <USER_NAME>"               # where <USER_NAME> is the user you want to have access
-service ssh status                           # check status of SSH service
-sudo service ssh start                       # start the service
-sudo service ssh --full-restart              # if running already use this
-
-
-# install Node.js on WSL 2
------------------------------------------------------------------------------------------------------------------------
-https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl
-
-
-link: https://docs.docker.com/engine/install/ubuntu/
-# install docker on ubuntu 18.04.2 LTS
-----------------------------------------------------------------------------------------
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-
-# need to install docker in windows and turn on the localhost server
-echo "export DOCKER_HOST=localhost:2375" >> ~/.bash_profile
-
-
-# install python 3.8
----------------------------------------------------------------------------------------
-# https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/
-sudo apt update
-sudo apt install software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt install python3.8
