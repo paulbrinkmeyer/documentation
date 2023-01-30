@@ -88,13 +88,15 @@ sudo         run a command with root privilages
 tail         output the last 10 lines of standard in. The -f flag is very useful for following log files still being appended to.
 tar          Used to store and open files in a archive (open a tar file: tar -xvf <XXX>.tar) 
 tee          read from standard input and write to standard output and a file (e.g.  ls | tee log.txt)
-time         reports the execution time of a given command (e.g. time curl google.com)
+test         Used to check the result of a conditon          (e.g. test $? -eq 0 && echo is true || echo is false)
+time         reports the execution time of a given command   (e.g. time curl google.com)
+timeout      timeout <time-limit-interval> <command>         (e.g. timeout 5s ping www.google.com )
 touch        Change file timestamp. Also can make a file.
 top          A running list of the top processes
 tr           Translate, squeeze, and/or delete characters from standard input, writing to standard output.
 type         gives info about the command given (e.g. type -a <command>) will give you all locations of this command  
 uname        print system info (e.g. uname -a) 
-unset        Used to remove a shell variable          (e.g unset VAR)
+unset        Used to remove a shell variable                 (e.g unset VAR)
 unique       removes duplicate consecutive lines
 usermod      change user settings. e.g. add a group to a user: usermod -a -G <GROUP> <USER>
 vdir         Verbos version of "dir"
@@ -179,5 +181,3 @@ put <FILE>   copy <FILE> from local to remote directory
 get <FILE>   copy <FILE> from remote to local directory  
 ls           list remote directory
 !ls          list local directory
-
-

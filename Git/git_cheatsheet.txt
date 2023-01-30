@@ -7,7 +7,9 @@ gitk                                                                            
 
 git
      add         <FILENAME> ..................................................... stage <FILENAME>
-     apply       <DIFF_FILE>                                                      apply a patch (DIFF_FILE) to the local environment
+     add         -N                         <FILE/FOLDER_NAME>                    indicate that a file/folder should be added (useful when you want to see these files in the diff log, e.g. for patch creation, or when you plan to use "git commit -a")
+     apply       <DIFF_FILE> .................................................... apply a patch (DIFF_FILE) to the local environment. Note only the current directory and its sub-directories will be changed (change to the root of repo to avoid this)
+                 --stat                     <DIFF_FILE>                           show what files would be changed without actually changing them
      branch                                                                       list all local branches
                  -a ............................................................. list all local and remote branches
                                             --contains=<SHA>                      list all local and remote branches that has <SHA>
@@ -15,15 +17,16 @@ git
                  -d <BRANCH_TO_DELETE>                                            delete local branch that doesn't have commits waiting
                  -D <BRANCH_TO_DELETE> .......................................... delete local branch even if there are commits that aren't pushed
                  -m <NEW_BRANCH_NAME>                                             rename the local branch ("git push origin --delete <OLD_BRANCH_NAME>" to remove the old one from the remote and "git push --set-upstream origin <NEW_BRANCH_NAME>" to pull from the new remote branch)
-     checkout    -- <FILENAME>                                                    undo uncommited local changes to <FILENAME>
+     checkout    -- <FILENAME> .................................................. undo uncommited local changes to <FILENAME>
                  <SHA> <FILENAME>                                                 checkout a file from a different SHA
                  <BRANCH_NAME> .................................................. will switch over to the given <BRANCH_NAME>
                  -b <NEW_BRANCH_NAME>                                             "create a new local branch (same as ""git branch <NEW_BRANCH_NAME>"")"
      cherry-pick <SHA> .......................................................... will commit all same things that happened in <SHA> even if from a different branch.
+     clean       -fd                                                              *!!! CAUTION !!!* removes all local untracked files (use -nfd instead to test it out before actually doing it). ref: https://stackoverflow.com/questions/1090309/git-undo-all-working-dir-changes-including-new-files
      clone       git@git.vcd.hp.com:testing                                       example use of clone
      commit ..................................................................... commit all staged files. Will be prompted for a commit message
                  --amend                                                          by itself it lets you change the last local commit message (if you "git add" something before calling this it will let you add that to the last commit too)
-                 --allow-empty                                                    a way to do a no-op commit
+                 --allow-empty .................................................. a way to do a no-op commit
                  -m <COMMIT_MSG>                                                  commit all staged flles with the commit message of <COMMIT_MSG>
      config      -l OR --list ................................................... lists all the config settings
                  --unset                    <VAR_NAME>                            remove <VAR_NAME> config setting
@@ -68,8 +71,13 @@ git
                  <SHA>:<FILE_FULL_PATH>                                           show the contents of <FILE_FULL_PATH> at <SHA>
      stash       save ........................................................... will save all local changes to the top of the stash stack
                  pop                                                              will pop off the most recent saved stash from the stack and apply it locally
+                 list                                                             show summary of the stash stack
      status ..................................................................... show the status of local changes
 
+
+clean house:
+git reset --hard origin/master
+git clean -fd                    # *!!! CAUTION !!!*
 
 Useful histroy view:
 "git whatchanged --format=format:"">> %cn |  %ci%n>> %s"""
@@ -81,3 +89,10 @@ git  checkout   <branch>
 ### do something
 git  checkout   <oldbranch>
 git  stash      pop
+
+
+webui:
+# ------------------------------------------------------------------------------------------------------
+Link:    https://github.com/alberthier/git-webui
+Install: curl https://raw.githubusercontent.com/alberthier/git-webui/master/install/installer.sh | bash
+Start:   git webui

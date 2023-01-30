@@ -1,0 +1,2 @@
+npx create-react-app my-app           # create a new app
+npm install --save <MODULE>           # install a module in your project

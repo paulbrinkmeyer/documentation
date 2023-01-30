@@ -1,0 +1,4 @@
+useState       # a way to rerender all instances of a variable: explained here: https://www.youtube.com/watch?v=4pO-HcG2igk
+useSelector    # retrieves a value from the store
+useEffect      # called on first load of a component and when a given state is updated
+useDispatch    # update a state and notify all the listeners to that state

@@ -1,3 +1,28 @@
+Installing multiple versions in Ubuntu:
+===============================================================================
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.6
+sudo apt install python3.7
+sudo apt install python3.8
+sudo apt install python3.9
+sudo apt install python3.10
+sudo apt install python3.11
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 3
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 4
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 5
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 6
+sudo update-alternatives --config python3    # this will let you pick the default
+sudo apt-get install python3.6-distutils
+sudo apt-get install python3.7-distutils
+sudo apt-get install python3.8-distutils
+sudo apt-get install python3.9-distutils
+sudo apt-get install python3.10-distutils
+sudo apt-get install python3.11-distutils
+sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
+
 ===============================================================================
 Boolean notes:
 
@@ -52,7 +77,7 @@ else:
     # code to run when no error occurs
 finally:
     # code that will always run (error or not)
-# code passed this point will not run if there was an error
+# code passed this point will not run if there was an error that wasn't excepted
 
 catch all try block e.g.:
 -------------------------
@@ -96,6 +121,13 @@ var[-1]      -> "3"     # get last value
 var[-4]      -> "c"     # get 4th to last value
 var[-2:]     -> "23"    # get last 2 values
 ...
+
+===============================================================================
+Dictionary operations
+-------------------------------------------------------------------------------
+d1 = {"1": "one"}                                # This is the starting value for the following examples
+d2 = {"2": "two }                                # This is the starting value for the following examples
+d3 = d1 | d2   ->   {"1": "one", "2": "two"}     # The output is a new dictionary. d1 & d2 are not changed. On a collision d2's values will take persistence. Requires Python version >= 3.9.
 
 -------------------------------------------------------------------------------
 String percent replacement per printf in C:
@@ -291,4 +323,4 @@ Python 2:
 python -m SimpleHTTPServer
 
 Python 3:
-python -m http.server
+python -m http.server <port>                 # <port> to use. if left out default of 8000 will be used

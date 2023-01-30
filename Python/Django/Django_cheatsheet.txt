@@ -46,7 +46,7 @@ mysite/<appName>/tests.py
 mysite/<appName>/views.py
 
 Create a urls.py file
-$ touch mysite/<appName>/urls.py     # see documentaion on the format of this
+$ touch mysite/<appName>/urls.py     # see documentation on the format of this
 
 Link the urls.py to the project urls.py. e.g. add the following to the urlpatterns
 from django.urls import include, path           # you'll need to import "include"

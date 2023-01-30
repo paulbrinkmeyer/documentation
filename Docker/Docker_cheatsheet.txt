@@ -24,7 +24,7 @@ ARG                                 # a way for the builder to pass parameters t
 #---------------------------------------------------------------------------------------------------------------------
 docker build -t <IMAGE_NAME> <PATH>      # create an image from a Dockerfile with the name <IMAGE_NAME>
 docker build -t test .                   # e.g.
-docker build --build-arg <ARG> .         # pass arguments to a Dockerfile
+docker build --build-arg <ARG>=<VAULE> . # pass arguments to a Dockerfile. if "=<VALUE>" is left out then the value of the local environment variable with the name <ARG> will be used
 docker build --no-cache .                # don't use any cached images
 docker build -f path/to/Dockerfile .     # use a Dockerfile from a different location 
 

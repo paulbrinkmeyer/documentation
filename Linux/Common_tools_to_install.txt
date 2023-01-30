@@ -8,5 +8,10 @@ apt-get install less                  # less
 apt-get install jq                    # jq
 apt-get install npm                   # npm
 
+apt-cache policy <package>            # get info about an installed package
+apt-cache madison <package>           # get one line version info about a package
+apt list                              # list all packages installed
+apt list <packages>                   # list only the given packages. <packages> is a list space separated
+
 Alpine:
 apk update
