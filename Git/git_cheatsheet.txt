@@ -14,8 +14,8 @@ git
                  -a ............................................................. list all local and remote branches
                                             --contains=<SHA>                      list all local and remote branches that has <SHA>
                  <BRANCH_NAME> .................................................. will create the local branch <BRANCH_NAME>
-                 -d <BRANCH_TO_DELETE>                                            delete local branch that doesn't have commits waiting
-                 -D <BRANCH_TO_DELETE> .......................................... delete local branch even if there are commits that aren't pushed
+                 -d <BRANCH_TO_DELETE>                                            delete local branch that doesn't have commits waiting            (to delete remote branches use "push origin --delete <BRANCH>")
+                 -D <BRANCH_TO_DELETE> .......................................... delete local branch even if there are commits that aren't pushed (to delete remote branches use "push origin --delete <BRANCH>")
                  -m <NEW_BRANCH_NAME>                                             rename the local branch ("git push origin --delete <OLD_BRANCH_NAME>" to remove the old one from the remote and "git push --set-upstream origin <NEW_BRANCH_NAME>" to pull from the new remote branch)
      checkout    -- <FILENAME> .................................................. undo uncommited local changes to <FILENAME>
                  <SHA> <FILENAME>                                                 checkout a file from a different SHA
@@ -55,6 +55,8 @@ git
      push ....................................................................... push all local commits to the remote
                  <REMOTE>                   <BRANCH_NAME>                         used to push a local branch to the remote (e.g. git push origin products2014)
                  --all                      -u .................................. push all local branches to the remote location
+                 origin                     --delete <BRANCH_NAME>                deletes a remote branch
+     rebase      <PARENT_BRANCH>                                                  sync up the current branch as if it just broke apart from <PARENT_BRANCH>'s tip commit
      remote      update                     origin --prune                        updates the local list of remote branches
                  prune                      origin                                removes links to branches that have been deleted on the remote
                  set-url                    origin <NEW_GIT_ORIGN> .............. reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git

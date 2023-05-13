@@ -146,15 +146,16 @@ udf(FUNCTION)                  # a user defined function
 ____/  |      |     | |    \ |    \         \____  \___/  |      | |      | |     | |    \| |____/  ____/
 
 Spark commands:
-spark.createDataFrame(data,...)                    # create a DataFrame
-spark.sql()                                        # returns a DataFrame representing the result of the given query
-spark.table(TABLE)                                 # returns a DataFrame for a given table
-spark.read.csv("/path/of/file.csv", header="true") # returns a DataFrame for a given csv file
-spark.read.parquet("/path/of/file.parquet")        # returns a DataFrame for a given parquet file
-spark.read.json("/path/of/file.json")              # returns a DataFrame for a given json file
-spark.read.json(sc.parallelize([json_str]))        # returns a DataFrame for a given json string - https://stackoverflow.com/questions/49675860/pyspark-converting-json-string-to-dataframe
-spark.read.text(/path/of/file.txt")                # returns a DataFrame for a given file where each line is a row
-spark.udf.register(FUN_NAM, UDF_FUNCTION)          # register a function to be used in a SQL statement
+spark.createDataFrame(data,...)                        # create a DataFrame e.g. spark.createDataFrame(data=[(123,)], schema=["id"])
+spark.sql()                                            # returns a DataFrame representing the result of the given query
+spark.table(TABLE)                                     # returns a DataFrame for a given table
+spark.read.csv("/path/of/file.csv", header="true")     # returns a DataFrame for a given csv file
+spark.read.format("delta").load("/path/of/delta/dir")  # returns a DataFrame for a given delta lake directory
+spark.read.parquet("/path/of/file.parquet")            # returns a DataFrame for a given parquet file
+spark.read.json("/path/of/file.json")                  # returns a DataFrame for a given json file
+spark.read.json(sc.parallelize([json_str]))            # returns a DataFrame for a given json string - https://stackoverflow.com/questions/49675860/pyspark-converting-json-string-to-dataframe
+spark.read.text(/path/of/file.txt")                    # returns a DataFrame for a given file where each line is a row
+spark.udf.register(FUN_NAM, UDF_FUNCTION)              # register a function to be used in a SQL statement
 
 
  ___            _______                 _____  ____                    _____         _____                   ____ _______ _____   ___            ____
@@ -170,13 +171,14 @@ Link:
 https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.sql.DataFrame.html?highlight=dataframe#pyspark.sql.DataFrame
 
 
-printSchema()
+printSchema()                                                  # visual output of the schema
 cache()                                                        # Cache data for faster reuse
 count()                                                        # the number of records in the data frame
 distinct()                                                     # show only one instance of a unique row
 dropna()                                                       # drop rows with missing values
 filter()                                                       # e.g. df.filter(df.field_name == "value_to_filter_for")
 filter(df.col_name == "some_value")                            # filter on col_name with values that are equal to "some_value"
+filter(df.date_field > datetime(2023, 2, 6))                   # filter on a date field past a specific point in time (need to include: from datetime import datetime)
 filter(col(col_name) == "some_value")                          # works with struct fields for the col_name
 filter(df.col_name != "some_value")                            # filter on col_name with values that are not equal to "some_value"
 filter(df.col_name.isin(list_of_values))                       # filter on col_name with any value in list_of_values
@@ -186,12 +188,14 @@ limit(num)                                                     # Limits the resu
 orderBy(field, ascending=False)                                # sort by field in descending order
 select(...)                                                    # show only the given columns from the DF
 selectExpr()
+show(num=20, truncate=True, vertical=False)                    # default parameters: shows the first 20 records and truncates them to 20 characters where one record is shown per line
 take(num)                                                      # Returns the first num rows as a list of Row. It is different from limit() in that it doesn't return a dataframe. It returns the actual data.
 withColumn("columnName", COLUMN DATA)                          # update column data (does not work with nested structs)
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
 write.format("delta").mode("overwrite").save(outPath)          # create a delta table and remove the previous one
 write.format('json').save(outPath)                             # create a json file of the dataframe data
+coalesce(1).write.option("header", "True").csv(out_dir)        # create a single csv file in the "out_dir" directory. coalesec is needed to combine all the parts together (It is very memory intensive though).
 
 createOrReplaceTempView(TABLE)                                 # create a table that can be referenced from a SQL statement
 

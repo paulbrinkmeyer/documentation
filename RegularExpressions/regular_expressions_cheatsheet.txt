@@ -1,6 +1,7 @@
 Character matching (any character that isn't a special character will match that exact character)
 .       any character except newline
 \.      period
+\=      match "="
 \d      one digit from 0 to 9 (same as [0-9])
 \D      single character that is NOT a digit [^0-9]
 \l      match a single lowercase letter [a-z]

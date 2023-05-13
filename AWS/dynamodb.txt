@@ -1,0 +1,62 @@
+reserved words
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
+
+
+region_name = "us-east-1"
+client = boto3.client('dynamodb', region_name=region_name)
+
+
+client.scan(
+
+
+
+)
+
+
+ExpressionAttributeValues = {':LOCAL_REF': {'S': 'ATTRIBUTE_VALUE'}}
+FilterExpression = "ATTRIBUTE <> :LOCAL_REF"
+
+operator e.g.
+ATTRIBUTE =
+ATTRIBUTE <>
+ATTRIBUTE <
+ATTRIBUTE >
+ATTRIBUTE IN (:SS_FIELD)
+contains(ATTRIBUTE, ATTRIBUTE_VALUE)
+and
+or
+not
+
+e.g.
+# https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.OperatorsAndFunctions.html#Expressions.OperatorsAndFunctions.Syntax
+
+# "ExpressionAttributeValues": {':a': {"L": [{"S": 'paul_b_par_2'}, {"S": 'paul_b_par_1'}]}},
+# "FilterExpression": "consumable_selectability_list IN (:a)",
+
+# didn't find anything
+#"ExpressionAttributeValues": {':a': {"L": [{"S": 'paul_b_par_2'}, {"S": 'paul_b_par_1'}]}},
+#"FilterExpression": "consumable_selectability_list IN (:a)",
+
+# didn't find anything
+#"ExpressionAttributeValues": {':a': {'SS': ['paul_b_par_2', 'paul_b_par_1']}},
+#"FilterExpression": "consumable_selectability_list IN (:a)",
+
+# didn't find anything
+#"ExpressionAttributeValues": {':a': {'SS': ('paul_b_par_2', 'paul_b_par_1')}},
+#"FilterExpression": "consumable_selectability_list IN (:a)",
+
+# found all the paul_b_par_[1,2] records
+#"ExpressionAttributeValues": {':a': {'S': 'paul_b_par_2'}, ':b': {'S': 'paul_b_par_1'}},
+#"FilterExpression": "consumable_selectability_list IN (:a, :b)",
+
+# found all the paul_b_par_2 records
+#"ExpressionAttributeValues": {':a': {'S': 'paul_b_par_2'}},
+#"FilterExpression": "consumable_selectability_list IN (:a)",
+
+# found all the paul_b_par_2 records
+#"ExpressionAttributeValues": {':a': {'S': 'paul_b_par_2'}},
+#"FilterExpression": "consumable_selectability_list = :a",
+
+# found all the not paul_b_par_2 records
+#"ExpressionAttributeValues": {':a': {'S': 'paul_b_par_2'}},
+#"FilterExpression": "not consumable_selectability_list = :a",

@@ -11,6 +11,11 @@ apt-get update
 apt-get install openjdk-11-jre
 apt-get install openjdk-11-jdk
 
+
+// Install Java in WSL Ubuntu
+sudo apt install default-jdk
+sudo apt install default-jre
+
 // command line options
 java -version              # give version of java installed
 

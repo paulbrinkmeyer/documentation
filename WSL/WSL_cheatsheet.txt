@@ -1,13 +1,16 @@
 WSL 2
 ---------------------------------------------------------------------------
-wsl                                  # shortcut for wsl -d <DistName> where there is only one <DistName>
 wsl --install                        # installs WSL 2 with an ubuntu instance
-wsl --install -d <DistName>          # install a specific online distro
-ubuntu                               # start up WSL 2
-wsl -l -v                            # list distros
 wsl -l --online                      # list distros that can be downloaded
+wsl --install -d <DistName>          # install a specific online distro
+
+ubuntu                               # start up WSL 2
+wsl                                  # start the default distro
+wsl -s <DistName>                    # change the default distro
 wsl -d <DistName>                    # start a specific distro
-wsl -t <DistName>                    # stop (terminate) a speific distro
+wsl -t <DistName>                    # stop (terminate) a specific distro
+wsl -l -v                            # list distros
+
 wsl --unregister <DistName>          # remove a distro
 wsl --shutdown                       # shutdown all distros and close WSL 2
 wsl --status                         #

@@ -81,7 +81,7 @@ shift        removes the first parameter of a script where all the parameter's i
 shred        secure delete a file
 sleep X      processing waits for X seconds before continuing
 source       same as "." command
-ssh          Secure shell - login to a terminal remotely     (e.g. ssh username@lnxvcer3.vcd.hp.com)
+ssh          Secure shell - login to a terminal remotely     (e.g. ssh username@lnxvcer3.vcd.hp.com; tunnel e.g. ssh usr@domain -L <port>:localhost:<port> )
 ssh-keygen   Can be used to create a key. Also can be used to remove hostname keys from the known list: ssh-keygen -R <HOSTNAME>
 su           login as root
 sudo         run a command with root privilages
