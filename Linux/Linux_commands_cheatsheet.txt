@@ -114,10 +114,12 @@ zip          Compress files into a zip file                  (e.g. that zips an 
 user privilege commands:
 -----------------------------------------------------------------------------------------------------------------------
 id $USER                                print the current users info
-groups                                  see above (same as "id -nG")
+groups                                  list all the groups the current user is in (same as "id -nG")
 groups username                         see a specific user's groups
-sudo usermod -a -G groupname username   add a user to a group (-a is important)
-sudo groupadd groupname                 add the current user to a group
+sudo usermod -a -G groupname username   add a user to a group (-a is important). if the current user is modified logout and back in for it to take effect 
+gpasswd -d username groupname           remove a user from a group
+sudo groupadd groupname                 create a group
+sudo groupdel groupname                 delete a group
 cat /etc/group                          see all groups and their users
 getent group groupname                  see all the users for a specific group
 chgrp groupname filename                change the group of a file

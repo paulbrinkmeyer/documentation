@@ -99,6 +99,7 @@ Magic Commands:
 %sh                                                  # run shell code
 %fs                                                  # File System commands
 %md                                                  # include documentation
+%pip install <MODULE>                                # install a module
 
 language switch commands:
 %python                       # switch to using Python as the language

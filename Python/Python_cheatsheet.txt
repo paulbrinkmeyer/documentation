@@ -188,6 +188,9 @@ Dictionary operations
 d1 = {"1": "one"}                                # This is the starting value for the following examples
 d2 = {"2": "two }                                # This is the starting value for the following examples
 d3 = d1 | d2   ->   {"1": "one", "2": "two"}     # The output is a new dictionary. d1 & d2 are not changed. On a collision d2's values will take persistence. Requires Python version >= 3.9.
+key_value = d1.pop("1")   ->   "one"
+d1.pop("no_key")   ->   KeyError: "no_key"
+d1.pop("no_key", None)   ->   None               # Safe way to remove a key out of a dictionary
 
 ========================================================================================================
 function definition examples:
@@ -321,8 +324,16 @@ deactivate                        # this will return you back to the normal OS e
 ===============================================================================
 packages
 -------------------------------------------------------------------------------
-python setup.py bdist_wheel       # create a wheel package from a setup.py file (need "wheel" package installd)
+python setup.py bdist_wheel       # create a wheel package from a setup.py file (need "wheel" package installed)
 pytnon setup.py sdist             # create a .gz package from a setup.py file (note: sdist & bdist_wheel can both be parameters)
+
+useful resource: https://godatadriven.com/blog/a-practical-guide-to-using-setup-py/
+
+could be useful to add SHA to the version:
+---------------------------------------
+import git   # requires "gitpython" packege
+repo = git.Repo(search_parent_directories=True)
+sha = repo.head.object.hexsha
 
 common package commands:
 -------------------------------------------------------------------------------
@@ -334,6 +345,7 @@ pip common commands
 pip list --outdated                           # check for outdated modules
 pip install --upgrade <MODULE>                # update a module
 pip install <MODULE>==<VERSION>               # install a specific version
+pip install -e .                              # install from local repo in editable mode. You can make changes to the module and it will auto install the changes
 pip uninstall <MODULE>                        # uninstall a module
 pip install -r <FILE>                         # install a list of requirements from file. Each line has a module with an optional version (e.g. <MODULE>==<VERSION>)
 pip freeze > <FILE>                           # create a requirements file from the currently installed modules

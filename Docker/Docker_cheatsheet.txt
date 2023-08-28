@@ -68,6 +68,7 @@ docker run -d <IMAGE_NAME>                            # run the container detach
 docker run -v <SRC>:<DEST>:<OPT> <IMAGE_NAME>         # shortcut way to --mount, will guess at the type
 docker run --mount type:<TYPE>,src:<SRC>,dst:<DST>    # explicit way of doing "-v", default <TYPE> is volume
 docker run -p <HOST_PORT>:<CONTAINER_PORT>            # expose and map the <CONTAINER_PORT> to the <HOST_PORT>
+docker run -u 0 <IMAGE_NAME>                          # login as the root user
 
 # start commands
 #---------------------------------------------------------------------------------------------------------------------
