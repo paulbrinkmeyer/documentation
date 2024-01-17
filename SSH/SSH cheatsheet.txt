@@ -1,0 +1,14 @@
+ssh-keygen             # used to create ssh keys
+-F <HOST>              # list the client's known_host public key
+-R <HOST>              # removes the <HOST> public key from the ~/.ssh/known_hosts file
+-l                     # Show fingerprint of specified public key file
+-f <FILE>              # Specifies the filename of the key file.
+-f -                   # Specifies that the input will be piped to the command instead of read from a file
+
+ssh-keyscan <HOST>     # get all the public keys for this host. These are not secure and should be validated
+  -t <TYPE>            # only list keys of the given <TYPE>. (e.g. ssh-keyscan -t ecdsa <HOST>)
+
+
+common usage:
+  ssh-keyscan <HOST> 2>/dev/null | ssh-keygen -l -f -     # method to get the key fingerprints of a host from a client
+  ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub          # method to get the ecdsa key fingerprint from the server
