@@ -43,6 +43,7 @@ git
      log         --stat ......................................................... Similar to --name-only and --name-status with a little bit more change info. However, it truncates file paths
                  -p                                                               Shows detail differences of each commit in history
                  --author                   <PART_OF_AUTHORS_NAME> .............. filter by a specific author
+                 --graph                                                          show the branch trails
                  --name-only                                                      will just show the name of files that are changed and not the details
                  --name-status .................................................. Similar to --name-only with one character status as well
                  --oneline                                                        Show small version of SHA and the first line of the log all in one line for each commit shown
@@ -51,19 +52,20 @@ git
                  --diff-filter=D            --summary                             List all commits with deleted files; " | grep delete" makes a nice list of deleted files"
                  <SHA/BRANCH>..<SHA/BRANCH> ..................................... log all commits after the first <SHA/BRANCH> up to the second, not including the first but including the second.
      merge       --abort                                                          To cancel resolving any current merge conflicts
-     pull                                                                         pull in changes from the remote
+     pull ....................................................................... pull in changes from the remote
+                 origin                     <BRANCH_NAME>                         pull in changes from another branch
      push ....................................................................... push all local commits to the remote
                  <REMOTE>                   <BRANCH_NAME>                         used to push a local branch to the remote (e.g. git push origin products2014)
                  --all                      -u .................................. push all local branches to the remote location
                  origin                     --delete <BRANCH_NAME>                deletes a remote branch
      rebase      <PARENT_BRANCH>                                                  sync up the current branch as if it just broke apart from <PARENT_BRANCH>'s tip commit
-     remote      update                     origin --prune                        updates the local list of remote branches
+     remote      update                     origin --prune ...................... updates the local list of remote branches
                  prune                      origin                                removes links to branches that have been deleted on the remote
                  set-url                    origin <NEW_GIT_ORIGN> .............. reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git
                  show                       origin                                shows what URL is being used for pushes & pulls + other info about all the branches both remote and local
                  -v                                                               shows the fetch and push locations
      reset       HEAD                       <FILENAME> .......................... unstage <FILENAME>
-                 --soft                     HEAD^                                 undo last local commit
+                 --soft                     HEAD^                                 undo last local commit. However, it will keep the changes in a staged ready to commit state
                  --hard                     <SHA of servers HEAD> ............... undo all local not staged changes (will not delete new files) e.g. "git reset --hard origin/master"
      rev-list    --first-parent             <BRANCH_NAME>                         list all SHAs for <BRNACH_NAME>
      rev-parse   HEAD                                                             get the most recent commit SHA

@@ -1,3 +1,5 @@
+other ref: https://cheatography.com/davechild/cheat-sheets/regular-expressions/
+
 Character matching (any character that isn't a special character will match that exact character)
 .       any character except newline
 \.      period

@@ -266,39 +266,53 @@ modules
 ------------
 pytest                        # default
 pytest-cov                    # gives coverage options. Note when coverage is used with Pycharm debugging is affected: https://stackoverflow.com/questions/40718760/unable-to-debug-in-pycharm-with-pytest
+pytest-mock                   # used to get the mocker fixture
 
 CLI (standard):
 ------------
-pytest                        # run all tests in a given folder recursively to all child folders
-pytest --help                 # is very helpful at explaining possible options
-pytest <FILE_1> ... <FILE_N>  # only run the tests in the given files
-pytest --ignore=<FILE>        # don't consider <FILE> for a source of tests to run
-pytest -k <TEST_NAME>         # run only the test with the name <TEST_NAME>
-pytest --durations=0          # Show all times for tests, setup and teardown
-pytest --durations=1          # show the slowest test, setup or teardown
-pytest --durations=10         # show the slowest 10 tests, setups or teardowns
-
-pytest -s                     # shows all standard output
+pytest                            # run all tests in a given folder recursively to all child folders
+pytest --help                     # is very helpful at explaining possible options
+pytest <FILE_1> ... <FILE_N>      # only run the tests in the given files
+pytest --ignore=<FILE>            # don't consider <FILE> for a source of tests to run
+pytest -m <MARKER_EXPRESSION>     # run only the tests that match the <MARKER_EXPRESSION> e.g. -m 'mark1 and not mark2'
+pytest -k <TEST_NAME_SUB_STRING>  # run only the tests that have <TEST_NAME_SUB_STRING> in its name
+pytest --durations=0              # Show all times for tests, setup and teardown
+pytest --durations=1              # show the slowest test, setup or teardown
+pytest --durations=10             # show the slowest 10 tests, setups or teardowns
+pytest -s                         # shows all standard output
 
 CLI (with coverage)
---------------------
+--------------------------------------
 pytest --cov                            # show coverage report on all possible sources
 pytest --cov=<SRC>                      # show coverage report only on <SRC>. Provide this option again for more than one source
 pytest --cov --cov-report=term-missing  # show coverage report and the exact missing line numbers
 
+pytest.ini                              # defines how the pytest command will work
+--------------------------------------
+[pytest]                                # header that needs to exist
+log_cli = <BOOL>                        # <BOOL>=false gives "." outputs for a passing test but prints each test file name. <BOOL>=true prints every test name and result, one per line
+adopts =                                # the start of pytest CLI arguments
+ --cov                                  # e.g. CLI argument to always use
+
+Useful test tools:
+----------------------------------------------------
+@pytest.fixture()                                    # decorator to create a fixture
 @pytest.mark.skip(reason="because")                  # decorator to skip a test
 @pytest.mark.skipif(<CONDITION>,reason="because")    # decorator to skip a test on a condition
+@pytest.mark.<MARKER>                                # decorator to mark a test with the given <MARKER>
+with pytest.raises(<ERRORS>, match=<REGX>):          # check for an error in the code block to follow; <ERRORS> errors to expect e.g. (ValueError, TypeError); <REGX> is a regular expression that matches the raised message
 
 mock common usage
 -------------------
-@patch("path.of.object.to.mock" autospec=True)       # decorator to mock an object
-mock_something.call_args                             # a tuple in the form (args, kwargs) e.g. ([1,2,3], {"kwarg1": 1, "kwarg2": 2})
-mock_something.call_args.args                        # the positional args e.g. [param1, param2, param3]
-mock_something.call_args.kwargs                      # the key word args e.g. {"kwarg1": 1, "kwarg2": 2}
-mock_something.call_count                            # the number of times the mocked object was called
-mock_something.return_value = ...                    # set a specific return value for the mocked object
-mock_something.assert_called_once_with(...)          # validate that the mocked object is called once with specific parameters
-mock_something.assert_has_calls([...])               # validate that the mocked object is called with all the list of calls
+@patch("path.of.object.to.mock" autospec=True)        # decorator to mock an object
+mocker.patch("path.of.object.to.mock", autospec=True) # pytest-mock mocker usage
+mock_something.call_args                              # a tuple in the form (args, kwargs) e.g. ([1,2,3], {"kwarg1": 1, "kwarg2": 2})
+mock_something.call_args.args                         # the positional args e.g. [param1, param2, param3]
+mock_something.call_args.kwargs                       # the key word args e.g. {"kwarg1": 1, "kwarg2": 2}
+mock_something.call_count                             # the number of times the mocked object was called
+mock_something.return_value = ...                     # set a specific return value for the mocked object
+mock_something.assert_called_once_with(...)           # validate that the mocked object is called once with specific parameters
+mock_something.assert_has_calls([...])                # validate that the mocked object is called with all the list of calls
 
 mocking chained function calls: https://stackoverflow.com/questions/34308511/python-mocking-chained-function-calls
 
@@ -344,7 +358,7 @@ pip common commands
 ---------------------------------------------------------------------------
 pip list --outdated                           # check for outdated modules
 pip install --upgrade <MODULE>                # update a module
-pip install <MODULE>==<VERSION>               # install a specific version
+pip install <MODULE><OP><VERSION>             # install a specific version. e.g. <OP>s == (exactly equal) ~= (
 pip install -e .                              # install from local repo in editable mode. You can make changes to the module and it will auto install the changes
 pip uninstall <MODULE>                        # uninstall a module
 pip install -r <FILE>                         # install a list of requirements from file. Each line has a module with an optional version (e.g. <MODULE>==<VERSION>)

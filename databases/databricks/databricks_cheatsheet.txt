@@ -159,6 +159,15 @@ spark.read.text(/path/of/file.txt")                    # returns a DataFrame for
 spark.udf.register(FUN_NAM, UDF_FUNCTION)              # register a function to be used in a SQL statement
 
 
+Examples of creating a Data frame:
+--------------------------------------------------------------------------------------------------------------------------
+df = spark.createDataFrame(data=[(123,)], schema=["id"])
+--------------------------------------------------------------------------------------------------------------------------
+from datetime import datetime
+from pyspark.sql.types import StringType, DateType, TimestampType, IntegerType, StructField, StructType
+df = spark.createDataFrame(data=[(datetime.now(),)], schema=StructType([StructField("time_stamp",TimestampType(),True)]))
+--------------------------------------------------------------------------------------------------------------------------
+
  ___            _______                 _____  ____                    _____         _____                   ____ _______ _____   ___            ____
 |    \     ^       |       ^           |      |    \    ^    |\    /| |             |      |     | |\    |  /        |      |    /   \  |\    | /
 |     \   / \      |      / \          |      |    |   / \   | \  / | |             |      |     | | \   | /         |      |   /     \ | \   | \___
@@ -189,9 +198,9 @@ limit(num)                                                     # Limits the resu
 orderBy(field, ascending=False)                                # sort by field in descending order
 select(...)                                                    # show only the given columns from the DF
 selectExpr()
-show(num=20, truncate=True, vertical=False)                    # default parameters: shows the first 20 records and truncates them to 20 characters where one record is shown per line
+show(n=20, truncate=True, vertical=False)                      # default parameters: shows the first n records and truncates them to 20 characters where one record is shown per line
 take(num)                                                      # Returns the first num rows as a list of Row. It is different from limit() in that it doesn't return a dataframe. It returns the actual data.
-withColumn("columnName", COLUMN DATA)                          # update column data (does not work with nested structs)
+withColumn("columnName", COLUMN_DATA)                          # update column data (does not work with nested structs)
 write.mode("overwrite").parquet(outPath)                       # create a parquet file
 write.mode("overwrite").saveAsTable(TABLE_NAME)                # This creates a global table, unlike the local view created by the DataFrame method createOrReplaceTempView
 write.format("delta").mode("overwrite").save(outPath)          # create a delta table and remove the previous one
