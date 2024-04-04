@@ -56,6 +56,22 @@ ${VAR:3}            # 456789
 ${VAR:3:2}          # 45
 ${VAR:(-4)}         # 6789
 
+arrays
+--------------------------------
+var_array=()                     # create an empty array
+var_array=(1 2 3)                # initialize an array
+var_array[INDEX]=VALUE           # set a VALUE to a specific INDEX
+var_array+=(VALUE)               # append VALUE to the array
+unset -v 'var[INDEX]'            # remove the INDEX-ed value from the array
+$var_array                       # return the first value of the array
+${var_array[0]}                  # return the first value of the array
+$var_array[-1]                   # return the last value of the array
+${var_array[INDEX]}              # return the value stored at INDEX
+${var_array[@]:START:END         # return a sub range of the array starting at index START and ending at END inclusive.
+                                 # If :END is not given all values past the START index will be included
+${#var_array[@]}                 # return the length of the array
+${var_array[@]}                  # return all the values in the array space delimited
+printf '%s\n' "${var_array[@]}"  # return all the values in the array newline delimited
 
 I/O streams
 --------------------------------
@@ -143,6 +159,16 @@ done
 shift $((OPTIND - 1))                     # This is good practice to shift off already parsed parameters
 
 
+# always run teardown/cleanup e.g.
+----------------------------------------
+set -e   # exit when any command fails
+clean_up(){
+    last_exit_code=$?
+    ...
+}
+trap "clean_up param1 param2" EXIT   # run clean_up after exit is called
+...   # code body
+
 getopts example again without comments
 ----------------------------------------
 while getopts ":ht:" opt; do
@@ -194,7 +220,7 @@ Integer comparison
 
 String comparison
  =     <- is equal to        : if [ "$a" = "$b" ]   *** Note the white space framing the = ***
-==     <- is equal to        : if [ "$a" == "$b" ]  *** Almost the same as = . However, there are differences***
+==     <- is equal to        : if [ "$a" == "$b" ]  *** Almost the same as = . However, not supported in standard SH (not Bash) shells
 !=     <- is not equal to    : if [ "$a" != "$b" ]
  <     <- is less than, in ASCII alphabetical order    : [ "$a" \> "$b" ]
  >     <- is greater than, in ASCII alphabetical order : [ "$a" \< "$b" ]

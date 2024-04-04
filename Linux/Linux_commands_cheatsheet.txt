@@ -14,7 +14,7 @@ compgen      list bash settings, -v for variables, -c for all commands, -k for b
 cp           Copy a file
 curl         used to communicate over the network, -s for silent mode, -d to post data, -H for headers
 cut          used to remove parts of lines sent to std out   (e.g. alias | cut -c 7-)
-date         Outputs the current date. Useful for timestamps (e.g. date +"%F_%Hh%Mm%Ss")
+date         Outputs the current date. Useful for timestamps: (e.g. date +"%F_%Hh%Mm%Ss") or epoch time: (e.g. date +"%s")
 df           Shows mounted drives and the space available in them
 diff         Compare two files against each other
 dir          Output the sub-dir of the working directory     (see vdir)
@@ -28,6 +28,7 @@ exec         Replace the termial process with a new one      (e.g. exec python -
 export       Used to set environment variables               (e.g. export VAR=1)
 expr         evaluates a given expression                    (e.g. expr 1 + 1)
 eval         converts the given string into a command block  (e.g. eval 'ls -l')
+exit         exit the shell script with the exit code of the previous command unless a code is given as a parameter (e.g. exit 0)
 fg           brings a job back to the foreground             (e.g. "fg %1" will bring job 1 to the foreground)
 file         Gives info about the files contents             (e.g. file <fileName>)
 find         Search for a file in a directory                (e.g. find <DIR_TO_SEARCH> -name '*<FILENAME_TO_SEARCH_FOR>*')
@@ -167,6 +168,9 @@ find . -name "*.c" -exec sed -i "s/oldWord/newWord/g" '{}' \;
 # if the oldWord did not exist in it. This made git gui think the file had changed and wouldn't stop complaining about it
 # in a buggy kind of way. This method didn't have that issue:
 grep -rl oldWord | xargs sed -i "s/oldWord/newWord/g"
+
+# simple find and replace e.g. replace newline with "\n"
+sed -z 's/\n/\\n/g'
 
 # Append the contents of one file to the end of another e.g.:
 cat <FILE_TO_ADD> >> <FILE_TO_APPEND_TO>

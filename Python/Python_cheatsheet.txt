@@ -188,9 +188,11 @@ Dictionary operations
 d1 = {"1": "one"}                                # This is the starting value for the following examples
 d2 = {"2": "two }                                # This is the starting value for the following examples
 d3 = d1 | d2   ->   {"1": "one", "2": "two"}     # The output is a new dictionary. d1 & d2 are not changed. On a collision d2's values will take persistence. Requires Python version >= 3.9.
+d4 = {1: "one", 2: "two"}
 key_value = d1.pop("1")   ->   "one"
 d1.pop("no_key")   ->   KeyError: "no_key"
 d1.pop("no_key", None)   ->   None               # Safe way to remove a key out of a dictionary
+list(d4.keys())   ->   [1, 2]                    # list all the keys
 
 ========================================================================================================
 function definition examples:
@@ -280,6 +282,8 @@ pytest --durations=0              # Show all times for tests, setup and teardown
 pytest --durations=1              # show the slowest test, setup or teardown
 pytest --durations=10             # show the slowest 10 tests, setups or teardowns
 pytest -s                         # shows all standard output
+pytest -v                         # prints every test name and result, one per line
+pytest -vv                        # will reveal the real fast durations that made it to the "--durations=<#>" list, where <#> is an integer value; acts like "-v" is turned on too
 
 CLI (with coverage)
 --------------------------------------
@@ -290,9 +294,9 @@ pytest --cov --cov-report=term-missing  # show coverage report and the exact mis
 pytest.ini                              # defines how the pytest command will work
 --------------------------------------
 [pytest]                                # header that needs to exist
-log_cli = <BOOL>                        # <BOOL>=false gives "." outputs for a passing test but prints each test file name. <BOOL>=true prints every test name and result, one per line
+log_cli = <BOOL>                        # <BOOL>=false default, <BOOL>=true will output logging records as they are emitted directly into the console and acts like "-v" is turned on too
 adopts =                                # the start of pytest CLI arguments
- --cov                                  # e.g. CLI argument to always use
+ --cov                                  # e.g. CLI argument to always use that follows the "adopts =" line
 
 Useful test tools:
 ----------------------------------------------------
