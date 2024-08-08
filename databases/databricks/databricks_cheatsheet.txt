@@ -68,7 +68,7 @@ ref: https://docs.databricks.com/data/databricks-file-system.html
 
 display(dbutils.fs.ls("dbfs:/"))                            # show root files
 dbutils.fs.mkdirs("/foobar/")                               # make a directory
-dbutils.fs.put("/foobar/baz.txt", "Hello, World!")          # create a file and add test to it
+dbutils.fs.put("/foobar/baz.txt", "Hello, World!")          # create a file and add text to it
 dbutils.fs.rm("/foobar/baz.txt")                            # remove a file
 dbutils.notebook.run(<PATH>, <TIME_OUT_IN_SEC>)             # run another notebook in an isolated environment
 
@@ -97,6 +97,7 @@ Magic Commands:
 %run                                                 # run another notebook using the current environment unlike dbutils.notebook.run() which isolates its environment
 %run path/to/NotebookB $VarA="ValueA" $VarB="ValueB" # give parameters to a notebook
 %sh                                                  # run shell code
+%sh du -sh                                           # run the disk usage command
 %fs                                                  # File System commands
 %md                                                  # include documentation
 %pip install <MODULE>                                # install a module
@@ -232,7 +233,7 @@ select
 filter/where
 write
 cast
-union
+union                       # combine two dataframes with the same schema (tag: add rows)
 
 Wide operations
 --------------------
@@ -316,6 +317,9 @@ https://datathirst.net/projects/dbfs-explorer/
 
 Scheam notes
 -----------------------------------
-df.schema                           # 
-df.printSchema()                    # nice visual way to see it
-df.schema.jsonValue()               # will dump the schema in a JSON format
+from pyspark.sql.types import StructType, StringType   # used for examples below
+df.schema                                              # the schema of a dataframe
+df.schema.jsonValue()                                  # will dump the schema in a JSON format
+df.printSchema()                                       # nice visual way to see a schema
+schema = StructType()                                  # create a new schema
+schema.add("column_name", StringType(), True)          # add a field to a schema

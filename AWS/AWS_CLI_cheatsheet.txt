@@ -2,6 +2,7 @@ install on Ubuntu
 ---------------------------
 sudo apt install awscli
 
+Reference: https://awscli.amazonaws.com/v2/documentation/api/latest/index.html
 
 aws commands:
 ---------------------------------------------------------------------------------
@@ -12,6 +13,9 @@ aws configure                         # used to configure the CLI for first time
 aws configure --profile <NAME>        # configure a profile with the given <NAME>. defined in ~/.aws/config & ~/.aws/credentials
 export AWS_PROFILE=<NAME>             # to set the current profile for all follow up commands                    
 cat ~/.aws/config                     # list all profiles
+
+
+aws configure get region              # get the current region
 
 
 aws s3 cp <SRC> <DES>                 # e.g <DES> s3://

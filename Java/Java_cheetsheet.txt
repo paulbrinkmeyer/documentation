@@ -54,7 +54,7 @@ final int variableName = 99;
 // complete list here: https://www.w3schools.com/java/java_ref_string.asp
 ----------------------------------------------------------------------------------------------------------------
 <STR1> + <STR2>       # string concatenation
-<STR>.lenght()        # gives the lenght of a string
+<STR>.length()        # gives the length of a string
 <STR>.toUpperCase()   # Upper cases <STR>
 <STR>.toLowerCase()   # Lower cases <STR>
 <STR>.indexOf(<KEY>)  # gets the index of <KEY> in <STR> : note 0 is the first position
@@ -442,4 +442,4 @@ e.g. Predefined annotations:
 @SafeVarargs
 @FunctionalInterface
 
-@interface                                       # used to define a annotation type
+@interface                                       # used to define an annotation type

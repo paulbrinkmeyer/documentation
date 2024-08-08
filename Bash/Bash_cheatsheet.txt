@@ -83,9 +83,9 @@ command 1> file                    # same as >
 command 2> file                    # send stderr to file
 command 2> error.txt 1> output.txt # redirect both stdout and stderr
 command 2> /dev/null               # suppress error messages
-command > file 2>&1                # both stdout and stderr output to stdout (1)
+command > file 2>&1                # both stdout and stderr output to stdout (1). It must be in this order! This explains why: https://megamorf.gitlab.io/cheat-sheets/cheat-sheet-bash-redirections/
 command &> file                    # same as "command > file 2>&1"
-
+command < file                     # similar to: cat file | command
 
 function operations:
 --------------------------------
@@ -196,6 +196,11 @@ for (( i=0 ; i<NUM ; i++)); do
 done
 
 
+Arithmetic Expansion:
+$((x+y))      # returns the sum of x and y
+$((x-y))      $ returns the difference of x and y
+
+
 Boolean notes:
 --------------------------------
 reports true in a test:
@@ -259,6 +264,25 @@ logical operators
 !      <- logical not
 &&     <- short circut logical and : [ $var -ge "1" ] && [ $var -le "100" ]   #i.e. $var is in the range of 1-100
 ||     <- short circut logical or  : [ -z $var ] || 
+
+
+common string patterns and escape characters
+---------------------------------------------------------
+'literal\"string'        ->   literal\"string
+'\''                     ->                # SYNTAX INCOMPLETE. There is no way to put a single quote in a single quoted string
+\'                       ->   '            # The single quote character
+'\"'                     ->   \"           # literal string
+"\""                     ->   "            # double quote string with a double quote
+$'\"'                    ->   "            # special string with a double quote
+
+'\\'                     ->   \\           # literal string
+"\\"                     ->   \            # double quote string with a backslash
+$'\\'                    ->   \            # special string with a backslash
+
+'\n'                     ->   \n           # literal string
+"\n"                     ->   \n           # double quote string does NOT escape \n
+$'\n'                    ->   <NEW_LINE>   # newline character
+
 
 string special characters
 ----------------------------

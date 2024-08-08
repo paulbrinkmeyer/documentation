@@ -20,6 +20,14 @@ VOLUME                              # define the mount point in the image. later
 ARG                                 # a way for the builder to pass parameters to the Dockfile via the "docker build --build-arg"... command
                                     # - NOTE! - It has different meaning when used before and after the FROM statement!
 
+
+# system commands
+#---------------------------------------------------------------------------------------------------------------------
+docker system df                        # show docker disk usage
+docker system events                    # get real-time events from the server
+docker system info                      # display system-wide information
+docker system prune                     # remove all stopped containers, all dangling images, and all unused networks
+
 # building image commands (assumes a Dockerfile is in the current working directory):
 #---------------------------------------------------------------------------------------------------------------------
 docker build -t <IMAGE_NAME> <PATH>      # create an image from a Dockerfile with the name <IMAGE_NAME>
@@ -63,6 +71,7 @@ docker container run -it IMAGE_NAME                   # same as: docker run -it 
 docker run -it <IMAGE_NAME>                           # create and start a container with a CLI
 docker run --rm <IMAGE_NAME>                          # Automatically remove the container when it exits
 docker run --name <CONTAINER_NAME> <IMAGE_NAME>       # Method to name a container
+docker run -e <ENV_VAR>=<VALUE> <IMAGE_NAME>          # set an environment variable
 docker run --entrypoint <CMD> <IMAGE_NAME> <CMD_PARM> # Override the images ENTRYPOINT with <CMD> instead using the parameters <CMD_PARM>
 docker run -d <IMAGE_NAME>                            # run the container detached (use "docker attach" to re-attach)
 docker run -v <SRC>:<DEST>:<OPT> <IMAGE_NAME>         # shortcut way to --mount, will guess at the type
@@ -132,7 +141,10 @@ docker-compose down
 docker container prune -f
 docker image prune --all --force
 docker volume rm $(docker volume ls -q)
-
+.
+OR
+.
+docker system prune              # very affective at cleaning up everything. It might take some time to run.
 
 # docker see all - run all these commands:
 -------------------------------------------------------------

@@ -94,11 +94,12 @@ time         reports the execution time of a given command   (e.g. time curl goo
 timeout      timeout <time-limit-interval> <command>         (e.g. timeout 5s ping www.google.com )
 touch        Change file timestamp. Also can make a file.
 top          A running list of the top processes
+tput         used to set terminal properties (e.g. "tput rmam" will disable line wrapping and "tput smam" will enable it)
 tr           Translate, squeeze, and/or delete characters from standard input, writing to standard output.
 type         gives info about the command given (e.g. type -a <command>) will give you all locations of this command  
 uname        print system info (e.g. uname -a) 
 unset        Used to remove a shell variable                 (e.g unset VAR)
-unique       removes duplicate consecutive lines
+uniq         removes duplicate consecutive lines
 usermod      change user settings. e.g. add a group to a user: usermod -a -G <GROUP> <USER>
 vdir         Verbos version of "dir"
 vi           open vi editor

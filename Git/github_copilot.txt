@@ -1,0 +1,7 @@
+
+key/s            action
+---------------------------------------
+tab              accept suggestion
+alt+]            next suggestion
+alt+[            previous suggestion
+

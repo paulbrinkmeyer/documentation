@@ -1,7 +1,13 @@
 link: https://gist.github.com/hofmannsven/9164408
 
-CLI on Ubuntu:
+CLI install (client only)
+--------------------------------
+Ubuntu / Debian:
 apt-get install mysql-client
+.
+Redhat / CentOS:
+yum install mysql
+
 
 Common CLI commands:
 mysql --host <HOST> -u <USERNAME> -p            # login to MySQL server running at <HOST> with <USERNAME> and will be promoted for a password 
@@ -63,3 +69,9 @@ EXIT
 /* Inserting different types of data into tables
 INSERT INTO table_name VALUES (NAMED_STRUCT('field1','value1','field2','value2'))    # e.g. inserting a struct type
 INSERT INTO table_name VALUES (ARRAY('value1','value2'))                             # e.g. inserting an array type
+
+
+Docker quick bring up:
+--------------------------------------------------------------
+docker run -d -e MYSQL_ROOT_PASSWORD=mysql -p 3306:3306 mysql     # run a mysql container with a root password of "mysql" and expose port 3306 to the host
+mysql --host localhost -P 3306 --protocol=tcp -u root -p          # login to the mysql container running on localhost with the root user and ask to enter the password

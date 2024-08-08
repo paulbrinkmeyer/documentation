@@ -7,7 +7,8 @@ gitk                                                                            
 
 git
      add         <FILENAME> ..................................................... stage <FILENAME>
-     add         -N                         <FILE/FOLDER_NAME>                    indicate that a file/folder should be added (useful when you want to see these files in the diff log, e.g. for patch creation, or when you plan to use "git commit -a")
+                 -A                                                               stage all changed and added files (useful for quickly stashing your working environment)
+                 -N                         <FILE/FOLDER_NAME>                    indicate that a file/folder should be added (useful when you want to see these files in the diff log, e.g. for patch creation, or when you plan to use "git commit -a")
      apply       <DIFF_FILE> .................................................... apply a patch (DIFF_FILE) to the local environment. Note only the current directory and its sub-directories will be changed (change to the root of repo to avoid this)
                  --stat                     <DIFF_FILE>                           show what files would be changed without actually changing them
      branch                                                                       list all local branches
@@ -43,7 +44,7 @@ git
      log         --stat ......................................................... Similar to --name-only and --name-status with a little bit more change info. However, it truncates file paths
                  -p                                                               Shows detail differences of each commit in history
                  --author                   <PART_OF_AUTHORS_NAME> .............. filter by a specific author
-                 --graph                                                          show the branch trails
+                 --graph                                                          show the branch trails e.g.1. git log --graph --all --oneline   e.g.2. git log --graph --oneline master 98a4457c37a30bfee5755441efd54e8d9b341d47
                  --name-only                                                      will just show the name of files that are changed and not the details
                  --name-status .................................................. Similar to --name-only with one character status as well
                  --oneline                                                        Show small version of SHA and the first line of the log all in one line for each commit shown
@@ -51,6 +52,7 @@ git
                  -- <FILE_PATH> ................................................. shows the changes of a file  even if the file was deleted!
                  --diff-filter=D            --summary                             List all commits with deleted files; " | grep delete" makes a nice list of deleted files"
                  <SHA/BRANCH>..<SHA/BRANCH> ..................................... log all commits after the first <SHA/BRANCH> up to the second, not including the first but including the second.
+                 --pretty="<FORMAT>"                                              show the log in a specific <FORMAT>. see https://git-scm.com/docs/pretty-formats   e.g. git log --pretty="%C(Yellow)%h %C(reset)%ad %<(12,trunc)%C(Cyan)%an %C(reset)%s %C(Yellow)%d" --date=short
      merge       --abort                                                          To cancel resolving any current merge conflicts
      pull ....................................................................... pull in changes from the remote
                  origin                     <BRANCH_NAME>                         pull in changes from another branch
@@ -63,8 +65,9 @@ git
                  prune                      origin                                removes links to branches that have been deleted on the remote
                  set-url                    origin <NEW_GIT_ORIGN> .............. reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git
                  show                       origin                                shows what URL is being used for pushes & pulls + other info about all the branches both remote and local
-                 -v                                                               shows the fetch and push locations
-     reset       HEAD                       <FILENAME> .......................... unstage <FILENAME>
+                 -v ............................................................. shows the fetch and push locations
+     reset                                                                        un-stage all staged files
+                 <FILENAME> ..................................................... un-stage <FILENAME>
                  --soft                     HEAD^                                 undo last local commit. However, it will keep the changes in a staged ready to commit state
                  --hard                     <SHA of servers HEAD> ............... undo all local not staged changes (will not delete new files) e.g. "git reset --hard origin/master"
      rev-list    --first-parent             <BRANCH_NAME>                         list all SHAs for <BRNACH_NAME>
