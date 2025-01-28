@@ -319,7 +319,8 @@ Scheam notes
 -----------------------------------
 from pyspark.sql.types import StructType, StringType   # used for examples below
 df.schema                                              # the schema of a dataframe
-df.schema.jsonValue()                                  # will dump the schema in a JSON format
 df.printSchema()                                       # nice visual way to see a schema
 schema = StructType()                                  # create a new schema
 schema.add("column_name", StringType(), True)          # add a field to a schema
+schema_dict = df.schema.jsonValue()                    # confusingly this will dump the schema into a Python Dict and not a JSON string
+schema = StructType.fromJson(schema_dict)              # confusingly this will create a schema from a Python Dict and not a JSON string i.e. you still need to do schema_dict=json.loads(json_str) if you want to load a json string

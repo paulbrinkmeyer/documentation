@@ -68,8 +68,10 @@ git
                  -v ............................................................. shows the fetch and push locations
      reset                                                                        un-stage all staged files
                  <FILENAME> ..................................................... un-stage <FILENAME>
-                 --soft                     HEAD^                                 undo last local commit. However, it will keep the changes in a staged ready to commit state
+git  reset       --soft                     HEAD^                                 undo last local commit. However, it will keep the changes in a staged ready to commit state
                  --hard                     <SHA of servers HEAD> ............... undo all local not staged changes (will not delete new files) e.g. "git reset --hard origin/master"
+git  restore     <FILENAME> ..................................................... undo uncommited local changes to <FILENAME>
+                 --source                   <SHA>                                 restore a file to the state it was in at <SHA>
      rev-list    --first-parent             <BRANCH_NAME>                         list all SHAs for <BRNACH_NAME>
      rev-parse   HEAD                                                             get the most recent commit SHA
      revert      <sha> .......................................................... undos

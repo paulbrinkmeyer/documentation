@@ -29,7 +29,8 @@ https://stackoverflow.com/questions/13708180/python-dev-installation-error-impor
 ===============================================================================
 Boolean notes:
 
-Reports True in a test:
+Reports True in a bool test.
+i.e. what would be returned from bool(<VAR>) or an if <VAR> statement
 -------------------------------------------------------------------------------
 True
 1
@@ -44,7 +45,7 @@ True
 (None,)
 (None, None)
 
-Reports False in a test:
+Reports False in a bool test:
 -------------------------------------------------------------------------------
 None
 False
@@ -54,6 +55,7 @@ False
 []
 ()
 (<TEST>)    # where <TEST> is any other check that fails e.g. (None)
+
 
 ===============================================================================
 if statements:
@@ -91,20 +93,26 @@ except Exception as e:
     raise e
 
 ===============================================================================
-Variable types:
+Standard variable types:
 examples
-int_a  = 123                          # integer
-str_a  = "string"                     # string
+int_a = 123                           # integer
+float_a = 123.456                     # float
+str_a = "string"                      # string
 bool_a = True                         # boolean
+tuple_a = ("a", "b", "c")             # tuple: note, it must have at least one common e.g. (1,)
 dict_a = {"a":"A", "b":"B", "c":"B"}  # dictionary
 list_a = ["a", "b", "c"]              # list
 set_a  = {"a", "b", "c"}              # set
 
+
 Check for type, will return a boolean: e.g.
 -------------------------------------------
+type(VAR) is None
 type(VAR) is int
 type(VAR) is str
+type(VAR) is float
 type(VAR) is bool
+type(VAR) is tuple
 type(VAR) is dict
 type(VAR) is list
 type(VAR) is set
@@ -230,7 +238,25 @@ built in functions
 -------------------------------------------------------------------------------
 all(<ITERABLE>)                       # True if all items in an iterable are true, otherwise it returns False
 any(<ITERABLE>)                       # True if any item in an iterable are true, otherwise it returns False
+
+hex(<INT>)                            # convert an integer to a hexadecimal string
+hex(255)                              # "0xff"
+hex(255)[2:]                          # "ff"  # remove the "0x" prefix
+
 isinstance(<VAR>, <TYPE>)             # Check if <VAR> is of type <TYPE> e.g. isinstance("hi", str)
+
+int(value, base=10)                   # convert value to an integer. base is optional and defaults to 10
+int(3.5)                              # 3
+int(3)                                # 3
+int("3")                              # 3
+int("12")                             # 12
+int("12", 16)                         # 18
+int("ff", 16)                         # 255
+int("FF", 16)                         # 255
+int("0xff", 16)                       # 255
+int("1010", 2)                        # 10
+int("z", 16)                          # ValueError: invalid literal for int() with base 16: 'z'
+
 print(<STR>)                          # output <STR> plus a newline to standard out
 range(start, stop, step)              # generator of integers from start (included) to stop (not included)
 str(<OBJECT>)                         # convert <OBJECT> to a string
@@ -277,6 +303,7 @@ pytest --help                     # is very helpful at explaining possible optio
 pytest <FILE_1> ... <FILE_N>      # only run the tests in the given files
 pytest --ignore=<FILE>            # don't consider <FILE> for a source of tests to run
 pytest -m <MARKER_EXPRESSION>     # run only the tests that match the <MARKER_EXPRESSION> e.g. -m 'mark1 and not mark2'
+pytest --markers                  # list all the registered markers. To register a marker add it to the markers in the pytest.ini file
 pytest -k <TEST_NAME_SUB_STRING>  # run only the tests that have <TEST_NAME_SUB_STRING> in its name
 pytest --durations=0              # Show all times for tests, setup and teardown
 pytest --durations=1              # show the slowest test, setup or teardown
@@ -323,6 +350,26 @@ mocking chained function calls: https://stackoverflow.com/questions/34308511/pyt
 Mock vs MagicMock
 ---------------------
 A magic method is a method that starts and ends with "__". MagicMock lets you mock those in the same way as normal methods.
+
+Common Mock Methods:
+---------------------
+class TestSomething:
+    def setup_method(self):
+        try:
+            self.sleep = patch("path.to.target.time.sleep", autospec=True).start()
+            self.print = patch("builtins.print", autospec=True).start()
+        except Exception as e:
+            patch.stopall()
+            raise e
+
+    def teardown_method(self):
+        patch.stopall()
+
+    def test_something(self):
+        # ...
+        assert self.sleep.call_count == 1
+        self.print.assert_called_once_with("Hello World")
+
 
 ===============================================================================
 virtual environments:
