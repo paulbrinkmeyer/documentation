@@ -157,6 +157,14 @@ find / -samefile somefile           list all the files with a link to a file
 ls -l                               list all the hard links to a file (second group)
 
 
+Very useful commands:
+-----------------------------------------------------------------------------------------------------------------------
+du -sh * | sort -rh                 list all files and folders in the current directory with their size, sorted by size
+tar -czf myfolder.tar.gz myfolder/  create a compressed tar file of a folder
+tar -xzf myfolder.tar.gz            extract a compressed tar file of a folder
+gpg -c myfile.txt                   encrypt a file with gpg
+gpg myfile.txt                      decrypt a file with gpg
+
 
 TRICKS:
 

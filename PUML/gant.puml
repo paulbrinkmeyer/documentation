@@ -1,0 +1,15 @@
+@startgantt
+saturday are closed
+sunday are closed
+
+Project starts the 1st of january 2024
+[Prototype design end] as [TASK1] requires 19 days
+[TASK1] is colored in orange
+[Testing] requires 14 days
+[TASK1]->[Testing]
+[TASK2] requires 10 days
+[TASK2] is colored in LightGreen
+
+2021-01-18 to 2021-01-22 are named [End's committee]
+2021-01-18 to 2021-01-22 are colored in yellow
+@endgantt

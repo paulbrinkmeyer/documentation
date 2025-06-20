@@ -26,9 +26,11 @@ git
      clean       -fd                                                              *!!! CAUTION !!!* removes all local untracked files (use -nfd instead to test it out before actually doing it). ref: https://stackoverflow.com/questions/1090309/git-undo-all-working-dir-changes-including-new-files
      clone       git@git.vcd.hp.com:testing                                       example use of clone
      commit ..................................................................... commit all staged files. Will be prompted for a commit message
+                 -a                                                               automatically stages all modified and deleted tracked files.
                  --amend                                                          by itself it lets you change the last local commit message (if you "git add" something before calling this it will let you add that to the last commit too)
                  --allow-empty .................................................. a way to do a no-op commit
                  -m <COMMIT_MSG>                                                  commit all staged flles with the commit message of <COMMIT_MSG>
+                 -o <FILENAME>                                                    stages the given <FILENAME>
      config      -l OR --list ................................................... lists all the config settings
                  --unset                    <VAR_NAME>                            remove <VAR_NAME> config setting
                  --get                      remote.origin.url                     How to determine the url that a local git repo was originally cloned from
@@ -40,6 +42,7 @@ git
                  credential.helper wincred ...................................... (Windows only) will store your gitHub HTTPS token along with your Windows user account (no need to type your password everytime)
      diff                                                                         Show the differences between HEAD and the local changes
                  HEAD^ .......................................................... Show the differences between HEAD and the previous commit
+                 --name-only                                                      will just show the name of files that are changed and not the details
      gui                                                                          a GUI for stagging, committing and pushing local changes
      log         --stat ......................................................... Similar to --name-only and --name-status with a little bit more change info. However, it truncates file paths
                  -p                                                               Shows detail differences of each commit in history
@@ -53,7 +56,9 @@ git
                  --diff-filter=D            --summary                             List all commits with deleted files; " | grep delete" makes a nice list of deleted files"
                  <SHA/BRANCH>..<SHA/BRANCH> ..................................... log all commits after the first <SHA/BRANCH> up to the second, not including the first but including the second.
                  --pretty="<FORMAT>"                                              show the log in a specific <FORMAT>. see https://git-scm.com/docs/pretty-formats   e.g. git log --pretty="%C(Yellow)%h %C(reset)%ad %<(12,trunc)%C(Cyan)%an %C(reset)%s %C(Yellow)%d" --date=short
-     merge       --abort                                                          To cancel resolving any current merge conflicts
+     merge       <BRANCH_NAME> .................................................. merge <BRANCH_NAME> into the current branch
+                 --abort                                                          To cancel resolving any current merge conflicts
+                 --squash                   <BRANCH_NAME>                         combine all changes from <BRANCH_NAME> into a single commit on the current branch
      pull ....................................................................... pull in changes from the remote
                  origin                     <BRANCH_NAME>                         pull in changes from another branch
      push ....................................................................... push all local commits to the remote
@@ -69,10 +74,10 @@ git
      reset                                                                        un-stage all staged files
                  <FILENAME> ..................................................... un-stage <FILENAME>
 git  reset       --soft                     HEAD^                                 undo last local commit. However, it will keep the changes in a staged ready to commit state
-                 --hard                     <SHA of servers HEAD> ............... undo all local not staged changes (will not delete new files) e.g. "git reset --hard origin/master"
+                 --hard                     <SHA of servers HEAD>                 undo all local not staged changes (will not delete new files) e.g. "git reset --hard origin/master"
 git  restore     <FILENAME> ..................................................... undo uncommited local changes to <FILENAME>
                  --source                   <SHA>                                 restore a file to the state it was in at <SHA>
-     rev-list    --first-parent             <BRANCH_NAME>                         list all SHAs for <BRNACH_NAME>
+     rev-list    --first-parent             <BRANCH_NAME> ....................... list all SHAs for <BRNACH_NAME>
      rev-parse   HEAD                                                             get the most recent commit SHA
      revert      <sha> .......................................................... undos
                  -m                         1 <SHA>                               revert a merge

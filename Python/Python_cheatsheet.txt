@@ -33,27 +33,29 @@ Reports True in a bool test.
 i.e. what would be returned from bool(<VAR>) or an if <VAR> statement
 -------------------------------------------------------------------------------
 True
-1
-9999
--1
--9999
-"some_string"
-{None}
-{'field'}
-{'field': None}
-[None]
-(None,)
-(None, None)
+1                # non-zero integer
+9999             # non-zero integer
+-1               # non-zero integer
+-9999            # non-zero integer
+"some_string"    # non-empty string
+{None}           # one value set
+{'field'}        # one value set
+{'field': None}  # one value dictionary
+[None]           # one value list
+None,            # one value tuple
+(None,)          # one value tuple
+(None, None)     # two value tuple
 
 Reports False in a bool test:
 -------------------------------------------------------------------------------
-None
 False
-0
-""
-{}
-[]
-()
+None
+0           # zero integer
+""          # empty string
+{}          # empty set
+dict()      # emtpy dictionary
+[]          # empty list
+()          # empty tuple
 (<TEST>)    # where <TEST> is any other check that fails e.g. (None)
 
 
@@ -337,11 +339,13 @@ mock common usage
 -------------------
 @patch("path.of.object.to.mock" autospec=True)        # decorator to mock an object
 mocker.patch("path.of.object.to.mock", autospec=True) # pytest-mock mocker usage
-mock_something.call_args                              # a tuple in the form (args, kwargs) e.g. ([1,2,3], {"kwarg1": 1, "kwarg2": 2})
+mock_something.call_args                              # a tuple in the form (args, kwargs) e.g. ([1,2,3], {"kwarg1": 1, "kwarg2": 2}), Note: this is only on the last call of the mocked object
+mock_something.call_args_list                         # needed if you need to validate multiple calls and not just the last call
 mock_something.call_args.args                         # the positional args e.g. [param1, param2, param3]
 mock_something.call_args.kwargs                       # the key word args e.g. {"kwarg1": 1, "kwarg2": 2}
 mock_something.call_count                             # the number of times the mocked object was called
 mock_something.return_value = ...                     # set a specific return value for the mocked object
+mock_something.assert_any_call(...)                   # validate that the mocked object is called at least once with the given parameters
 mock_something.assert_called_once_with(...)           # validate that the mocked object is called once with specific parameters
 mock_something.assert_has_calls([...])                # validate that the mocked object is called with all the list of calls
 

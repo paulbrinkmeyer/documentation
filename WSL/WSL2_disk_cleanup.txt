@@ -1,0 +1,54 @@
+ERROR: failed to update builder last activity time: write /home/paul/.docker/buildx/activity/.tmp-default4195471134: no space left on device
+
+
+Reasons needed to allow admin usage
+I need to be able to turn the Windows feature Hyper-V so I can run the command optimize-vhd to be able to resize a WSL distro.
+I need to be able to use the diskpart so I can resize a WSL distro.
+I need to be able to use the Hyper-V tool optimize-vhd to resize a WSL distro.
+
+
+WSL2 distro locations:
+/C/Users/brinkmep/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState
+C:\Users\brinkmep\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState
+
+C:\Users\brinkmep\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState
+
+
+optimize-vhd
+https://learn.microsoft.com/en-us/powershell/module/hyper-v/optimize-vhd?view=windowsserver2022-ps
+
+
+
+Experiment 1 - DID NOT WORK
+----------------------------
+1. fron Powersheel run: diskpart
+2. DISKPART> select vdisk file="C:\Users\brinkmep\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\ext4.vhdx"
+3. DISKPART> compact vdisk
+4. DISKPART> exit
+
+
+Experiment 2 - DID NOT WORK
+-----------------------
+wsl.exe --shutdown  # ensure wsl is turned off
+wsl.exe -l -v  # confirm its status as stopped
+wsl --manage ubuntu --set-sparse false  # ensure false before operation
+cd 'C:\Users\<UserName>\AppData\Local\Packages<distro_package_name>\LocalState\ext4.vhdx'  # where the huge ext4.vhdx is.
+
+optimize-vhd -Path .\ext4.vhdx -Mode Full [-Confirm -Whatif]  # remove [...] if you are sure.
+optimize-vhd -Path .\ext4.vhdx -Mode Full
+
+# if everything goes well, you shall see the original ext4.vhdx is reduced.
+wsl --manage Ubuntu --set-sparse true  # turn on sparse mode from now on
+
+wsl  # login wsl to verify, hoping no corruption
+
+
+----------------------------------------------------------
+
+/var/lib/docker
+- this was taking up all the space
+
+$ docker system prune
+- this cleaned up the space
+
+Experiment 2 then WORKED!

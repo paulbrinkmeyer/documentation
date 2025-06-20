@@ -29,7 +29,7 @@ or(<cond1>, <cond2>, <opt_cond3>, ... )            # true if any <cond#> is true
 not(<cond>)                                        # true if <cond> if false
 eq(<value1>, <value2>)                             # true if they are equal
 in(<var>, <allowed_value1>, <allowed_value2>, ...) # <var> is one of the allowed values
-succeeded()                                        # true if the previous step/job/stage passed
+succeeded()                                        # true if the previous step/job/stage passed or was skipped
 succeededOrFailed()                                # true if the previous step/job/stage passed or failed
 always()                                           # always true, even if the pipeline is canceled!
 failed()                                           # true if the previous step/job/stage failed
