@@ -57,9 +57,9 @@ docker container ls -a                                  # list all containers st
 docker container ls -s                                  # list the size of all running containers
 docker container rm <CONTAINER>                         # remove <CONTAINER>
 docker container prune                                  # remove all stopped containers
-docker container rename <CURRNET_NAME_OR_ID> <NEW_NAME> # rename containter to <NEW_NAME>
+docker container rename <CURRNET_NAME_OR_ID> <NEW_NAME> # rename container to <NEW_NAME>
 docker container cp <SRC> <DST>                         # copy files to and from a container. <SRC>/<DST> will have the format of <CONTAINER_NAME>:<PATH> when referring to a container
-docker container start -i CONTAINER_NAME                # start a container in intractive mode
+docker container start -i CONTAINER_NAME                # start a container in interactive mode
 docker top <CONTAINER>                                  # 
 #
 # exit a container intractive mode without stopping the container: CTRL+P followed by CTRL+Q

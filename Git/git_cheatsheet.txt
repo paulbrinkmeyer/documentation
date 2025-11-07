@@ -18,7 +18,7 @@ git
                  -d <BRANCH_TO_DELETE>                                            delete local branch that doesn't have commits waiting            (to delete remote branches use "push origin --delete <BRANCH>")
                  -D <BRANCH_TO_DELETE> .......................................... delete local branch even if there are commits that aren't pushed (to delete remote branches use "push origin --delete <BRANCH>")
                  -m <NEW_BRANCH_NAME>                                             rename the local branch ("git push origin --delete <OLD_BRANCH_NAME>" to remove the old one from the remote and "git push --set-upstream origin <NEW_BRANCH_NAME>" to pull from the new remote branch)
-     checkout    -- <FILENAME> .................................................. undo uncommited local changes to <FILENAME>
+     checkout    -- <FILENAME> .................................................. undo uncommitted local changes to <FILENAME>
                  <SHA> <FILENAME>                                                 checkout a file from a different SHA
                  <BRANCH_NAME> .................................................. will switch over to the given <BRANCH_NAME>
                  -b <NEW_BRANCH_NAME>                                             "create a new local branch (same as ""git branch <NEW_BRANCH_NAME>"")"
@@ -39,11 +39,11 @@ git
                                             color.ui true ....................... ?
                  core.filemode              false                                 will ignore the "old mode XXXX  new mode YYYY" diffs
                  core.autocrlf              <OPTION>                              <OPTION> can be true (win), false (as-is) or input (unix)
-                 credential.helper wincred ...................................... (Windows only) will store your gitHub HTTPS token along with your Windows user account (no need to type your password everytime)
+                 credential.helper wincred ...................................... (Windows only) will store your gitHub HTTPS token along with your Windows user account (no need to type your password every time)
      diff                                                                         Show the differences between HEAD and the local changes
                  HEAD^ .......................................................... Show the differences between HEAD and the previous commit
                  --name-only                                                      will just show the name of files that are changed and not the details
-     gui                                                                          a GUI for stagging, committing and pushing local changes
+     gui                                                                          a GUI for staging, committing and pushing local changes
      log         --stat ......................................................... Similar to --name-only and --name-status with a little bit more change info. However, it truncates file paths
                  -p                                                               Shows detail differences of each commit in history
                  --author                   <PART_OF_AUTHORS_NAME> .............. filter by a specific author
@@ -68,24 +68,29 @@ git
      rebase      <PARENT_BRANCH>                                                  sync up the current branch as if it just broke apart from <PARENT_BRANCH>'s tip commit
      remote      update                     origin --prune ...................... updates the local list of remote branches
                  prune                      origin                                removes links to branches that have been deleted on the remote
-                 set-url                    origin <NEW_GIT_ORIGN> .............. reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git
+                 set-url                    origin <NEW_GIT_ORIGIN> ............. reconfigure where git pulls from e.g. git remote set-url origin git@gitlab.vcs.rd.hpicorp.net:FWQE/iws_salqe.git
                  show                       origin                                shows what URL is being used for pushes & pulls + other info about all the branches both remote and local
                  -v ............................................................. shows the fetch and push locations
      reset                                                                        un-stage all staged files
                  <FILENAME> ..................................................... un-stage <FILENAME>
 git  reset       --soft                     HEAD^                                 undo last local commit. However, it will keep the changes in a staged ready to commit state
                  --hard                     <SHA of servers HEAD>                 undo all local not staged changes (will not delete new files) e.g. "git reset --hard origin/master"
-git  restore     <FILENAME> ..................................................... undo uncommited local changes to <FILENAME>
+git  restore     <FILENAME> ..................................................... undo uncommitted local changes to <FILENAME>
                  --source                   <SHA>                                 restore a file to the state it was in at <SHA>
-     rev-list    --first-parent             <BRANCH_NAME> ....................... list all SHAs for <BRNACH_NAME>
+     rev-list    --first-parent             <BRANCH_NAME> ....................... list all SHAs for <BRANCH_NAME>
      rev-parse   HEAD                                                             get the most recent commit SHA
-     revert      <sha> .......................................................... undos
+                 <partial-sha>                                                    get the full SHA from a partial SHA
+     revert      <sha> .......................................................... creates a new commit that undoes the changes made by the specified SHA
                  -m                         1 <SHA>                               revert a merge
      show        <SHA> .......................................................... show the details of the sha checked in
                  <SHA>:<FILE_FULL_PATH>                                           show the contents of <FILE_FULL_PATH> at <SHA>
      stash       save ........................................................... will save all local changes to the top of the stash stack
                  pop                                                              will pop off the most recent saved stash from the stack and apply it locally
-                 list                                                             show summary of the stash stack
+                 list ........................................................... show summary of the stash stack
+                 drop                                                             !!! CAUTION !!! deletes the most recent stash and is pretty much irreversible!
+                 clear .......................................................... !!! EXTREME CAUTION !!! deletes all stashes and is pretty much irreversible!
+                 show                                                             show a summary of the stashed changes of the most recent stash
+                 show -p                                                          will show the exact differences in the most recent stash
      status ..................................................................... show the status of local changes
 
 

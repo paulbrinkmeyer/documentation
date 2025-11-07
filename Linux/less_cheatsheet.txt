@@ -1,0 +1,14 @@
+q           quit
+h           help
+/pattern    Search forward for a pattern.
+?pattern    Search backward for a pattern.
+n           Repeat the previous search (find the next match).
+N           Repeat the previous search in the reverse direction.
+g           go to the top of the file
+G           go to the end of the file
+-N          show line numbers
+Ng          (where N is a line number): Go to the specified line number.
+Np          (where N is a percentage): Go to the specified percentage into the file.
+m<letter>   Mark the current position.
+'<letter>   Go to a previously marked position. 
+s           save output to file. A promote will be given in which you can provide the name of the file

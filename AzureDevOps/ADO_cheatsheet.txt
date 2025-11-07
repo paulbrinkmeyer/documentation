@@ -1,5 +1,5 @@
 By default:
-stages run sequentially
+stages run sequentially with a condition of succeeded()
 jobs run in parallel
 steps run sequentially
 

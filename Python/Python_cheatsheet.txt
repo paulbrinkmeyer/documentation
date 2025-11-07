@@ -26,6 +26,11 @@ sudo update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 # solved an issue with apt_pkg not loading:
 https://stackoverflow.com/questions/13708180/python-dev-installation-error-importerror-no-module-named-apt-pkg
 
+
+
+sudo apt install python3-pip
+sudo apt install python3.12-venv
+
 ===============================================================================
 Boolean notes:
 
@@ -319,6 +324,7 @@ CLI (with coverage)
 pytest --cov                            # show coverage report on all possible sources
 pytest --cov=<SRC>                      # show coverage report only on <SRC>. Provide this option again for more than one source
 pytest --cov --cov-report=term-missing  # show coverage report and the exact missing line numbers
+pytest --cov --cov-report=html          # save coverage report to an html file
 
 pytest.ini                              # defines how the pytest command will work
 --------------------------------------

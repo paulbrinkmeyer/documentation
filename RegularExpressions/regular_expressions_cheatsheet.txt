@@ -32,8 +32,9 @@ Quantifier
 {3,}    Three or more times
 
 Logic
-|       Or
-(  )    Capturing group e.g. (this|that)
+|             Or
+(  )          Capturing group e.g. (this|that)
+(?!pattern)   Negative lookahead. Check that the pattern doesn't exist e.g. ^(?!(error|ERROR)+$)
 
 Anchors and Boundaries
 ^       Start of line

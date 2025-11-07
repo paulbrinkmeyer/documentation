@@ -1,0 +1,10 @@
+-i                       # repsonse info
+--request POST           # Start a POST request
+--request 
+--url <URL>              # url to use
+--header '<HEADER>'      # add a header. add multiple flags for more headers
+--data <PAYLOAD>         # the main payload to second
+-w "%{http_code}"        # output: HTTP status code (e.g., 200, 404, 500)
+-w "%{time_total}"       # output: Total time the request took (in seconds)
+-w "%{size_download}"    # output: Size of response body (in bytes)
+-w "%{url_effective}"    # output: Final URL after redirects
